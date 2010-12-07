@@ -1,0 +1,16 @@
+--[===[ -- this crazy looking quote is a comment. it looks like that so it can comment out all the other string quotes in the commented out part. [[, ]], " and '
+left.text
+[[(Burroughs) "Your position is a peculiar one," he continued; "you are a prisoner and yet you give commands which must be obeyed; you are an alien and yet you are a Tharkian chieftain; you are a midget and yet you can kill a mighty warrior with one blow of your fist.  And now you are reported to have been plotting to escape with another prisoner of another race; a prisoner who, from her own admission, half believes you are returned from the valley of Dor.  Either one of these accusations, if proved, would be sufficient grounds for your execution, but we are a just people and you shall have a trial on our return to Thark, if Tal Hajus so commands. "But," he continued, in his fierce guttural tones, "if you run off with the red girl it is I who shall have to account to Tal Hajus; it is I who shall have to face Tars Tarkas, and either demonstrate my right to command, or the metal from my dead carcass will go to a better man, for such is the custom of the Tharks. "I have no quarrel with Tars Tarkas; together we rule supreme the greatest of the lesser communities among the green men; we do not wish to fight between ourselves; and so if you were dead, John Carter, I should be glad.  Under two conditions only, however, may you be killed by us without orders from Tal Hajus; in personal combat in self-defense, should you attack one of us, or were you apprehended in an attempt to escape. "As a matter of justice I must warn you that we only await one of these two excuses for ridding ourselves of so great a responsibility.]]
+
+left.option {"Go to Kafka","load kafka", "log kafka_via_burroughs"}
+left.option {"Go to Wells", "load wells", "log wells_via_burroughs"}
+
+right.baseImage "factorySmall"
+--]===]
+
+
+spread.baseImage "forestSmall"
+spread.touchable {"pine", 25, 60, "load wells", "log touched_pine"}
+spread.touchable {"fruit", 75.5, 60, "pop fruity_pinecone_healthy", "log touched_fruit"}
+
+

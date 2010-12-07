@@ -1,0 +1,15 @@
+right.text
+[[ NOTE: yes it's empty. been fighting with this section ]]
+
+
+right.option{"Find a way to force open a door- that leads to the core. In the core is a blah blah robot computer brain thing.", "load factoryExplore_doors", "log factory_doors"}
+
+right.option{"Look for a way into the maintenace tunnels- in Manufacturing.", "load factoryExplore_ducts", "log factory_ducts"}
+
+right.option{"Go to the old Index", "load IndexTEST"}
+--[=[
+	>> SECRET: can tap on bush to load factoryExplore_bush >>
+	[[ NOTE: need to have a way that once this is selected, it can't be selected again ]]
+	[[ NOTE: just make a dummy image with this button missing? remove button somehow.. ]]
+
+--]=]

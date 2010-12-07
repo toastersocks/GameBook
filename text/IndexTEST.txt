@@ -1,0 +1,10 @@
+
+left.text
+[[(Index)	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.]]
+
+left.option {"Go to Burroughs", "load burroughs", "log chose_burroughs", "log something_else_entirely"}
+left.option {"Go to Kafka", "load kafka", "log log_thing", "log other_log_thing"}
+
+--right.baseImage "factorySmall"
+
+right.baseImage "deerSmall"

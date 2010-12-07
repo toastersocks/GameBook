@@ -1,0 +1,13 @@
+right.text
+[[The signs of wildlife all but disappear as you move north, away from the fallen wall. Along the way you try the doors you find. None lead to the core, and they are locked down too tightly besides; the most likely candidates are further along, in Distribution, which is - or was - the main entrance to the factory. 
+
+The ceiling has only small holes in this part of the structure, and you switch your optical sensors to a basic low-light mode to compensate. The conveyors and tables and workstations of Assembly soon end, and you come to the barrier that separates this section from Distribution.
+
+The barrier was lowered at one point, but it either failed or was partially destroyed, as it has a great ragged tear in it now, half a dekameter wide. 
+
+There is also a door here, unmarked on the available structure schematics in your database.]]
+
+	right.option{"examine the door", "load factoryExplore_doors_barrier", "log factory_investigated_door"}
+	right.option{"continue on", "load factoryExplore_distribution", "log factory_to_distribution"}
+
+

@@ -1,0 +1,9 @@
+right.text
+[[(Melville) DANISH SAILOR. Crack, crack, old ship! so long as thou crackest, thou holdest! Well done! The mate there holds ye to it stiffly. He's no more afraid than the isle fort at Cattegat, put there to fight the Baltic with storm-lashed guns, on which the sea-salt cakes! 4TH NANTUCKET SAILOR. He has his orders, mind ye that. I heard old Ahab tell him he must always kill a squall, something as they burst a waterspout with a pistol&mdash;fire your ship right into it! ENGLISH SAILOR. Blood! but that old man's a grand old cove! We are the lads to hunt him up his whale! ALL. Aye! aye! OLD MANX SAILOR. How the three pines shake! Pines are the hardest sort of tree to live when shifted to any other soil, and here there's none but the crew's cursed clay. Steady, helmsman! steady.]]
+
+right.option{"Go to the beginning","load Index", "log Index_via_melville"}
+right.option{"Do you want to go to Wells?","load wells", "log wells_via_mellevile"}
+right.option{"Go to Index", "load Index"}
+
+
+left.baseImage "ambushSmall"

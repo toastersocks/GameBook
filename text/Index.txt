@@ -1,0 +1,10 @@
+right.text
+[[Forcing millennia of dirt and dust from your joints, you slowly pick yourself up off the floor. You shift your weight to your good leg as sensors and relays warm up, come online, allow you to take in your manufactory.
+
+The south wall of this part of the factory has collapsed, and a forest outside makes slow progress inwards; plants have taken root in small cracks and crevices, carried there by wind or animal, warmed by the morning sun drifting through holes in the ceiling. An assembly-table has been completely overgrown with some dense, thorny brush, which seems to breathe with a quiet sound. Birdsong and the skittering of small creatures echo through the massive, seemingly abandoned structure. 
+
+Your analysis routines finally resolve something that has been nagging at the edge of your awareness: somewhere to the east of here is an active wireless network. Its signal strength is very low, and you can't determine what type of network it is, or even if there is any traffic on it.]]
+
+right.option{"Find the mainframe computer- deep within the factory's core. With the power out this will be difficult, but if the databanks are intact you should be able to determine what has happened in the intervening eons, and get an idea of where to search for the humans.", "load factoryExplore_assembly", "log firstchoice_factory"}
+
+right.option{"Follow the signal- by venturing out into the forest. Though your leg is damaged, this will still likely require less energy expenditure than investigating the factory. Even if there are no humans at the transmission site, you may be able to charge your battery off whatever source the network is drawing from.", "load signalExplore_city", "log firstchoice_signal"}

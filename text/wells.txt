@@ -1,0 +1,7 @@
+right.text
+[[(Wells) There were half a dozen flies or more from the Woking station standing in the road by the sand pits, a basket-chaise from Chobham, and a rather lordly carriage.  Besides that, there was quite a heap of bicycles.  In addition, a large number of people must have walked, in spite of the heat of the day, from Woking and Chertsey, so that there was altogether quite a considerable crowd--one or two gaily dressed ladies among the others. This is a test.]]
+
+right.option{"Go to Burroughs","load burroughs","log burroughs_via_wells"}
+right.option{"Go to Kafka","load kafka", "log kafka_via_wells"}
+
+left.baseImage "passageSmall"
