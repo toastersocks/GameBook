@@ -90,7 +90,7 @@
 		options = [inOptions retain];
 		NSLog(@"Setting Options...");
 	}
-	NSLog(@"Options are: %@", options);
+		//NSLog(@"Options are: %@", options);
 	
 	if (!options) { //if there are no options, shrink the options container
 					//optionsContainer.bounds = CGRectMake(0, 0, 1, 1);

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -152,8 +152,6 @@
 		DD8A994F1259829700C2F04F /* factorySmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = factorySmall.png; sourceTree = "<group>"; };
 		DD8A99501259829700C2F04F /* motherSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = motherSmall.png; sourceTree = "<group>"; };
 		DD8A99511259829700C2F04F /* passageSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = passageSmall.png; sourceTree = "<group>"; };
-		DD8A9AAF125E466700C2F04F /* SectionContents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionContents.h; sourceTree = "<group>"; };
-		DD8A9AB0125E466700C2F04F /* SectionContents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionContents.m; sourceTree = "<group>"; wrapsLines = 1; };
 		DDBB8BF512AAEE2300C1F885 /* GamebookLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamebookLog.h; sourceTree = "<group>"; };
 		DDBB8BF612AAEE2300C1F885 /* GamebookLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamebookLog.m; sourceTree = "<group>"; wrapsLines = 1; };
 		DDBC76AB12AA120000654D42 /* Index.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Index.txt; sourceTree = "<group>"; wrapsLines = 1; };
@@ -172,7 +170,7 @@
 		DDEC2B161293AE2A00A92357 /* WaxLua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaxLua.h; sourceTree = "<group>"; };
 		DDEC2B171293AE2A00A92357 /* WaxLua.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaxLua.m; sourceTree = "<group>"; };
 		DDEC2B4A1293B0E000A92357 /* SectionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionParser.h; sourceTree = "<group>"; };
-		DDEC2B4B1293B0E000A92357 /* SectionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionParser.m; sourceTree = "<group>"; };
+		DDEC2B4B1293B0E000A92357 /* SectionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionParser.m; sourceTree = "<group>"; wrapsLines = 1; };
 		DDFBF141126A39A800B21630 /* PagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagesViewController.h; sourceTree = "<group>"; wrapsLines = 1; };
 		DDFBF142126A39A800B21630 /* PagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagesViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
 		DDFBF143126A39A800B21630 /* PagesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PagesViewController.xib; path = Classes/PagesViewController.xib; sourceTree = "<group>"; };
@@ -414,8 +412,6 @@
 				DDEC2B4B1293B0E000A92357 /* SectionParser.m */,
 				DDEC2B161293AE2A00A92357 /* WaxLua.h */,
 				DDEC2B171293AE2A00A92357 /* WaxLua.m */,
-				DD8A9AAF125E466700C2F04F /* SectionContents.h */,
-				DD8A9AB0125E466700C2F04F /* SectionContents.m */,
 				DDBB8BF512AAEE2300C1F885 /* GamebookLog.h */,
 				DDBB8BF612AAEE2300C1F885 /* GamebookLog.m */,
 			);
@@ -478,7 +474,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "GameBook" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (

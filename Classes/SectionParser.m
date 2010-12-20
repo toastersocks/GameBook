@@ -8,7 +8,7 @@
 
 #import "SectionParser.h"
 #import "WaxLua.h"
-#import "SectionContents.h"
+	//#import "SectionContents.h"
 
 
 @implementation SectionParser
@@ -18,6 +18,7 @@
 @synthesize sectionLog;
 @synthesize keyEventLog;
 @synthesize inventoryLog;
+@synthesize databaseLog;
 
 
 - (id) init {
@@ -28,15 +29,17 @@
 		
 	}
 	
-	return [self initWithSectionLog: nil keyEventLog: nil inventoryLog: nil];
+	return [self initWithSectionLog: nil keyEventLog: nil inventoryLog: nil databaseLog: nil];
 }
 
-- (id) initWithSectionLog:(NSArray *)inSectionLog keyEventLog:(NSArray *)inKeyEventLog inventoryLog:(NSArray *)inInventoryLog {
+- (id) initWithSectionLog:(NSArray *)inSectionLog keyEventLog:(NSArray *)inKeyEventLog inventoryLog:(NSArray *)inInventoryLog databaseLog: (NSArray *)inDatabaseLog {
 	if (self = [super init]) {
 		
 		self.sectionLog = inSectionLog;
 		self.keyEventLog = inKeyEventLog;
 		self.inventoryLog = inInventoryLog;
+		self.databaseLog = inDatabaseLog;
+		
 		self.parserEngine = [[WaxLua alloc] init];
 		
 	}
@@ -44,10 +47,13 @@
 	return self;
 }
 
-- (NSDictionary *) objectNamed: (NSString *)objectIndex {
+- (NSDictionary *) objectNamed: (NSString *)objectIndex { //gets a game "object" (touchable sprite objects)
+		// Push the logs...
 	[self.parserEngine setObject: self.sectionLog asGlobalNamed: "sectionLog"];
 	[self.parserEngine setObject: self.keyEventLog asGlobalNamed: "keyEventLog"];
 	[self.parserEngine setObject: self.inventoryLog asGlobalNamed: "inventoryLog"];
+	[self.parserEngine setObject: self.databaseLog asGlobalNamed: "databaseLog"];
+	
 	NSLog(@"the objectIndex is %@",objectIndex);
 	[self.parserEngine setObject: objectIndex asGlobalNamed: "objectIndex"];
 	[self.parserEngine doScript: @"gameObjectHelper"];
@@ -62,11 +68,13 @@
 	NSString *sectionIndexWithPath = [[NSBundle mainBundle] pathForResource: sectionIndex 
 																	 ofType:@"txt"];
 		//NSLog(@"Instance%@: Full path for section is: %@", self, sectionIndexWithPath);
-														
-									  
+	
+		// Push the logs...								  
 	[self.parserEngine setObject: self.sectionLog asGlobalNamed: "sectionLog"];
 	[self.parserEngine setObject: self.keyEventLog asGlobalNamed: "keyEventLog"];
 	[self.parserEngine setObject: self.inventoryLog asGlobalNamed: "inventoryLog"];
+	[self.parserEngine setObject: self.databaseLog asGlobalNamed: "databaseLog"];
+	
 	[self.parserEngine setObject: sectionIndexWithPath asGlobalNamed: "sectionIndex"];
 	[self.parserEngine doScript: @"ParseHelper"];
 	NSDictionary *section = [self.parserEngine getObjectFromGlobalNamed: "section"];

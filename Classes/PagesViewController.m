@@ -67,7 +67,7 @@
 	NSLog(@"SPREAD_PAGE_SCENE is: %i", SPREAD_PAGE_SCENE);
 	 */
 
-	NSLog(@"Sender's superview is:\n%@", [sender superview] );
+		//NSLog(@"Sender's superview is:\n%@", [sender superview] );
 		//NSLog(@"RIGHT_PAGE_TEXT is: %i", RIGHT_PAGE_TEXT);
 	
 	if ( ([sender superview].tag == RIGHT_PAGE_TEXT) || ([sender superview].tag == RIGHT_PAGE_SCENE) ) {
@@ -98,10 +98,10 @@
 		currentFace = @selector(currentImage);
 		optionFace = @"sceneSprite";
 	}
-	NSLog(@"touchable face is:%@",[sender performSelector: currentFace]);
+		//NSLog(@"touchable face is:%@",[sender performSelector: currentFace]);
 	
 		// loop through the options from the appropriate section side ( left/right/spread )
-	NSLog(@"looking for option in:\n%@",[self.section valueForKeyPath: [NSString stringWithFormat:@"%@%@", senderPageSide, touchables]]);
+		//	NSLog(@"looking for option in:\n%@",[self.section valueForKeyPath: [NSString stringWithFormat:@"%@%@", senderPageSide, touchables]]);
 	NSArray *optionsToCheck;
 	
 	if ([sender superview].tag == OBJECT_POPUP_TEXT) {
@@ -124,7 +124,7 @@
 			// END DEBUG
 		 */
 		
-		NSLog(@"Checking %@", currentOption);
+			//	NSLog(@"Checking %@", currentOption);
 			// find the chosen option
 		if ( [[currentOption valueForKey: optionFace] isEqual: [sender performSelector: currentFace]] ) {
 			NSLog(@"Found the option");
@@ -185,7 +185,7 @@
 
 				
 				
-				NSLog(@"the sceneObject is:\n%@", [gameData objectNamed: [currentOption valueForKey: @"pop"]]);
+					//	NSLog(@"the sceneObject is:\n%@", [gameData objectNamed: [currentOption valueForKey: @"pop"]]);
 				//[self loadSection: [currentOption valueForKey: @"load"]];
 			}
 			
@@ -257,6 +257,7 @@
 //
 - (void) continueGame {
 	[self.gamebookLog loadLogs];
+	NSLog(@"Resuming game at section: %@", [self.gamebookLog.sectionLog lastObject]);
 	[self loadSection: [self.gamebookLog.sectionLog lastObject]];
 	
 //	[self loadPages: savedGame.currentPage? //? something something?];
