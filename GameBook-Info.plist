@@ -3,6 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>UIStatusBarHidden</key>
+	<false/>
+	<key>UIApplicationExitsOnSuspend</key>
 	<true/>
 	<key>UIInterfaceOrientation</key>
 	<string>UIInterfaceOrientationLandscapeLeft</string>

@@ -79,6 +79,8 @@
 		// Save the logs before quitting
 	NSArray *docDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *docsPath = [docDirectories objectAtIndex:0];
+	NSLog(@"Saving logs to: %@", docsPath);
+
 	
 	[self.sectionLog writeToFile: [docsPath stringByAppendingPathComponent: @"sectionLog.plist"] atomically: YES];
 	[self.keyEventLog writeToFile: [docsPath stringByAppendingPathComponent: @"keyEventLog.plist"] atomically: YES];
@@ -91,6 +93,7 @@
 	NSArray *docDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *docsPath = [docDirectories objectAtIndex:0];
 		//NSString *sectionLogPath = [docsPath stringByAppendingPathComponent: @"sectionLog.plist"];
+	NSLog(@"Path to logs is: %@", docsPath);
 	
 	self.sectionLog = [NSMutableArray arrayWithContentsOfFile: [docsPath stringByAppendingPathComponent: @"sectionLog.plist"]];
 	self.keyEventLog = [NSMutableArray arrayWithContentsOfFile: [docsPath stringByAppendingPathComponent: @"keyEventLog.plist"]];

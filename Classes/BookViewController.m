@@ -130,6 +130,7 @@
 - (IBAction) continueGame: (id)sender {
 		//	[self.pagesViewController continueGame];
 	[self startGamebook];
+	[self.pagesViewController.view setFrame: CGRectMake(0, 0, 1024, 768)];
 	[self.view addSubview: self.pagesViewController.view];
 	[self.pagesViewController continueGame];
 

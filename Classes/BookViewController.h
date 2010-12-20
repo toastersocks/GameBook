@@ -27,7 +27,7 @@
 	MainTitleMenu *mainTitleMenu;
 
 	GamebookLog *gamebookLog;
-	
+		
 
 }
 
