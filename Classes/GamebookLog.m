@@ -75,6 +75,30 @@
 
 }
 
+- (void) saveLogs {
+		// Save the logs before quitting
+	NSArray *docDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *docsPath = [docDirectories objectAtIndex:0];
+	
+	[self.sectionLog writeToFile: [docsPath stringByAppendingPathComponent: @"sectionLog.plist"] atomically: YES];
+	[self.keyEventLog writeToFile: [docsPath stringByAppendingPathComponent: @"keyEventLog.plist"] atomically: YES];
+	[self.inventoryLog writeToFile: [docsPath stringByAppendingPathComponent: @"inventoryLog.plist"] atomically: YES];
+	[self.databaseLog writeToFile: [docsPath stringByAppendingPathComponent: @"databaseLog.plist"] atomically: YES];
+}
+
+
+- (void) loadLogs {
+	NSArray *docDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *docsPath = [docDirectories objectAtIndex:0];
+		//NSString *sectionLogPath = [docsPath stringByAppendingPathComponent: @"sectionLog.plist"];
+	
+	self.sectionLog = [NSMutableArray arrayWithContentsOfFile: [docsPath stringByAppendingPathComponent: @"sectionLog.plist"]];
+	self.keyEventLog = [NSMutableArray arrayWithContentsOfFile: [docsPath stringByAppendingPathComponent: @"keyEventLog.plist"]];
+	self.inventoryLog = [NSMutableArray arrayWithContentsOfFile: [docsPath stringByAppendingPathComponent: @"inventoryLog.plist"]];
+	self.databaseLog = [NSMutableArray arrayWithContentsOfFile: [docsPath stringByAppendingPathComponent: @"databaseLog.plist"]];
+	
+}
+
 
 
 @end

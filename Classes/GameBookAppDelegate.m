@@ -67,14 +67,7 @@
      */
 		// TODO: Move this crap into the pagesViewController or bookViewController and call the method from here
 		// Save the logs before quitting
-	NSArray *docDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *docsPath = [docDirectories objectAtIndex:0];
-		//NSString *choiceLog = [docsPath stringByAppendingPathComponent: @"sectionLog.plist"];
-	
-	[self.bookViewController.gamebookLog.sectionLog writeToFile: [docsPath stringByAppendingPathComponent: @"sectionLog.plist"] atomically: YES];
-	[self.bookViewController.gamebookLog.keyEventLog writeToFile: [docsPath stringByAppendingPathComponent: @"keyEventLog.plist"] atomically: YES];
-	[self.bookViewController.gamebookLog.inventoryLog writeToFile: [docsPath stringByAppendingPathComponent: @"inventoryLog.plist"] atomically: YES];
-	[self.bookViewController.gamebookLog.databaseLog writeToFile: [docsPath stringByAppendingPathComponent: @"databaseLog.plist"] atomically: YES];
+	[bookViewController.gamebookLog	saveLogs];
 	
 		//NSLog(@"The location of sectionLog.plist is: %@", sectionLog);
 }

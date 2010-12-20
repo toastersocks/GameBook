@@ -103,6 +103,7 @@
 - (void) startGamebook {
 	[self dismissModalViewControllerAnimated: NO];
 	self.gamebookLog = [[GamebookLog alloc] init];
+	self.pagesViewController.gamebookLog = self.gamebookLog;
 	
 
 }

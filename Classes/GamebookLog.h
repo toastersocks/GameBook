@@ -33,4 +33,7 @@
 
 - (BOOL) logItem: (NSString *)newLogItem existsInLog: (NSArray *)log;
 
+- (void) saveLogs;
+- (void) loadLogs;
+
 @end

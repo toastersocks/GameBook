@@ -32,3 +32,6 @@ CVS
 Backup[ ]of[ ]*.pages/
 Backup[ ]of[ ]*.key/
 Backup[ ]of[ ]*.numbers/
+
+/GameBook.xcodeproj/project.xcworkspace/
+/GameBook.xcodeproj/xcuserdata/

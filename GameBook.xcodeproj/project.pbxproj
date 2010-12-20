@@ -50,6 +50,7 @@
 		DD55F7C112A6C18000A578B4 /* gameObjectList.lua in Resources */ = {isa = PBXBuildFile; fileRef = DD55F79312A6B9C500A578B4 /* gameObjectList.lua */; };
 		DD55F7C212A6C18000A578B4 /* ParseHelper.lua in Resources */ = {isa = PBXBuildFile; fileRef = DD53BC9D12A2B9FA005093BA /* ParseHelper.lua */; };
 		DD67AD1C125EAFAA009930BE /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = DD67AD1B125EAFAA009930BE /* RegexKitLite.m */; };
+		DD69F64B12BF0C6200C9CA60 /* wax.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD69F64A12BF0C6200C9CA60 /* wax.framework */; };
 		DD8A4B461276588000ECC094 /* GameBookViewWithDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8A4B451276588000ECC094 /* GameBookViewWithDelegate.m */; };
 		DD8A99521259829700C2F04F /* ambushSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8A994D1259829700C2F04F /* ambushSmall.png */; };
 		DD8A99531259829700C2F04F /* deerSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8A994E1259829700C2F04F /* deerSmall.png */; };
@@ -68,7 +69,6 @@
 		DDCC9EC512738E9E005C5745 /* CoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDCC9EC312738E9E005C5745 /* CoverViewController.xib */; };
 		DDCC9F2E1273D28B005C5745 /* cover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DDCC9F2D1273D28B005C5745 /* cover.jpg */; };
 		DDEC2B181293AE2B00A92357 /* WaxLua.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEC2B171293AE2A00A92357 /* WaxLua.m */; };
-		DDEC2B231293AE7200A92357 /* wax.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDEC2B221293AE7200A92357 /* wax.framework */; };
 		DDEC2B4C1293B0E000A92357 /* SectionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEC2B4B1293B0E000A92357 /* SectionParser.m */; };
 		DDFBF144126A39A800B21630 /* PagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFBF142126A39A800B21630 /* PagesViewController.m */; };
 		DDFBF145126A39A800B21630 /* PagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFBF143126A39A800B21630 /* PagesViewController.xib */; };
@@ -144,6 +144,7 @@
 		DD55F79C12A6BBFE00A578B4 /* printT.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = printT.lua; sourceTree = "<group>"; };
 		DD67AD1A125EAFAA009930BE /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		DD67AD1B125EAFAA009930BE /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		DD69F64A12BF0C6200C9CA60 /* wax.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = wax.framework; sourceTree = "<group>"; };
 		DD8A4B441276588000ECC094 /* GameBookViewWithDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBookViewWithDelegate.h; sourceTree = "<group>"; wrapsLines = 1; };
 		DD8A4B451276588000ECC094 /* GameBookViewWithDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBookViewWithDelegate.m; sourceTree = "<group>"; };
 		DD8A994D1259829700C2F04F /* ambushSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ambushSmall.png; sourceTree = "<group>"; };
@@ -170,7 +171,6 @@
 		DDCC9F2D1273D28B005C5745 /* cover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cover.jpg; sourceTree = "<group>"; };
 		DDEC2B161293AE2A00A92357 /* WaxLua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaxLua.h; sourceTree = "<group>"; };
 		DDEC2B171293AE2A00A92357 /* WaxLua.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaxLua.m; sourceTree = "<group>"; };
-		DDEC2B221293AE7200A92357 /* wax.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = wax.framework; sourceTree = "<group>"; };
 		DDEC2B4A1293B0E000A92357 /* SectionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionParser.h; sourceTree = "<group>"; };
 		DDEC2B4B1293B0E000A92357 /* SectionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionParser.m; sourceTree = "<group>"; };
 		DDFBF141126A39A800B21630 /* PagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagesViewController.h; sourceTree = "<group>"; wrapsLines = 1; };
@@ -187,7 +187,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
-				DDEC2B231293AE7200A92357 /* wax.framework in Frameworks */,
+				DD69F64B12BF0C6200C9CA60 /* wax.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +257,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DDEC2B221293AE7200A92357 /* wax.framework */,
+				DD69F64A12BF0C6200C9CA60 /* wax.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
@@ -643,6 +643,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -659,6 +660,7 @@
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;

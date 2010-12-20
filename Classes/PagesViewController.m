@@ -193,7 +193,7 @@
 			
 				// load the section, if there's a load command
 			if ([currentOption valueForKey: @"load"]) {
-				NSLog(@"loading the next section...");
+				NSLog(@"loading the next section: %@", [currentOption valueForKey: @"load"]);
 				[self.gamebookLog logSection: [currentOption valueForKey: @"load"]]; // record the choice in the log
 				
 				[self loadSection: [currentOption valueForKey: @"load"]];
@@ -210,6 +210,8 @@
 - (void) loadSection: (NSString *) sectionIndex {
 			
 	self.section = [self.gameData contentsForSection: sectionIndex];
+
+	NSLog(@"the sectionLog so far is:\n%@", self.gamebookLog.sectionLog);
 
 	NSLog(@"the keyEventLog so far is:\n%@", self.gamebookLog.keyEventLog);
 	NSLog(@"the databaseLog so far is:\n%@", self.gamebookLog.databaseLog);
@@ -254,15 +256,9 @@
 
 //
 - (void) continueGame {
-	NSArray *docDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *docsPath = [docDirectories objectAtIndex:0];
-		//NSString *sectionLogPath = [docsPath stringByAppendingPathComponent: @"sectionLog.plist"];
-	
-	self.gamebookLog.sectionLog = [NSMutableArray arrayWithContentsOfFile: [docsPath stringByAppendingPathComponent: @"sectionLog.plist"]];
-	self.gamebookLog.keyEventLog = [NSMutableArray arrayWithContentsOfFile: [docsPath stringByAppendingPathComponent: @"keyEventLog.plist"]];
-	self.gamebookLog.inventoryLog = [NSMutableArray arrayWithContentsOfFile: [docsPath stringByAppendingPathComponent: @"inventoryLog.plist"]];
-	self.gamebookLog.databaseLog = [NSMutableArray arrayWithContentsOfFile: [docsPath stringByAppendingPathComponent: @"databaseLog.plist"]];
+	[self.gamebookLog loadLogs];
 	[self loadSection: [self.gamebookLog.sectionLog lastObject]];
+	
 //	[self loadPages: savedGame.currentPage? //? something something?];
 //	
 }
