@@ -31,6 +31,8 @@
 @synthesize sectionView;
 @synthesize gamebookLog;
 
+@synthesize objectTextPopupController;
+
 - (void) startParser {
 	self.gameData = [[SectionParser alloc] init];
 }
@@ -148,13 +150,6 @@
 				[self.gamebookLog logDatabaseEntry:[currentOption valueForKey: @"pop"]];
 				 //				**[self.databaseLog addObject: [currentOption valueForKey: @"pop"]]; // record the object in the database log
 				
-				GameBookViewWithDelegate *objectTextPopupController = [[GameBookViewWithDelegate alloc] init];
-				objectTextPopupController.delegate = self;
-				TextView *popupTextView = [[TextView alloc] init];
-				popupTextView.tag = OBJECT_POPUP_TEXT;
-					//[popupController.view addSubview: popup];
-				objectTextPopupController.view = popupTextView;
-				objectTextPopupController.view.backgroundColor = self.sectionView.backgroundColor;
 				
 				popupTextView.layout = currentObject;
 				objectTextPopupController.contentSizeForViewInPopover = [popupTextView sizeThatFits:CGSizeMake(250, 100)];
@@ -167,7 +162,6 @@
 //					<#statements#>
 //				}
 
-				UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController: objectTextPopupController];
 				NSLog(@"pop type is: %@", popoverController.contentViewController.view.class);
 				
 					//[popController setPopoverContentSize:CGSizeMake(200.0, 200.0)];
@@ -264,6 +258,19 @@
 //	
 }
 
+- (void) initPopup {
+	objectTextPopupController = [[GameBookViewWithDelegate alloc] init];
+
+	objectTextPopupController.delegate = self;
+	popupTextView = [[TextView alloc] init];
+	popupTextView.tag = OBJECT_POPUP_TEXT;
+		//[popupController.view addSubview: popup];
+	objectTextPopupController.view = popupTextView;
+	objectTextPopupController.view.backgroundColor = self.sectionView.backgroundColor;
+	popoverController = [[UIPopoverController alloc] initWithContentViewController: objectTextPopupController];
+	
+}
+
 
 #pragma mark -
 #pragma mark Boilerplate Methods
@@ -279,12 +286,15 @@
 	
 	
     [super viewDidLoad];
+	[self initPopup];
+
 	
 }
 
 - (void) awakeFromNib {
 	NSLog(@"PagesViewController has awoken from the nib...");
 	[self startParser];
+
 }
 
 
@@ -327,6 +337,7 @@
 
 
 - (void)dealloc {
+	[self.objectTextPopupController dealloc];
     [super dealloc];
 }
 

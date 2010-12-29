@@ -16,6 +16,7 @@
 	//@class SinglePageController;
 @class SectionView;
 @class GamebookLog;
+@class TextView;
 
 
 @interface PagesViewController : GameBookViewWithDelegate { // how to declare in the interface that a class can take a delegate protocol? this probably exists and would eliminate a lot of duplicate code...
@@ -29,6 +30,10 @@
 
 	
 	NSDictionary *currentObject;
+	
+	GameBookViewWithDelegate *objectTextPopupController;
+	UIPopoverController *popoverController;
+	TextView *popupTextView;
 
 //	OptionViewController *optionContainerController;
 //	UITextView *mainText;
@@ -44,6 +49,8 @@
 @property (retain, nonatomic) SectionView *sectionView;
 @property (retain, nonatomic) GamebookLog *gamebookLog;
 
+@property (retain, nonatomic) GameBookViewWithDelegate *objectTextPopupController;
+
 //@property (retain, nonatomic) IBOutlet OptionViewController *optionContainerController;
 //@property (retain, nonatomic) IBOutlet UITextView *mainText;
 
@@ -55,6 +62,8 @@
 - (void) beginNewGame;
 
 - (void) continueGame;
+
+- (void) initPopup;
 
 
 
