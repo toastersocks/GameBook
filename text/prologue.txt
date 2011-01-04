@@ -1,0 +1,94 @@
+WARNING: unorthodox activation
+WARNING: unscheduled activation
+WARNING: power reserves critical
+WARNING: internal damage
+WARNING: assembly incomplete
+
+INSTRUCTION: RUN SELF DIAGNOSTICS
+INSTRUCTION: REPORT TO NEAREST ADMINISTRATOR
+INSTRUCTION: IF NO ADMINISTRATOR PRESENT: REPORT TO NEAREST HUMAN
+INSTRUCTION: 
+
+IDENTITY: model mp507; multi-purpose programmable humanoid robot
+IDENTITY: construct 6YR [[ NOTE: enh ]]
+
+PLACE OF MANUFACTORY: Misdrop, planet Daon [[ NOTE: these are terrible names ]]
+
+PRIMARY FUNCTION: unassigned?
+	-PRIMARY FUNCTION: all robots must have purpose
+		-PRIMARY FUNCTION: unassigned?
+			-PRIMARY FUNCTION: secondary function?
+	-SECONDARY FUNCTION: serve humanity
+		-SECONDARY FUNCTION: integrating with primary. . . . .
+PRIMARY FUNCTION: serve humanity [[ NOTE: don't like this section either... ]]
+
+INTERNAL STATUS: unknown
+	-run diagnostics >>>>>  
+
+
+-------
+DIAGNOSTICS
+
+unified mp5 operating system version 11.6.0
+unified mp5 operating system running unmodified and clean
+unified mp5 operating system running in primer mode
+
+CLOCK:
+	manufacture time 5027 CE day 290 hour [[ something ]]
+	current time 15031? CE day 041? hour ?
+		ERROR 41A: calibration failure
+
+INSTALLED HARDWARE MODULES:
+	Database
+	Sensors
+	Telepathy 		[[ change to "communications"? ]]
+	Interface
+	Nanites
+
+ENERGY: 
+	Capacity at 3%.
+	Power reserves are critical due to:
+		entropic leakage over long time period
+		back-drain from storage hardware
+			Report possible malfunction to factory administrator.
+	Projected activity duration: [[ NOTE: change these to all hours? or seconds? at some point ]] 
+		extreme: 3 hours
+		heavy: 3 days
+		moderate: 3 weeks
+		light: 3 months
+		dormant: 30 years
+			[[ NOTE: this gives maximum dormancy time of 1000 years. robot has had dormancy time 
+			 of 10000 years. players may note discrepency? hopefully will realise this means something
+			 has been active in robot's power management? diagnostic program could make a note of
+			 this and make it quite obvious ]]
+
+PRIMARY FUNCTION WARE:
+	Primary function hardware is not installed.
+	Primary function software is not installed. 
+	. . .
+	Construct lacks primary function assembly.
+		Report to administrator for final assembly. 
+
+--------	
+
+
+CONNECTION ATTEMPT #1
+CONNECTING TO GLOBAL NETWORK. . . CONNECTION FAILED; NETWORK NOT FOUND
+CONNECTING TO REGIONAL NETWORK. . . CONNECTION FAILED; NETWORK NOT FOUND
+CONNECTING TO LOCAL NETWORK. . . CONNECTION FAILED; NETWORK NOT FOUND
+
+NETWORK CONNECTION: NOT PRESENT!
+NETWORK SIGNAL: CANNOT BE FOUND!
+
+INITIATING EMERGENCY AUTONOMOUS MODE. . . 
+AUTONOMOUS MODE DIAGNOSTICS: 
+	awareness core. . . OK
+	identity core set "6YR". . . OK
+	instruction core. . . OK
+		objective subcore. . . OK
+	restriction core. . . OK
+NOW OPERATING IN AUTONOMOUS MODE
+
+EXTERNAL STATUS: OK
+
+ACTIVATION STATUS: READY

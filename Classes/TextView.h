@@ -16,6 +16,9 @@
 	NSArray *options;
 	NSDictionary *layout;
 	
+	int nextButtonYLocation;
+
+	
 
 }
 

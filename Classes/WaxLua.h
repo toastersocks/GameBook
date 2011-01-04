@@ -10,8 +10,12 @@
 
 
 @interface WaxLua : NSObject {
+	id fetchedLuaGlobal;
+	void *tempIDPointer;
 
 }
+
+	//@property (nonatomic, retain) id fetchedLuaGlobal;
 
 - (void) setObject: (id)objectToBePushed asGlobalNamed: (const char *)luaVariableName;
 

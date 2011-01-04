@@ -67,6 +67,7 @@
 		DDCC9EC412738E9E005C5745 /* CoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCC9EC212738E9E005C5745 /* CoverViewController.m */; };
 		DDCC9EC512738E9E005C5745 /* CoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDCC9EC312738E9E005C5745 /* CoverViewController.xib */; };
 		DDCC9F2E1273D28B005C5745 /* cover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DDCC9F2D1273D28B005C5745 /* cover.jpg */; };
+		DDDA66B212D28E1F00EC1457 /* prologue.txt in Resources */ = {isa = PBXBuildFile; fileRef = DDDA66B112D28E1F00EC1457 /* prologue.txt */; };
 		DDDF51B312CBC48800B62509 /* robotSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DDDF51B212CBC48800B62509 /* robotSmall.png */; };
 		DDEC2B181293AE2B00A92357 /* WaxLua.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEC2B171293AE2A00A92357 /* WaxLua.m */; };
 		DDEC2B4C1293B0E000A92357 /* SectionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEC2B4B1293B0E000A92357 /* SectionParser.m */; };
@@ -165,6 +166,7 @@
 		DDCC9EC212738E9E005C5745 /* CoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverViewController.m; sourceTree = "<group>"; };
 		DDCC9EC312738E9E005C5745 /* CoverViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CoverViewController.xib; path = Classes/CoverViewController.xib; sourceTree = "<group>"; };
 		DDCC9F2D1273D28B005C5745 /* cover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cover.jpg; sourceTree = "<group>"; };
+		DDDA66B112D28E1F00EC1457 /* prologue.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = prologue.txt; sourceTree = "<group>"; };
 		DDDF51B212CBC48800B62509 /* robotSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = robotSmall.png; sourceTree = "<group>"; };
 		DDEC2B161293AE2A00A92357 /* WaxLua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaxLua.h; sourceTree = "<group>"; };
 		DDEC2B171293AE2A00A92357 /* WaxLua.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaxLua.m; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 				DD098E1F126E300E00BF8B8C /* kafka.txt */,
 				DD098E20126E300E00BF8B8C /* burroughs.txt */,
 				DDFBF171126A482500B21630 /* IndexTEST.txt */,
+				DDDA66B112D28E1F00EC1457 /* prologue.txt */,
 			);
 			path = text;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 				DDBC76AF12AA120000654D42 /* factoryExplore_assembly.txt in Resources */,
 				DDBC76B012AA120000654D42 /* factoryExplore_doors.txt in Resources */,
 				DDDF51B312CBC48800B62509 /* robotSmall.png in Resources */,
+				DDDA66B212D28E1F00EC1457 /* prologue.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +599,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GameBook_Prefix.pch;
 				INFOPLIST_FILE = "GameBook-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = GameBook;
 			};
@@ -612,6 +617,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GameBook_Prefix.pch;
 				INFOPLIST_FILE = "GameBook-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = GameBook;
 				VALIDATE_PRODUCT = YES;

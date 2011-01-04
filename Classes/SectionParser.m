@@ -20,9 +20,11 @@
 @synthesize inventoryLog;
 @synthesize databaseLog;
 
+@synthesize section;
+@synthesize sceneObject;
 
 - (id) init {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 //		self.sectionLog = sectionLog;
 //		self.keyEventLog = keyEventLog;
 //self.parserEngine = [[WaxLua alloc] init];
@@ -33,7 +35,7 @@
 }
 
 - (id) initWithSectionLog:(NSArray *)inSectionLog keyEventLog:(NSArray *)inKeyEventLog inventoryLog:(NSArray *)inInventoryLog databaseLog: (NSArray *)inDatabaseLog {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		
 		self.sectionLog = inSectionLog;
 		self.keyEventLog = inKeyEventLog;
@@ -57,10 +59,9 @@
 	NSLog(@"the objectIndex is %@",objectIndex);
 	[self.parserEngine setObject: objectIndex asGlobalNamed: "objectIndex"];
 	[self.parserEngine doScript: @"gameObjectHelper"];
-	NSDictionary *sceneObject = [self.parserEngine getObjectFromGlobalNamed: "sceneObject"];
-	return sceneObject; //release? return as autorelease?
-					//maintext? leftText? ... in lua script, left.text, left.option, left.option etc... right.image right.imageOption right.popup
-	
+	sceneObject = [self.parserEngine getObjectFromGlobalNamed: "sceneObject"];
+		//return [sceneObject autorelease]; //release? return as autorelease?
+	return self.sceneObject;
 }
 
 - (NSDictionary *) contentsForSection: (NSString*)sectionIndex {
@@ -77,11 +78,9 @@
 	
 	[self.parserEngine setObject: sectionIndexWithPath asGlobalNamed: "sectionIndex"];
 	[self.parserEngine doScript: @"ParseHelper"];
-	NSDictionary *section = [self.parserEngine getObjectFromGlobalNamed: "section"];
-	return section; //release? return as autorelease?
-		//maintext? leftText? ... in lua script, left.text, left.option, left.option etc... right.image right.imageOption right.popup
-
-		//return [SectionContents sectionWith//??? maybe a dictionary as sectionContents instead of a custom object? 
+	section = [self.parserEngine getObjectFromGlobalNamed: "section"];
+		//return [section autorelease]; //release? return as autorelease?
+	return self.section;
 }
 
 

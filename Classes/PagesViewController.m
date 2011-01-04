@@ -30,20 +30,87 @@
 
 @synthesize sectionView;
 @synthesize gamebookLog;
+@synthesize currentObject;
 
-@synthesize objectTextPopupController;
+	//@synthesize objectTextPopupController;
 
 - (void) startParser {
 	self.gameData = [[SectionParser alloc] init];
 }
 
 
+- (void) popoverControllerDidDismissPopover: inPopoverController {
+		//[self.currentObject release];
+}
+
+
+- (void) showPopupForOption: (NSArray *)currentOption button: (id)sender  {
+    NSLog(@"loading the popup...");
+	
+	if (popupTextView != nil) {
+		[popupTextView release];
+	}
+	popupTextView = [[TextView alloc] init];
+	
+	popupTextView.tag = OBJECT_POPUP_TEXT;
+		//[popupController.view addSubview: popup];
+	objectTextPopupController.view = popupTextView;
+	
+	NSLog(@"currentObject at %p retain count before assignment is: %i", self.currentObject, [self.currentObject retainCount] );
+
+	self.currentObject = [[gameData objectNamed: [currentOption valueForKey: @"pop"] ] retain];
+	NSLog(@"currentObject at %p retain count after assignment is: %i", self.currentObject, [self.currentObject retainCount] );
+
+	NSLog(@"Popup object in popup method is:\n%@", currentObject);
+
+
+
+	
+	objectTextPopupController.view.backgroundColor = self.sectionView.backgroundColor;
+
+	[self.gamebookLog logDatabaseEntry:[currentOption valueForKey: @"pop"]];
+	 //				**[self.databaseLog addObject: [currentOption valueForKey: @"pop"]]; // record the object in the database log
+
+
+	popupTextView.layout = self.currentObject;
+		//objectTextPopupController.contentSizeForViewInPopover = [popupTextView sizeThatFits: CGSizeMake(250, 100)];
+		//popupTextView.bounds = CGRectMake(0, 0, [popupTextView sizeThatFits: CGSizeMake(250, 100)].width, [popupTextView sizeThatFits: CGSizeMake(250, 100)].height);//[popupTextView sizeThatFits: CGSizeMake(250, 100)];
+
+
+	NSLog(@"textView height is: %f\noptionsContainer height is: %f", popupTextView.mainTextView.bounds.size.height, popupTextView.optionsContainer.bounds.size.height);
+	NSLog(@"height of popup is %f", objectTextPopupController.contentSizeForViewInPopover.height);
+
+
+	NSLog(@"pop type is: %@", popoverController.contentViewController.view.class);
+
+		//[popController setPopoverContentSize:CGSizeMake(200.0, 200.0)];
+	popoverController.popoverContentSize = [popupTextView sizeThatFits: CGSizeMake(250, 100)];
+
+	[popoverController presentPopoverFromRect: [sender frame] 
+								   inView: [sender superview] 
+				 permittedArrowDirections: UIPopoverArrowDirectionAny 
+								 animated: YES];
+
+		//objectTextPopupController.contentSizeForViewInPopover = [popupTextView sizeThatFits: CGSizeMake(250, 100)];
+
+	
+		//	[popup release];
+	
+	
+	NSLog(@"The textView's contentSize is %f, %f", popupTextView.mainTextView.contentSize.width, popupTextView.mainTextView.contentSize.height);
+
+	NSLog(@"The popup's view size is %f, %f", popupTextView.frame.size.width, popupTextView.frame.size.height);
+	
+		//[self.currentObject release];
+
+}
+
 	// TODO: break the various functionality of this method up into several methods
 - (IBAction) getChosenOption: (id) sender {
 	NSLog(@"option was chosen");
 	NSString *senderPageSide;
-	SEL currentFace;
-	NSString *optionFace;
+	SEL currentFace = nil;
+	NSString *optionFace = nil;
 	NSString *touchables = @"options";
 	
 		//NSLog(@"%@", self.section);
@@ -107,8 +174,10 @@
 	NSArray *optionsToCheck;
 	
 	if ([sender superview].tag == OBJECT_POPUP_TEXT) {
-		optionsToCheck = [currentObject valueForKeyPath: @"options"];
+		optionsToCheck = [self.currentObject valueForKeyPath: @"options"];
 	} else {
+		NSLog(@"section retainCount in optionsCheck is: %i", self.section.retainCount);
+
 		optionsToCheck = [self.section valueForKeyPath: [NSString stringWithFormat:@"%@%@", senderPageSide, touchables]];
 	}
 
@@ -145,41 +214,9 @@
 				
 				//show the popup, if there is one
 			if ([currentOption valueForKey: @"pop"]) {
-				NSLog(@"loading the popup...");
-				currentObject = [gameData objectNamed: [currentOption valueForKey: @"pop"]];
-				[self.gamebookLog logDatabaseEntry:[currentOption valueForKey: @"pop"]];
-				 //				**[self.databaseLog addObject: [currentOption valueForKey: @"pop"]]; // record the object in the database log
-				
-				
-				popupTextView.layout = currentObject;
-				objectTextPopupController.contentSizeForViewInPopover = [popupTextView sizeThatFits:CGSizeMake(250, 100)];
-
-				
-				NSLog(@"textView height is: %f\noptionsContainer height is: %f", popupTextView.mainTextView.bounds.size.height, popupTextView.optionsContainer.bounds.size.height);
-				NSLog(@"height of popup is %f", objectTextPopupController.contentSizeForViewInPopover.height);
-
-				//if ([currentObject valueForKey: @"description"]) {
-//					<#statements#>
-//				}
-
-				NSLog(@"pop type is: %@", popoverController.contentViewController.view.class);
-				
-					//[popController setPopoverContentSize:CGSizeMake(200.0, 200.0)];
-				[popoverController presentPopoverFromRect: [sender frame] 
-											   inView: [sender superview] 
-							 permittedArrowDirections: UIPopoverArrowDirectionAny 
-											 animated: YES];
-				
-
-				
-					//	[popup release];
-				
-				
-				NSLog(@"The textView's contentSize is %f, %f", popupTextView.mainTextView.contentSize.width, popupTextView.mainTextView.contentSize.height);
-
-				
-				
-					//	NSLog(@"the sceneObject is:\n%@", [gameData objectNamed: [currentOption valueForKey: @"pop"]]);
+					//	NSLog(@"Popup object in choice method is:\n%@", currentObject);
+				[self showPopupForOption: currentOption button: sender];
+				//	NSLog(@"the sceneObject is:\n%@", [gameData objectNamed: [currentOption valueForKey: @"pop"]]);
 				//[self loadSection: [currentOption valueForKey: @"load"]];
 			}
 			
@@ -202,8 +239,12 @@
 
 
 - (void) loadSection: (NSString *) sectionIndex {
+	
+	NSLog(@"section at %p retainCount before assignment is: %i", self.section, self.section.retainCount);
 			
 	self.section = [self.gameData contentsForSection: sectionIndex];
+	
+	NSLog(@"section at %p retainCount after assignment is: %i", self.section, self.section.retainCount);
 
 	NSLog(@"the sectionLog so far is:\n%@", self.gamebookLog.sectionLog);
 
@@ -260,14 +301,16 @@
 
 - (void) initPopup {
 	objectTextPopupController = [[GameBookViewWithDelegate alloc] init];
-
 	objectTextPopupController.delegate = self;
-	popupTextView = [[TextView alloc] init];
-	popupTextView.tag = OBJECT_POPUP_TEXT;
-		//[popupController.view addSubview: popup];
-	objectTextPopupController.view = popupTextView;
-	objectTextPopupController.view.backgroundColor = self.sectionView.backgroundColor;
 	popoverController = [[UIPopoverController alloc] initWithContentViewController: objectTextPopupController];
+	popoverController.delegate = self;
+//	popupTextView = [[TextView alloc] init];
+//	
+//	popupTextView.tag = OBJECT_POPUP_TEXT;
+//		//[popupController.view addSubview: popup];
+//	objectTextPopupController.view = popupTextView;
+	
+	
 	
 }
 
@@ -337,7 +380,7 @@
 
 
 - (void)dealloc {
-	[self.objectTextPopupController dealloc];
+		//[objectTextPopupController dealloc];
     [super dealloc];
 }
 

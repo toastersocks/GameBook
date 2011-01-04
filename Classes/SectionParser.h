@@ -18,6 +18,9 @@
 	NSArray *databaseLog;
 	
 	WaxLua *parserEngine;
+	
+	NSDictionary *section;
+	NSDictionary *sceneObject;
 
 }
 @property (retain, nonatomic) WaxLua *parserEngine;
@@ -27,6 +30,9 @@
 @property (retain, nonatomic) NSArray *keyEventLog;
 @property (retain, nonatomic) NSArray *inventoryLog;
 @property (retain, nonatomic) NSArray *databaseLog;
+
+@property (retain, nonatomic) NSDictionary *section;
+@property (retain, nonatomic) NSDictionary *sceneObject;
 
 - (NSDictionary *) contentsForSection: (NSString*)sectionIndex;
 - (NSDictionary *) objectNamed: (NSString *)objectIndex;

@@ -67,7 +67,7 @@
      */
 		// TODO: Move this crap into the pagesViewController or bookViewController and call the method from here
 		// Save the logs before quitting
-	[bookViewController.gamebookLog	saveLogs];
+	[self.bookViewController.gamebookLog saveLogs];
 	
 		//NSLog(@"The location of sectionLog.plist is: %@", sectionLog);
 }

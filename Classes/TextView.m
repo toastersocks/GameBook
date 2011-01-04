@@ -22,7 +22,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-        self.mainTextView = [[UITextView alloc] initWithFrame: CGRectMake(20, 20, 472, 565)];
+        mainTextView = [[UITextView alloc] initWithFrame: CGRectMake(20, 20, 472, 565)];
 			//text = mainTextView.text;
 		mainTextView.editable = NO;
 		mainTextView.scrollEnabled = NO;
@@ -30,8 +30,8 @@
 		mainTextView.backgroundColor = [UIColor clearColor];
 
 		optionsContainer = [[UIView alloc] initWithFrame: CGRectMake(20, 454, 472, 294)]; //frame height-> 294)];
-				//mainTextView.backgroundColor = [UIColor redColor]; //debug
-				//optionsContainer.backgroundColor = [UIColor greenColor]; //debug
+				mainTextView.backgroundColor = [UIColor redColor]; //debug
+				optionsContainer.backgroundColor = [UIColor greenColor]; //debug
 
 			//optionsContainer.backgroundColor = [UIColor whiteColor];
 		
@@ -54,7 +54,7 @@
 		self.options = [layout valueForKey: @"options"];
 	} else {
 		NSLog(@"No options to set");
-		self.options = NULL;
+		self.options = nil; // TODO: change to nil
 	}
 
 	
@@ -110,7 +110,7 @@
 
 		
 			//NSInteger index = 0;
-		int nextButtonYLocation = 10;
+		nextButtonYLocation = 10;
 		for (NSDictionary *option in options) {
 			UIButton *button = [UIButton buttonWithType: UIButtonTypeCustom ];
 				//UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect ];//debug
@@ -215,7 +215,7 @@
 	
 	self.mainTextView.frame = textFrame;
 	[self.mainTextView sizeToFit];
-	textFrame = self.mainTextView.frame;
+		//textFrame = self.mainTextView.frame;
 	
 	
 		//[self.mainTextView setContentSize:CGSizeMake(self.mainTextView.contentSize.width, self.mainTextView.contentSize.height - 24)];
@@ -246,8 +246,11 @@
 		//self.mainTextView.contentSize = textFrame.size;
 	
 		//self.bounds = CGRectMake(0, 0, self.mainTextView.bounds.size.width, self.mainTextView.bounds.size.height + self.optionsContainer.bounds.size.height + 40);
-return CGSizeMake (self.mainTextView.bounds.size.width + 40, 
-				   self.mainTextView.bounds.size.height + self.optionsContainer.bounds.size.height + 40);
+	CGSize sizeThatFitsPopup = CGSizeMake (self.mainTextView.bounds.size.width + 40, 
+										   self.mainTextView.bounds.size.height + self.optionsContainer.bounds.size.height + 40);
+	NSLog(@"The content size to fit in a popup is: width: %f, height: %f", sizeThatFitsPopup.width, sizeThatFitsPopup.height);
+		//self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, sizeThatFitsPopup.width, sizeThatFitsPopup.height);
+	return sizeThatFitsPopup;
 }
 
 /*
@@ -266,6 +269,12 @@ return CGSizeMake (self.mainTextView.bounds.size.width + 40,
 */
 
 - (void)dealloc {
+	[layout release];
+	[text release];
+	[options release];
+		//layout;
+	[mainTextView release];
+	[optionsContainer release];
     [super dealloc];
 }
 

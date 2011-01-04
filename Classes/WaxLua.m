@@ -15,8 +15,10 @@
 
 @implementation WaxLua
 
+	//@synthesize fetchedLuaGlobal;
+
 - (id) init {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		
 		wax_start();
 		NSLog(@"WaxLua at %@ initted...", self);
@@ -57,8 +59,29 @@
 	
 	lua_getglobal(wax_currentLuaState(), luaGlobalName);
 		//Do I need to release the returned object? See note in wax_helpers.m
+//	fetchedLuaGlobal = *(id *)wax_copyToObjc(wax_currentLuaState(), "@", -1, nil);
+//id *tempObjectPointer = wax_copyToObjc(wax_currentLuaState(), "@", -1, nil);
+		//NSLog(@"tempObjectPointer retain count is: %i", [tempObjectPointer retainCount]);
 	
-	return *(id *)wax_copyToObjc(wax_currentLuaState(), "@", -1, nil);
+	tempIDPointer = wax_copyToObjc(wax_currentLuaState(), "@", -1, nil); // this temp variable is nessesary in order to be able to free the pointer to the pointer to the returned object. otherwise it leaks because this function returns a double pointer.
+	
+	NSLog(@"tempIDPointer is at %p", tempIDPointer);
+		//if (fetchedLuaGlobal != nil) {
+			//[fetchedLuaGlobal release];
+			//}
+	fetchedLuaGlobal = *(id *)tempIDPointer;
+		//[tempIDPointer release];
+		//tempIDPointer = nil;
+	free(tempIDPointer); // free the pointless pointer
+		//fetchedLuaGlobal = &**tempObjectPointer;
+		//tempObjectPointer = nil;
+	NSLog(@"fetched object at %p is:\n%@", fetchedLuaGlobal, fetchedLuaGlobal);
+		
+		//[self.fetchedLuaGlobal release];
+	NSLog(@"fetchedLuaGlobal retain count is: %i", [fetchedLuaGlobal retainCount]);
+	
+		return [fetchedLuaGlobal autorelease];
+		//return fetchedLuaGlobal;
 		//do i need to pop the object off the lua stack?
 
 }

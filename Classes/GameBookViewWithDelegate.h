@@ -13,6 +13,8 @@
 
 //- (IBAction) respondToButton: (id)sender;
 
+@optional
+
 - (IBAction) openCover: (id) sender;
 
 - (IBAction) newGame: (id) sender;
@@ -21,7 +23,7 @@
 
 - (IBAction) gameBookOptions: (id)sender;
 
-@optional
+
 
 - (IBAction) getChosenOption: (id) sender;
 

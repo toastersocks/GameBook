@@ -19,7 +19,7 @@
 
 
 - (id) init {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		
 	}
 	self.sectionLog = [NSMutableArray arrayWithCapacity: 2];
