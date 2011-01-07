@@ -50,6 +50,7 @@
 		DD55F7C112A6C18000A578B4 /* gameObjectList.lua in Resources */ = {isa = PBXBuildFile; fileRef = DD55F79312A6B9C500A578B4 /* gameObjectList.lua */; };
 		DD55F7C212A6C18000A578B4 /* ParseHelper.lua in Resources */ = {isa = PBXBuildFile; fileRef = DD53BC9D12A2B9FA005093BA /* ParseHelper.lua */; };
 		DD69F64B12BF0C6200C9CA60 /* wax.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD69F64A12BF0C6200C9CA60 /* wax.framework */; };
+		DD89688E12D7CE4300021330 /* prologue_button.png in Resources */ = {isa = PBXBuildFile; fileRef = DD89688D12D7CE4300021330 /* prologue_button.png */; };
 		DD8A4B461276588000ECC094 /* GameBookViewWithDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8A4B451276588000ECC094 /* GameBookViewWithDelegate.m */; };
 		DD8A99521259829700C2F04F /* ambushSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8A994D1259829700C2F04F /* ambushSmall.png */; };
 		DD8A99531259829700C2F04F /* deerSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8A994E1259829700C2F04F /* deerSmall.png */; };
@@ -148,6 +149,7 @@
 		DD55F79B12A6BBFE00A578B4 /* parseOption.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = parseOption.lua; sourceTree = "<group>"; };
 		DD55F79C12A6BBFE00A578B4 /* printT.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = printT.lua; sourceTree = "<group>"; };
 		DD69F64A12BF0C6200C9CA60 /* wax.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = wax.framework; sourceTree = "<group>"; };
+		DD89688D12D7CE4300021330 /* prologue_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prologue_button.png; sourceTree = "<group>"; };
 		DD8A4B441276588000ECC094 /* GameBookViewWithDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBookViewWithDelegate.h; sourceTree = "<group>"; wrapsLines = 1; };
 		DD8A4B451276588000ECC094 /* GameBookViewWithDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBookViewWithDelegate.m; sourceTree = "<group>"; };
 		DD8A994D1259829700C2F04F /* ambushSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ambushSmall.png; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 		DD8A994C1259829700C2F04F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				DD89688D12D7CE4300021330 /* prologue_button.png */,
 				DDDF51B212CBC48800B62509 /* robotSmall.png */,
 				DD53BFE812A490B7005093BA /* forestSmall.png */,
 				DD1634271276098100456EE0 /* fancy cover.png */,
@@ -562,6 +565,7 @@
 				DDBC76B012AA120000654D42 /* factoryExplore_doors.txt in Resources */,
 				DDDF51B312CBC48800B62509 /* robotSmall.png in Resources */,
 				DDDA66B212D28E1F00EC1457 /* prologue.txt in Resources */,
+				DD89688E12D7CE4300021330 /* prologue_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

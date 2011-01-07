@@ -212,6 +212,8 @@
 	doneWithPrologueButton.alpha = 1.0f;
 	[UIView commitAnimations];
 	
+	
+	
 }
 
 
