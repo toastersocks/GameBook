@@ -14,10 +14,7 @@
 
 @interface PrologueViewController : GameBookViewWithDelegate {
 	UILabel *prologueTextLabel;
-<<<<<<< HEAD
-=======
 	UIButton *doneWithPrologueButton;
->>>>>>> implemented a view transition system to do fading etc... implemented scrolling prologue added a mo betta logging system, NSLogger much needed code cleanup
 		//	WaxLua *lua;
 	unichar currentChar;
 	NSString *path;
@@ -35,10 +32,7 @@
 
 
 @property (retain, nonatomic) IBOutlet UILabel *prologueTextLabel;
-<<<<<<< HEAD
-=======
 @property (retain, nonatomic) IBOutlet UIButton *doneWithPrologueButton;
->>>>>>> implemented a view transition system to do fading etc... implemented scrolling prologue added a mo betta logging system, NSLogger much needed code cleanup
 
 	//@property (retain, nonatomic) WaxLua *lua;
 

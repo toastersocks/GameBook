@@ -14,10 +14,7 @@
 @implementation PrologueViewController
 
 @synthesize prologueTextLabel;
-<<<<<<< HEAD
-=======
 @synthesize doneWithPrologueButton;
->>>>>>> implemented a view transition system to do fading etc... implemented scrolling prologue added a mo betta logging system, NSLogger much needed code cleanup
 	//@synthesize lua;
 
 
@@ -29,16 +26,9 @@
 }
 
 - (void) beginPrologue {
-<<<<<<< HEAD
-		//[lua setObject: prologueText asGlobalNamed: "prologueDisplay"];
-		//[lua doScript: @"prologueHelper.lua"];
-
-		//NSString *testString = @"This is only a test";
-=======
 	doneWithPrologueButton.alpha = 0.0f;
 
 	
->>>>>>> implemented a view transition system to do fading etc... implemented scrolling prologue added a mo betta logging system, NSLogger much needed code cleanup
 	padding = [NSMutableString stringWithString: @""];
 	[padding retain];
 	
@@ -47,12 +37,9 @@
 							  encoding:NSUTF8StringEncoding
 								 error:NULL] retain];
 	
-<<<<<<< HEAD
-=======
 	
 	
 	/*  // this code is unneeded now I think
->>>>>>> implemented a view transition system to do fading etc... implemented scrolling prologue added a mo betta logging system, NSLogger much needed code cleanup
 		//count the number of lines
 	unsigned numberOfLines, index, stringLength = [prologueText length];
 	for (index = 0, numberOfLines = 0; index < stringLength; numberOfLines++) {
@@ -61,17 +48,6 @@
 		//numberOfLines = 10;
 	
 		//for (index = 0; index < numberOfLines; index++) {
-<<<<<<< HEAD
-	for (index = 0; index < 30; index++) {
-		[padding appendString: @"\n"];
-	}
-	
-	
-	
-	prologueTextLength = [prologueText length];
-		//	char buffer[len + 1];
-	unichar buffer[prologueTextLength + 1];
-=======
 
 	*/
 	
@@ -82,52 +58,27 @@
 	prologueTextLength = [prologueText length];
 		//	char buffer[len + 1];
 		//	unichar buffer[prologueTextLength + 1];
->>>>>>> implemented a view transition system to do fading etc... implemented scrolling prologue added a mo betta logging system, NSLogger much needed code cleanup
 	delay = 0.02;
 		//This way:
 		//strncpy(buffer, [prologueText UTF8String]);
 	
 		//Or this way (preferred):
 	
-<<<<<<< HEAD
-	[prologueText getCharacters:buffer range:NSMakeRange(0, prologueTextLength)];
-	
-	
-	for(prologueTextIndex = 0; prologueTextIndex < prologueTextLength; ++prologueTextIndex) {
-			//currentChar = buffer[prologueTextIndex];
-		currentChar = [prologueText characterAtIndex: prologueTextIndex];
-//		[self performSelector: @selector(printChar) withObject: nil afterDelay:0.0];
-			//self.prologueTextLabel.text = [NSString stringWithFormat: @"%@%C", self.prologueTextLabel.text, currentChar];//[NSString stringWithFormat: @"%@%c", self.prologueTextLabel.text, currentChar]; // something may be wrong with creating a string using stringWithFormat and %c char types. Consider another way if there's weird problems
-			
-			//[self.view setNeedsDisplay];
-			//usleep(1000);
-=======
 		//	[prologueText getCharacters:buffer range:NSMakeRange(0, prologueTextLength)];
 	
 	
 	for(prologueTextIndex = 0; prologueTextIndex < prologueTextLength; ++prologueTextIndex) {
 		currentChar = [prologueText characterAtIndex: prologueTextIndex];
->>>>>>> implemented a view transition system to do fading etc... implemented scrolling prologue added a mo betta logging system, NSLogger much needed code cleanup
 
 		[self performSelector: @selector(printChar) withObject: nil afterDelay: delay];
 		
 		[[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] addTimeInterval: delay] ];
 		
-<<<<<<< HEAD
-		
-=======
->>>>>>> implemented a view transition system to do fading etc... implemented scrolling prologue added a mo betta logging system, NSLogger much needed code cleanup
 		if (currentChar == '\n' || currentChar == '.') {
 			delay = 0.5;
 		
 			if (currentChar == '\n') {
-<<<<<<< HEAD
-			
 					//		delay = 0.5;
-
-=======
-					//		delay = 0.5;
->>>>>>> implemented a view transition system to do fading etc... implemented scrolling prologue added a mo betta logging system, NSLogger much needed code cleanup
 				if ([padding length] > 1) {
 					[padding deleteCharactersInRange: NSMakeRange(0, 1)];
 				} 
@@ -149,7 +100,7 @@
 			} 
 		}
 		else {
-			delay = 0.02;
+			delay = 0.00;
 		}
 //		[self performSelector: @selector(printChar) withObject: nil afterDelay: delay];
 //
@@ -158,15 +109,11 @@
 
 
 	}
-<<<<<<< HEAD
-
-=======
 	[[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] addTimeInterval: delay] ];
 	[UIView beginAnimations:@"buttonAppear" context:nil];
 	[UIView setAnimationDuration: 2.0f];
 	doneWithPrologueButton.alpha = 1.0f;
 	[UIView commitAnimations];
->>>>>>> implemented a view transition system to do fading etc... implemented scrolling prologue added a mo betta logging system, NSLogger much needed code cleanup
 	
 }
 
