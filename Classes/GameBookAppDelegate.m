@@ -15,6 +15,8 @@
 #import "WaxLua.h"
 //#import "PageContents.h"
 
+
+
 @implementation GameBookAppDelegate
 
 @synthesize window;
@@ -22,7 +24,7 @@
 
 @synthesize bookViewController;
 
-@synthesize gamebookLog;
+	//@synthesize gamebookLog;
 
 
 
@@ -40,6 +42,7 @@
 	[bookViewController.view setFrame:[[UIScreen mainScreen] applicationFrame]];
     [window addSubview: self.bookViewController.view];
     [window makeKeyAndVisible];
+	[self.bookViewController displayCover]; //???: WHY WARNING?
 
 	return YES;
 }
@@ -67,7 +70,11 @@
      */
 		// TODO: Move this crap into the pagesViewController or bookViewController and call the method from here
 		// Save the logs before quitting
-	[self.bookViewController.gamebookLog saveLogs];
+
+		//???: WHY THE WARNING ABOUT NO saveLogs method???
+	
+		//[self.bookViewController.gamebookLog saveLogs]; 
+	[[[self bookViewController] gamebookLog] saveLogs];
 	
 		//NSLog(@"The location of sectionLog.plist is: %@", sectionLog);
 }

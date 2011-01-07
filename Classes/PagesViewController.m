@@ -6,6 +6,7 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
+
 #import "PagesViewController.h"
 
 	//#import "SectionContents.h"
@@ -18,7 +19,7 @@
 
 #import "TextView.h"
 #import "GameBookViewWithDelegate.h"
-# import "GamebookLog.h"
+#import "GamebookLog.h"
 
 
 
@@ -284,14 +285,8 @@
 
 }
 
-// - (void) startGame {
-
-//}
-
-
-//
 - (void) continueGame {
-	[self.gamebookLog loadLogs];
+		//[self.gamebookLog loadLogs];
 	NSLog(@"Resuming game at section: %@", [self.gamebookLog.sectionLog lastObject]);
 	[self loadSection: [self.gamebookLog.sectionLog lastObject]];
 	
@@ -337,6 +332,9 @@
 - (void) awakeFromNib {
 	NSLog(@"PagesViewController has awoken from the nib...");
 	[self startParser];
+	
+		//LoggerSetOptions(NULL, kLoggerOption_LogToConsole);
+
 
 }
 

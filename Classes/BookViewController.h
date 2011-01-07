@@ -27,17 +27,20 @@
 	MainTitleMenu *mainTitleMenu;
 
 	GamebookLog *gamebookLog;
-		
+	
+	UIViewController *activeController;
+	
 
 }
 
-//- (void) displayCover;
-// - (void) changeToView: (UIViewController *)newView; // maybe eventually abstract all the view changing methods to something general like this.
 - (IBAction) respondToButton:(id)sender; // this doesn't do anything right now. maybe it will in the future, instead of having a seperate method for each button, have one method that responds to all the buttons and calls the appropriate methods accordingly.
 - (void) startGamebook;
 
 
-//- (IBAction) displayMainMenu; 
+- (void) crossfadeTo: (UIViewController *)controllerToDisplay duration: (float)aDuration;
+- (void) animationDone: (UIViewController *)aNewViewController;
+
+- (void) cutToController: (UIViewController *)controllerToDisplay;
 
 
 @property (retain, nonatomic) IBOutlet PagesViewController *pagesViewController;
@@ -47,6 +50,6 @@
 
 @property (nonatomic, retain) IBOutlet GamebookLog *gamebookLog;
 
-
+@property (retain, nonatomic) UIViewController *activeController;
 
 @end

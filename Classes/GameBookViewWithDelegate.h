@@ -23,6 +23,14 @@
 
 - (IBAction) gameBookOptions: (id)sender;
 
+- (IBAction) showPrologue: (id)sender;
+
+- (void) crossfadeTo: (UIViewController *)controllerToDisplay duration: (float)aDuration;
+- (void) animationDone: (UIViewController *)aNewViewController;
+
+- (void) cutToController: (UIViewController *)controllerToDisplay;
+
+
 
 
 - (IBAction) getChosenOption: (id) sender;
@@ -37,7 +45,7 @@
 }
 
 //- (IBAction) respondToButton: (id)sender;
-/*
+
 - (IBAction) openCover: (id) sender;
 
 - (IBAction) newGame: (id) sender;
@@ -46,8 +54,10 @@
 
 - (IBAction) gameBookOptions: (id)sender;
 
+- (IBAction) showPrologue: (id)sender;
 
-*/
+
+
 
 @property (assign, nonatomic) IBOutlet id<GameBookViewDelegate> delegate;
 

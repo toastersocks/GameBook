@@ -11,6 +11,8 @@
 
 int main(int argc, char *argv[]) {
     
+		//LoggerSetOptions(NULL, kLoggerOption_LogToConsole); // tells NSLogger to use the console
+	
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     int retVal = UIApplicationMain(argc, argv, nil, nil);
     [pool release];

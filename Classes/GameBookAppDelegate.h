@@ -27,7 +27,7 @@
 @property (nonatomic, retain) IBOutlet PagesViewController *pagesViewController;
 @property (nonatomic, retain) IBOutlet BookViewController *bookViewController;
 
-@property (nonatomic, retain) IBOutlet GamebookLog *gamebookLog;
+	//@property (nonatomic, retain) IBOutlet GamebookLog *gamebookLog;
 
 
 @end

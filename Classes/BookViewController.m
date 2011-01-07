@@ -23,12 +23,9 @@
 
 @synthesize gamebookLog;
 
+@synthesize activeController;
 
 
-- (void) changeToView:(UIViewController *) newView {
-	
-	
-}
 
 
 //- (IBAction) respondToButton:(id)sender {
@@ -37,92 +34,118 @@
 //}
 
 
-
-//- (void) startBook
-
-
-//- (void) startNewGame {
-//	//[self.view addSubview: prologueViewController.vew];
-//	[self.view addSubview: pagesViewController.view];
-//	[self presentModalViewController: prologueViewController animated: NO];
-//	
-//	
-//}
-//
-//
-//- (void) loadNewView: sender {
-//	
-//	
-//}
-
-
 - (void) displayCover {
-	//self.coverViewController.delegate = self;
-	//[self presentModalViewController: self.coverViewController animated: NO];
-	[self.coverViewController.view setFrame:[[UIScreen mainScreen] applicationFrame]];
-	[self.coverViewController.view setFrame: CGRectMake(0, 0, 1024, 768)];
+	[self cutToController: self.coverViewController];
+		//[self crossfadeTo: self.coverViewController duration: 2.0f];
 
-	[self.view addSubview: self.coverViewController.view];
-		//self.view = self.coverViewController.view;
-//	self.coverViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-//self.coverViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-	//[self performSelector: @selector(presentModalViewController:animated:) withObject: self.coverViewController afterDelay:0.0];
-	
-	//NSLog(@"This is the displayCover method");
-	
-	
-	NSLog(@"The subviews are:\n%@", self.view.subviews);
+		//NSLog(@"This is the displayCover method");
+		//	NSLog(@"The subviews are:\n%@", self.view.subviews);
 }
 	 
-
-
-//- (IBAction) displayMainMenu {
-//	
-//	//[self presentModalViewController: self.coverViewController animated: NO]; // this is not working. no idea why...
-//
-//	//[self.coverViewController.view removeFromSuperview];
-//}
-
 
 - (IBAction) respondToButton: (id)sender {
 	
 }
 
-- (IBAction) openCover: (id)sender {
-		//NSLog(@"Sender tag is:\n%i", [sender tag]); // sender tag NEEDS format specifier of %i otherwise you will crash without any usefull error messages.
-//[self dismissModalViewControllerAnimated: NO];
-		//[self.view addSubview: self.mainTitleMenu.view];
-	[self.coverViewController.view removeFromSuperview];
-	[self.mainTitleMenu.view setFrame: CGRectMake(0, 0, 1024, 768)];
-	[self.view addSubview: self.mainTitleMenu.view];
-	
-		//[self presentModalViewController: self.mainTitleMenu animated: NO];
 
+- (void) crossfadeTo: (UIViewController *)controllerToDisplay duration: (float)aDuration {
+	NSLog(@"In the crossfadeTo:duration method");
+	NSLog(@"controllerToDisplay is:\n%@", controllerToDisplay);
+	NSLog(@"activeController is:\n%@", activeController);
+	
+	[controllerToDisplay viewWillAppear:YES];
+	[activeController viewWillDisappear:YES];
+	
+	[controllerToDisplay.view setFrame: CGRectMake(0, 0, 1024, 768)];
+	controllerToDisplay.view.alpha = 0.0f;
+	[self.view addSubview:controllerToDisplay.view];
+	
+	[controllerToDisplay viewDidAppear:YES];
+	
+	[UIView beginAnimations:@"crossfade" context:nil];
+	[UIView setAnimationDuration:aDuration];
+	controllerToDisplay.view.alpha = 1.0f;
+	activeController.view.alpha = 0.0f;
+	[UIView commitAnimations];
+	
+	[self performSelector:@selector(animationDone:) withObject:controllerToDisplay afterDelay:aDuration];
+}
+
+- (void) cutToController: (UIViewController *)controllerToDisplay {
+	NSLog(@"In the cutToController method");
+	NSLog(@"controllerToDisplay is:\n%@", controllerToDisplay);
+	NSLog(@"activeController is:\n%@", activeController);
+	
+	[controllerToDisplay viewWillAppear:YES];
+	[activeController viewWillDisappear:YES];
+	
+	/*
+	controllerToDisplay.view.alpha = 0.0f;
+	[self.view addSubview:controllerToDisplay.view];
+	
+	[controllerToDisplay viewDidAppear:YES];
+	
+	[UIView beginAnimations:@"crossfade" context:nil];
+	[UIView setAnimationDuration:aDuration];
+	controllerToDisplay.view.alpha = 1.0f;
+	activeController.view.alpha = 0.0f;
+	[UIView commitAnimations];
+	
+	[self performSelector:@selector(animationDone:) withObject:controllerToDisplay afterDelay:aDuration];
+	 */
+	
+	[controllerToDisplay.view setFrame: CGRectMake(0, 0, 1024, 768)];
+	[self.view addSubview:controllerToDisplay.view];
+	[self animationDone: controllerToDisplay];
+	
+}
+
+
+- (void) animationDone: (UIViewController *)newActiveController {
+	[activeController.view removeFromSuperview];
+	[activeController viewDidDisappear:YES];
+		//[activeController release];
+	self.activeController = newActiveController;
+		//activeController = [aNewViewController retain];
+}
+
+
+
+- (IBAction) openCover: (id)sender {
+	
+	[self crossfadeTo:self.mainTitleMenu duration: 1.0f];	
 }
 
 - (void) startGamebook {
-	[self dismissModalViewControllerAnimated: NO];
+		//[self dismissModalViewControllerAnimated: NO];
+		//[self crossfadeTo: self.prologueViewController duration: 2.0f];
 	self.gamebookLog = [[GamebookLog alloc] init];
 	self.pagesViewController.gamebookLog = self.gamebookLog;
-	
+		//[self crossfadeTo: self.pagesViewController duration: 1.0f];
+	//[self.pagesViewController beginNewGame];
 
 }
 
 
-- (IBAction) newGame: (id)sender {
-		//	[self.view.subviews // if self.view has any subviews, remove those before adding the new view? can get the topmost view by calling the very convenient method -lastObject e.g. [[self.view subviews] lastObject]
-		//[self.view addSubview: prologueViewController.view];
-//	[self dismissModalViewControllerAnimated: NO];
-//	self.prologueViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;	
-//	[self presentModalViewController: self.prologueViewController animated: YES]; // the prologue modal view dismisses itself for now. If ANY other functionality is needed besides just dismissing itself, probably best to move the -dismissModalView: call from the prologueViewController to this method after doing whatever else you want to do.
-	self.prologueViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;	
-	[self presentModalViewController: self.prologueViewController animated: YES]; // the prologue modal view dismisses itself for now. If ANY other functionality is needed besides just dismissing itself, probably best to move the -dismissModalView: call from the prologueViewController to this method after doing whatever else you want to do.
+- (IBAction) showPrologue: (id)sender {
 
+	[self crossfadeTo: self.prologueViewController duration: 2.0f];
+	
+		//	[self.prologueViewController beginPrologue];
+	[self.prologueViewController performSelector:@selector(beginPrologue) withObject: nil afterDelay: 2.0f];
+
+		//the prologueViewController calls -startGamebook on it's delegate (instance of this class). IT NO LONGER DOES
+		//[self startGamebook]; 
+//	[self crossfadeTo: self.pagesViewController duration: 1.0f];	
+//	[self.pagesViewController beginNewGame];
+
+
+}
+
+-(IBAction) newGame: (id)sender {
 	[self startGamebook];
-	[self.pagesViewController.view setFrame: CGRectMake(0, 0, 1024, 768)]; // i don't know why these are necessary. The subview should automatically get sized to the size of the parent view. Only thing I can think of is that the mainWindow is in portrait and shouldn't be. Can't figure out how to control that though. Doesn't seem to be an option in IB and there's no controller for the main window. Should there be? Can't find anything about it on the internets.
-	[self.view addSubview: self.pagesViewController.view];
+	[self crossfadeTo: self.pagesViewController duration: 1.0f];	
 	[self.pagesViewController beginNewGame];
-
 
 }
 
@@ -130,9 +153,15 @@
 - (IBAction) continueGame: (id)sender {
 		//	[self.pagesViewController continueGame];
 	[self startGamebook];
-	[self.pagesViewController.view setFrame: CGRectMake(0, 0, 1024, 768)];
-	[self.view addSubview: self.pagesViewController.view];
+		//[self.pagesViewController.view setFrame: CGRectMake(0, 0, 1024, 768)];
+		//[self.view addSubview: self.pagesViewController.view];
+		//[self cutToController: self.pagesViewController];
+	
+		[self crossfadeTo: self.pagesViewController duration: 1.0f];
+	
+	[[self gamebookLog] loadLogs];
 	[self.pagesViewController continueGame];
+		//	[self crossfadeTo: self.pagesViewController duration: 1.0f];
 
 }
 
@@ -170,7 +199,8 @@
 	
     [super viewDidLoad];
 		//[self displayCover];
-	[self performSelector: @selector(displayCover) withObject: NULL afterDelay:0.0]; // this is a stupid hack workaround because the presentModalView method does nothing unless you delay it. Even delaying by 0.0 will make it work... STUPID
+		//now calling this method from the appDelegate
+		//	[self performSelector: @selector(displayCover) withObject: NULL afterDelay:0.0]; // this is a stupid hack workaround because the presentModalView method does nothing unless you delay it. Even delaying by 0.0 will make it work... STUPID
 
 }
 

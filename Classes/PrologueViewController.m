@@ -7,15 +7,123 @@
 //
 
 #import "PrologueViewController.h"
+#import "WaxLua.h"
 
+#import <unistd.h>
 
 @implementation PrologueViewController
 
-
+@synthesize prologueTextLabel;
+	//@synthesize lua;
 
 
 - (IBAction) dismissPrologue {
-	[self dismissModalViewControllerAnimated: YES]; // animated is YES for now, just to have a transition placeholder until a custom one is implemented. 
+		//[self dismissModalViewControllerAnimated: YES]; // animated is YES for now, just to have a transition placeholder until a custom one is implemented. 
+		//[self.delegate dismissPrologue];
+		//[delegate crossfadeTo: [[self delegate] prologueViewController] duration: 2.0];
+	[delegate newGame: self];
+}
+
+- (void) beginPrologue {
+		//[lua setObject: prologueText asGlobalNamed: "prologueDisplay"];
+		//[lua doScript: @"prologueHelper.lua"];
+
+		//NSString *testString = @"This is only a test";
+	padding = [NSMutableString stringWithString: @""];
+	[padding retain];
+	
+	path = [[NSBundle mainBundle] pathForResource: @"prologue" ofType: @"txt"];
+	prologueText = [ [NSString stringWithContentsOfFile:path
+							  encoding:NSUTF8StringEncoding
+								 error:NULL] retain];
+	
+		//count the number of lines
+	unsigned numberOfLines, index, stringLength = [prologueText length];
+	for (index = 0, numberOfLines = 0; index < stringLength; numberOfLines++) {
+		index = NSMaxRange([prologueText lineRangeForRange:NSMakeRange(index, 0)]);
+	}
+		//numberOfLines = 10;
+	
+		//for (index = 0; index < numberOfLines; index++) {
+	for (index = 0; index < 30; index++) {
+		[padding appendString: @"\n"];
+	}
+	
+	
+	
+	prologueTextLength = [prologueText length];
+		//	char buffer[len + 1];
+	unichar buffer[prologueTextLength + 1];
+	delay = 0.02;
+		//This way:
+		//strncpy(buffer, [prologueText UTF8String]);
+	
+		//Or this way (preferred):
+	
+	[prologueText getCharacters:buffer range:NSMakeRange(0, prologueTextLength)];
+	
+	
+	for(prologueTextIndex = 0; prologueTextIndex < prologueTextLength; ++prologueTextIndex) {
+			//currentChar = buffer[prologueTextIndex];
+		currentChar = [prologueText characterAtIndex: prologueTextIndex];
+//		[self performSelector: @selector(printChar) withObject: nil afterDelay:0.0];
+			//self.prologueTextLabel.text = [NSString stringWithFormat: @"%@%C", self.prologueTextLabel.text, currentChar];//[NSString stringWithFormat: @"%@%c", self.prologueTextLabel.text, currentChar]; // something may be wrong with creating a string using stringWithFormat and %c char types. Consider another way if there's weird problems
+			
+			//[self.view setNeedsDisplay];
+			//usleep(1000);
+
+		[self performSelector: @selector(printChar) withObject: nil afterDelay: delay];
+		
+		[[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] addTimeInterval: delay] ];
+		
+		
+		if (currentChar == '\n' || currentChar == '.') {
+			delay = 0.5;
+		
+			if (currentChar == '\n') {
+			
+					//		delay = 0.5;
+
+				if ([padding length] > 1) {
+					[padding deleteCharactersInRange: NSMakeRange(0, 1)];
+				} 
+				else {
+					
+					NSLog(@"The location of the newline is %i", [prologueText rangeOfString:@"\n"].location);
+					int cutoutPartLength = [prologueText rangeOfString: @"\n"].location + 1;
+					prologueText = [prologueText substringFromIndex: cutoutPartLength];
+//					prologueText = [prologueText substringFromIndex: [prologueText rangeOfString: @"\n"].location + 1];
+					prologueTextIndex -= cutoutPartLength;
+
+					prologueTextLength = [prologueText length];
+						//	unichar buffer[prologueTextLength + 1];
+
+						//	[prologueText getCharacters:buffer range:NSMakeRange(0, prologueTextLength)];
+					
+				}			
+			
+			} 
+		}
+		else {
+			delay = 0.02;
+		}
+//		[self performSelector: @selector(printChar) withObject: nil afterDelay: delay];
+//
+//		[[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] addTimeInterval: delay] ];
+			//		[self performSelector: @selector(printChar) withObject: nil afterDelay: delay];
+
+
+	}
+
+	
+}
+
+- (void) printChar {
+	LogMessage(@"prologue", 0, @"prologue text is:\n%@", prologueText);
+		//self.prologueTextLabel.text = [NSString stringWithFormat: @"%@%C", self.prologueTextLabel.text, currentChar];
+	self.prologueTextLabel.text = [NSString stringWithFormat: @"%@%@%@", padding, [prologueText substringWithRange: NSMakeRange(0, prologueTextIndex)], @"█"];
+	LogMessage(@"prologue", 0, @"Displayed prologue text is:\n%@", self.prologueTextLabel.text);
+	
 }
 
 
@@ -33,12 +141,14 @@
 */
 
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+		//[self performSelector:@selector(beginPrologue) withObject: nil afterDelay:7.0];
+		//[self beginPrologue]; // if something's wonky, try reversing these two lines.
 }
-*/
+
 
 
 
@@ -68,8 +178,13 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void) awakeFromNib {
+		//self.lua = [[WaxLua alloc] init];
+}
+
 
 - (void)dealloc {
+	[prologueText release];
     [super dealloc];
 }
 

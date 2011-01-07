@@ -54,11 +54,17 @@
 	
 }
 
-- (IBAction) getChosenOption: (id) sender {
+- (IBAction) getChosenOption: (id)sender {
 	if (self.delegate != NULL && [self.delegate respondsToSelector:@selector(getChosenOption: ) ] ) {
 		[self.delegate getChosenOption: sender];
 	}	
 	
+}
+
+- (IBAction) showPrologue: (id)sender {
+	if (self.delegate != NULL && [self.delegate respondsToSelector:@selector(showPrologue: ) ] ) {
+		[self.delegate showPrologue: sender];
+	}
 }
 
 

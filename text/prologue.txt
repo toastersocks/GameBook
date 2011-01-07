@@ -1,6 +1,6 @@
 WARNING: unorthodox activation
 WARNING: unscheduled activation
-WARNING: power reserves critical
+WARNING: power reserves critical...
 WARNING: internal damage
 WARNING: assembly incomplete
 
