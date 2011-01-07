@@ -9,7 +9,7 @@
 #import "PrologueViewController.h"
 #import "WaxLua.h"
 
-#import <unistd.h>
+	//#import <unistd.h>
 
 @implementation PrologueViewController
 
@@ -25,7 +25,7 @@
 	[delegate newGame: self];
 }
 
-- (void) beginPrologue {
+- (void) beginPrologueWithCursorScroll {
 	doneWithPrologueButton.alpha = 0.0f;
 
 	
@@ -58,7 +58,7 @@
 	prologueTextLength = [prologueText length];
 		//	char buffer[len + 1];
 		//	unichar buffer[prologueTextLength + 1];
-	delay = 0.02;
+	delay = 0.00;
 		//This way:
 		//strncpy(buffer, [prologueText UTF8String]);
 	
@@ -70,15 +70,14 @@
 	for(prologueTextIndex = 0; prologueTextIndex < prologueTextLength; ++prologueTextIndex) {
 		currentChar = [prologueText characterAtIndex: prologueTextIndex];
 
-		[self performSelector: @selector(printChar) withObject: nil afterDelay: delay];
+		[self performSelector: @selector(printPrologueTextWithCursor) withObject: nil afterDelay: delay];
 		
 		[[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] addTimeInterval: delay] ];
 		
-		if (currentChar == '\n' || currentChar == '.') {
-			delay = 0.5;
+		if (currentChar == '\n' || (currentChar == '.' && [prologueText characterAtIndex: prologueTextIndex + 1] == '.') || (currentChar == '.' && [prologueText characterAtIndex: prologueTextIndex - 1] == '.') ) {
+			delay = 1;
 		
 			if (currentChar == '\n') {
-					//		delay = 0.5;
 				if ([padding length] > 1) {
 					[padding deleteCharactersInRange: NSMakeRange(0, 1)];
 				} 
@@ -87,17 +86,17 @@
 					NSLog(@"The location of the newline is %i", [prologueText rangeOfString:@"\n"].location);
 					int cutoutPartLength = [prologueText rangeOfString: @"\n"].location + 1;
 					prologueText = [prologueText substringFromIndex: cutoutPartLength];
-//					prologueText = [prologueText substringFromIndex: [prologueText rangeOfString: @"\n"].location + 1];
+						// prologueText = [prologueText substringFromIndex: [prologueText rangeOfString: @"\n"].location + 1];
 					prologueTextIndex -= cutoutPartLength;
 
-					prologueTextLength = [prologueText length];
-						//	unichar buffer[prologueTextLength + 1];
-
-						//	[prologueText getCharacters:buffer range:NSMakeRange(0, prologueTextLength)];
-					
+					prologueTextLength = [prologueText length];					
 				}			
 			
-			} 
+			}
+//			else if (currentChar == '…') {
+//				
+//				
+//			}
 		}
 		else {
 			delay = 0.00;
@@ -117,10 +116,117 @@
 	
 }
 
-- (void) printChar {
+- (void) beginPrologueWithLineScroll {
+	doneWithPrologueButton.alpha = 0.0f;
+	
+	
+	padding = [NSMutableString stringWithString: @""];
+	[padding retain];
+	
+	path = [[NSBundle mainBundle] pathForResource: @"prologue" ofType: @"txt"];
+	prologueText = [ [NSString stringWithContentsOfFile:path
+											   encoding:NSUTF8StringEncoding
+												  error:NULL] retain];
+	
+	
+	
+	/*  // this code is unneeded now I think
+	 //count the number of lines
+	 unsigned numberOfLines, index, stringLength = [prologueText length];
+	 for (index = 0, numberOfLines = 0; index < stringLength; numberOfLines++) {
+	 index = NSMaxRange([prologueText lineRangeForRange:NSMakeRange(index, 0)]);
+	 }
+	 //numberOfLines = 10;
+	 
+	 //for (index = 0; index < numberOfLines; index++) {
+	 
+	 */
+	
+	for (int index = 0; index < 27; index++) {
+		[padding appendString: @"\n"];
+	}
+	
+	prologueTextLength = [prologueText length];
+		//	char buffer[len + 1];
+		//	unichar buffer[prologueTextLength + 1];
+	delay = 0.00;
+		//This way:
+		//strncpy(buffer, [prologueText UTF8String]);
+	
+		//Or this way (preferred):
+	
+		//	[prologueText getCharacters:buffer range:NSMakeRange(0, prologueTextLength)];
+	
+	
+	for(prologueTextIndex = 0; prologueTextIndex < prologueTextLength; ++prologueTextIndex) {
+		currentChar = [prologueText characterAtIndex: prologueTextIndex];
+		
+//		[self performSelector: @selector(printChar) withObject: nil afterDelay: delay];
+//		
+//		[[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] addTimeInterval: delay] ];
+		
+		if (currentChar == '\n' || (currentChar == '.' && [prologueText characterAtIndex: prologueTextIndex + 1] == '.') || (currentChar == '.' && [prologueText characterAtIndex: prologueTextIndex - 1] == '.') ) {
+			
+			delay = 1;
+
+			[self performSelector: @selector(printPrologueText) withObject: nil afterDelay: delay];
+			
+			[[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] addTimeInterval: delay] ];
+			
+			
+			if (currentChar == '\n') {
+				if ([padding length] > 1) {
+					[padding deleteCharactersInRange: NSMakeRange(0, 1)];
+				} 
+				else {
+					
+					NSLog(@"The location of the newline is %i", [prologueText rangeOfString:@"\n"].location);
+					int cutoutPartLength = [prologueText rangeOfString: @"\n"].location + 1;
+					prologueText = [prologueText substringFromIndex: cutoutPartLength];
+						// prologueText = [prologueText substringFromIndex: [prologueText rangeOfString: @"\n"].location + 1];
+					prologueTextIndex -= cutoutPartLength;
+					
+					prologueTextLength = [prologueText length];					
+				}			
+				
+			}
+				//			else if (currentChar == '…') {
+				//				
+				//				
+				//			}
+		}
+		else {
+			delay = 0.00;
+		}
+			//		[self performSelector: @selector(printChar) withObject: nil afterDelay: delay];
+			//
+			//		[[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] addTimeInterval: delay] ];
+			//		[self performSelector: @selector(printChar) withObject: nil afterDelay: delay];
+		
+		
+	}
+		// make the ending button appear at the end
+	[[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] addTimeInterval: delay] ];
+	[UIView beginAnimations:@"buttonAppear" context:nil];
+	[UIView setAnimationDuration: 2.0f];
+	doneWithPrologueButton.alpha = 1.0f;
+	[UIView commitAnimations];
+	
+}
+
+
+- (void) printPrologueTextWithCursor {
 	LogMessage(@"prologue", 0, @"prologue text is:\n%@", prologueText);
 		//self.prologueTextLabel.text = [NSString stringWithFormat: @"%@%C", self.prologueTextLabel.text, currentChar];
 	self.prologueTextLabel.text = [NSString stringWithFormat: @"%@%@%@", padding, [prologueText substringWithRange: NSMakeRange(0, prologueTextIndex)], @"█"];
+	LogMessage(@"prologue", 0, @"Displayed prologue text is:\n%@", self.prologueTextLabel.text);
+	
+}
+
+- (void) printPrologueText {
+	LogMessage(@"prologue", 0, @"prologue text is:\n%@", prologueText);
+		//self.prologueTextLabel.text = [NSString stringWithFormat: @"%@%C", self.prologueTextLabel.text, currentChar];
+	self.prologueTextLabel.text = [NSString stringWithFormat: @"%@%@", padding, [prologueText substringWithRange: NSMakeRange(0, prologueTextIndex)] ];
 	LogMessage(@"prologue", 0, @"Displayed prologue text is:\n%@", self.prologueTextLabel.text);
 	
 }

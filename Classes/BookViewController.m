@@ -132,7 +132,11 @@
 	[self crossfadeTo: self.prologueViewController duration: 2.0f];
 	
 		//	[self.prologueViewController beginPrologue];
-	[self.prologueViewController performSelector:@selector(beginPrologue) withObject: nil afterDelay: 2.0f];
+	
+//	[self.prologueViewController performSelector:@selector(beginPrologue) withObject: nil afterDelay: 2.0f];
+//	[self.prologueViewController performSelector:@selector(beginPrologueWithCursorScroll) withObject: nil afterDelay: 2.0f];
+	[self.prologueViewController performSelector:@selector(beginPrologueWithLineScroll) withObject: nil afterDelay: 2.0f];
+
 
 		//the prologueViewController calls -startGamebook on it's delegate (instance of this class). IT NO LONGER DOES
 		//[self startGamebook]; 

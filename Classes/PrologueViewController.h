@@ -38,8 +38,10 @@
 
 - (IBAction) dismissPrologue; // this just dismisses itself. if ANY other action needs to be taken besides just dismissing the prologue, add a method to the GameBookViewWithDelegate protocol and let the GameBookViewController take care of it.
 
-- (void) beginPrologue;
+- (void) beginPrologueWithCursorScroll;
+- (void) beginPrologueWithLineScroll;
 
-- (void) printChar;
+- (void) printPrologueTextWithCursor;
+- (void) printPrologueText;
 
 @end

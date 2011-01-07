@@ -1,10 +1,10 @@
 WARNING: unorthodox activation
 WARNING: unscheduled activation
-WARNING: power reserves critical...
+WARNING: power reserves critical
 WARNING: internal damage
 WARNING: assembly incomplete
 
-INSTRUCTION: RUN SELF DIAGNOSTICS
+INSTRUCTION: RUN SELF DIAGNOSTICS...
 INSTRUCTION: REPORT TO NEAREST ADMINISTRATOR
 INSTRUCTION: IF NO ADMINISTRATOR PRESENT: REPORT TO NEAREST HUMAN
 INSTRUCTION: 
@@ -19,7 +19,7 @@ PRIMARY FUNCTION: unassigned?
 		-PRIMARY FUNCTION: unassigned?
 			-PRIMARY FUNCTION: secondary function?
 	-SECONDARY FUNCTION: serve humanity
-		-SECONDARY FUNCTION: integrating with primary. . . . .
+		-SECONDARY FUNCTION: integrating with primary...
 PRIMARY FUNCTION: serve humanity [[ NOTE: don't like this section either... ]]
 
 INTERNAL STATUS: unknown
