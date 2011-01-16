@@ -136,14 +136,6 @@
 //	[self.prologueViewController performSelector:@selector(beginPrologue) withObject: nil afterDelay: 2.0f];
 //	[self.prologueViewController performSelector:@selector(beginPrologueWithCursorScroll) withObject: nil afterDelay: 2.0f];
 	[self.prologueViewController performSelector:@selector(beginPrologueWithLineScroll) withObject: nil afterDelay: 2.0f];
-
-
-		//the prologueViewController calls -startGamebook on it's delegate (instance of this class). IT NO LONGER DOES
-		//[self startGamebook]; 
-//	[self crossfadeTo: self.pagesViewController duration: 1.0f];	
-//	[self.pagesViewController beginNewGame];
-
-
 }
 
 -(IBAction) newGame: (id)sender {
@@ -157,15 +149,10 @@
 - (IBAction) continueGame: (id)sender {
 		//	[self.pagesViewController continueGame];
 	[self startGamebook];
-		//[self.pagesViewController.view setFrame: CGRectMake(0, 0, 1024, 768)];
-		//[self.view addSubview: self.pagesViewController.view];
-		//[self cutToController: self.pagesViewController];
-	
-		[self crossfadeTo: self.pagesViewController duration: 1.0f];
+	[self crossfadeTo: self.pagesViewController duration: 1.0f];
 	
 	[[self gamebookLog] loadLogs];
 	[self.pagesViewController continueGame];
-		//	[self crossfadeTo: self.pagesViewController duration: 1.0f];
 
 }
 

@@ -14,6 +14,7 @@
 @interface SectionView : UIView {
 
 	NSDictionary *section;
+	
 	SceneView *leftSceneView;
 	SceneView *rightSceneView;
 	SceneView *spreadSceneView;
@@ -24,13 +25,13 @@
 }
 
 @property (nonatomic, retain) NSDictionary *section;
+
 @property (nonatomic, retain) SceneView *leftSceneView;
 @property (nonatomic, retain) SceneView *rightSceneView;
 @property (nonatomic, retain) SceneView *spreadSceneView;
 
 
 @property (nonatomic, retain) IBOutlet TextView *leftTextView;
-
 @property (nonatomic, retain) IBOutlet TextView *rightTextView;
 
 @end

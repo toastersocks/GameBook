@@ -51,6 +51,8 @@
 		DD55F7C212A6C18000A578B4 /* ParseHelper.lua in Resources */ = {isa = PBXBuildFile; fileRef = DD53BC9D12A2B9FA005093BA /* ParseHelper.lua */; };
 		DD69F64B12BF0C6200C9CA60 /* wax.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD69F64A12BF0C6200C9CA60 /* wax.framework */; };
 		DD89688E12D7CE4300021330 /* prologue_button.png in Resources */ = {isa = PBXBuildFile; fileRef = DD89688D12D7CE4300021330 /* prologue_button.png */; };
+		DD89689712D7D88900021330 /* prologue_button_2.png in Resources */ = {isa = PBXBuildFile; fileRef = DD89689612D7D88900021330 /* prologue_button_2.png */; };
+		DD896A2512D94E0300021330 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD896A2412D94E0300021330 /* QuartzCore.framework */; };
 		DD8A4B461276588000ECC094 /* GameBookViewWithDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8A4B451276588000ECC094 /* GameBookViewWithDelegate.m */; };
 		DD8A99521259829700C2F04F /* ambushSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8A994D1259829700C2F04F /* ambushSmall.png */; };
 		DD8A99531259829700C2F04F /* deerSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8A994E1259829700C2F04F /* deerSmall.png */; };
@@ -150,6 +152,8 @@
 		DD55F79C12A6BBFE00A578B4 /* printT.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = printT.lua; sourceTree = "<group>"; };
 		DD69F64A12BF0C6200C9CA60 /* wax.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = wax.framework; sourceTree = "<group>"; };
 		DD89688D12D7CE4300021330 /* prologue_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prologue_button.png; sourceTree = "<group>"; };
+		DD89689612D7D88900021330 /* prologue_button_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prologue_button_2.png; sourceTree = "<group>"; };
+		DD896A2412D94E0300021330 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DD8A4B441276588000ECC094 /* GameBookViewWithDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBookViewWithDelegate.h; sourceTree = "<group>"; wrapsLines = 1; };
 		DD8A4B451276588000ECC094 /* GameBookViewWithDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBookViewWithDelegate.m; sourceTree = "<group>"; };
 		DD8A994D1259829700C2F04F /* ambushSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ambushSmall.png; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 				DD69F64B12BF0C6200C9CA60 /* wax.framework in Frameworks */,
 				DDE5EFD812D69937000B7315 /* CFNetwork.framework in Frameworks */,
 				DDE5EFDC12D69953000B7315 /* SystemConfiguration.framework in Frameworks */,
+				DD896A2512D94E0300021330 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +280,7 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+				DD896A2412D94E0300021330 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 				DD8A994F1259829700C2F04F /* factorySmall.png */,
 				DD8A99501259829700C2F04F /* motherSmall.png */,
 				DD8A99511259829700C2F04F /* passageSmall.png */,
+				DD89689612D7D88900021330 /* prologue_button_2.png */,
 				DD53BB2012A02F2D005093BA /* forestSprites */,
 			);
 			path = images;
@@ -566,6 +573,7 @@
 				DDDF51B312CBC48800B62509 /* robotSmall.png in Resources */,
 				DDDA66B212D28E1F00EC1457 /* prologue.txt in Resources */,
 				DD89688E12D7CE4300021330 /* prologue_button.png in Resources */,
+				DD89689712D7D88900021330 /* prologue_button_2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

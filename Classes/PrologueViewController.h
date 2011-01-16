@@ -10,6 +10,7 @@
 #import "GameBookViewWithDelegate.h"
 
 	//@class WaxLua;
+@class CABasicAnimation;
 
 
 @interface PrologueViewController : GameBookViewWithDelegate {
@@ -26,6 +27,12 @@
 	unsigned int prologueTextLength; //change this to NSUInteger?
 	
 	NSTimeInterval delay;
+	
+	CABasicAnimation *longPulseAnimation;
+	CABasicAnimation *shortPulseAnimation;
+		//CABasicAnimation *pulseAnimation;
+	
+	BOOL longPulse;
 
 
 }
@@ -33,6 +40,7 @@
 
 @property (retain, nonatomic) IBOutlet UILabel *prologueTextLabel;
 @property (retain, nonatomic) IBOutlet UIButton *doneWithPrologueButton;
+@property (retain, nonatomic) NSString *prologueText;
 
 	//@property (retain, nonatomic) WaxLua *lua;
 
@@ -43,5 +51,7 @@
 
 - (void) printPrologueTextWithCursor;
 - (void) printPrologueText;
+
+- (void) pulseButton: (NSString *)animationID finished: (NSNumber *)finished context: (void *)context;
 
 @end
