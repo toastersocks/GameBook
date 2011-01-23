@@ -6,6 +6,11 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
+//#define LogImageData(domain, level, width, height, data)	LogImageDataF(__FILE__,__LINE__,__FUNCTION__,domain,level,width,height,data)
+
+//#define LogMessage(domain, level, ...)	LogMessageF(__FILE__,__LINE__,__FUNCTION__,domain,level,__VA_ARGS__)
+
+
 #import "PrologueViewController.h"
 	//#import "WaxLua.h"
 #import <QuartzCore/QuartzCore.h>

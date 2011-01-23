@@ -11,6 +11,7 @@
 #import "GameBookAppDelegate.h"
 #import "BookViewController.h"
 #import "PagesViewController.h"
+#import "GamebookLog.h"
 
 #import "WaxLua.h"
 //#import "PageContents.h"
@@ -73,8 +74,9 @@
 
 		//???: WHY THE WARNING ABOUT NO saveLogs method???
 	
-		//[self.bookViewController.gamebookLog saveLogs]; 
-	[[[self bookViewController] gamebookLog] saveLogs];
+	[self.bookViewController.gamebookLog saveLogs]; 
+		//[[[self bookViewController] gamebookLog] saveLogs];
+
 	
 		//NSLog(@"The location of sectionLog.plist is: %@", sectionLog);
 }

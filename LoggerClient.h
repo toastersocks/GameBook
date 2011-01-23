@@ -32,6 +32,16 @@
  * SOFTWARE,   EVEN  IF   ADVISED  OF   THE  POSSIBILITY   OF  SUCH   DAMAGE.
  * 
  */
+
+	//#undefine LogImageData(domain, level, width, height, data)
+
+	//#undefine LogMessage(domain, level, ...)
+
+#undef LogImageData
+#undef LogMessage
+#undef LogMessageCompat
+
+
 #import <unistd.h>
 #import <pthread.h>
 #import <libkern/OSAtomic.h>

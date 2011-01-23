@@ -13,7 +13,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
-		DD098D24126CFE3200BF8B8C /* OptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD098D23126CFE3200BF8B8C /* OptionViewController.m */; };
 		DD098E21126E300E00BF8B8C /* wells.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD098E1D126E300E00BF8B8C /* wells.txt */; };
 		DD098E22126E300E00BF8B8C /* melville.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD098E1E126E300E00BF8B8C /* melville.txt */; };
 		DD098E23126E300E00BF8B8C /* kafka.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD098E1F126E300E00BF8B8C /* kafka.txt */; };
@@ -59,6 +58,9 @@
 		DD8A99541259829700C2F04F /* factorySmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8A994F1259829700C2F04F /* factorySmall.png */; };
 		DD8A99551259829700C2F04F /* motherSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8A99501259829700C2F04F /* motherSmall.png */; };
 		DD8A99561259829700C2F04F /* passageSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8A99511259829700C2F04F /* passageSmall.png */; };
+		DDAC812112E8BB5700E2B011 /* LeavesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC811C12E8BB5600E2B011 /* LeavesCache.m */; };
+		DDAC812212E8BB5700E2B011 /* LeavesView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC811E12E8BB5600E2B011 /* LeavesView.m */; };
+		DDAC812312E8BB5700E2B011 /* LeavesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC812012E8BB5600E2B011 /* LeavesViewController.m */; };
 		DDBB8BF712AAEE2300C1F885 /* GamebookLog.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB8BF612AAEE2300C1F885 /* GamebookLog.m */; };
 		DDBC76AE12AA120000654D42 /* Index.txt in Resources */ = {isa = PBXBuildFile; fileRef = DDBC76AB12AA120000654D42 /* Index.txt */; };
 		DDBC76AF12AA120000654D42 /* factoryExplore_assembly.txt in Resources */ = {isa = PBXBuildFile; fileRef = DDBC76AC12AA120000654D42 /* factoryExplore_assembly.txt */; };
@@ -106,8 +108,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* GameBook_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBook_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* GameBook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GameBook-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		DD098D22126CFE3200BF8B8C /* OptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionViewController.h; sourceTree = "<group>"; };
-		DD098D23126CFE3200BF8B8C /* OptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
 		DD098E1D126E300E00BF8B8C /* wells.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wells.txt; sourceTree = "<group>"; wrapsLines = 1; };
 		DD098E1E126E300E00BF8B8C /* melville.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = melville.txt; sourceTree = "<group>"; wrapsLines = 1; };
 		DD098E1F126E300E00BF8B8C /* kafka.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kafka.txt; sourceTree = "<group>"; wrapsLines = 1; };
@@ -161,6 +161,12 @@
 		DD8A994F1259829700C2F04F /* factorySmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = factorySmall.png; sourceTree = "<group>"; };
 		DD8A99501259829700C2F04F /* motherSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = motherSmall.png; sourceTree = "<group>"; };
 		DD8A99511259829700C2F04F /* passageSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = passageSmall.png; sourceTree = "<group>"; };
+		DDAC811B12E8BB5600E2B011 /* LeavesCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesCache.h; sourceTree = "<group>"; };
+		DDAC811C12E8BB5600E2B011 /* LeavesCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesCache.m; sourceTree = "<group>"; };
+		DDAC811D12E8BB5600E2B011 /* LeavesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesView.h; sourceTree = "<group>"; };
+		DDAC811E12E8BB5600E2B011 /* LeavesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesView.m; sourceTree = "<group>"; };
+		DDAC811F12E8BB5600E2B011 /* LeavesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesViewController.h; sourceTree = "<group>"; };
+		DDAC812012E8BB5600E2B011 /* LeavesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesViewController.m; sourceTree = "<group>"; };
 		DDBB8BF512AAEE2300C1F885 /* GamebookLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamebookLog.h; sourceTree = "<group>"; };
 		DDBB8BF612AAEE2300C1F885 /* GamebookLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamebookLog.m; sourceTree = "<group>"; wrapsLines = 1; };
 		DDBC76AB12AA120000654D42 /* Index.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Index.txt; sourceTree = "<group>"; wrapsLines = 1; };
@@ -317,8 +323,6 @@
 		DD46ACB2127246F0007AE0AA /* Inside Pages */ = {
 			isa = PBXGroup;
 			children = (
-				DD098D22126CFE3200BF8B8C /* OptionViewController.h */,
-				DD098D23126CFE3200BF8B8C /* OptionViewController.m */,
 				DDFBF141126A39A800B21630 /* PagesViewController.h */,
 				DDFBF142126A39A800B21630 /* PagesViewController.m */,
 			);
@@ -391,6 +395,19 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		DDAC811A12E8BB5600E2B011 /* Leaves */ = {
+			isa = PBXGroup;
+			children = (
+				DDAC811B12E8BB5600E2B011 /* LeavesCache.h */,
+				DDAC811C12E8BB5600E2B011 /* LeavesCache.m */,
+				DDAC811D12E8BB5600E2B011 /* LeavesView.h */,
+				DDAC811E12E8BB5600E2B011 /* LeavesView.m */,
+				DDAC811F12E8BB5600E2B011 /* LeavesViewController.h */,
+				DDAC812012E8BB5600E2B011 /* LeavesViewController.m */,
+			);
+			path = Leaves;
+			sourceTree = "<group>";
+		};
 		DDCC9EC912738ED4005C5745 /* xibs */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,6 +442,7 @@
 		DDE5EFB312D6944F000B7315 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				DDAC811A12E8BB5600E2B011 /* Leaves */,
 				DDE5EFB612D6946A000B7315 /* LoggerClient.h */,
 				DDE5EFB712D6946A000B7315 /* LoggerClient.m */,
 				DDE5EFB812D6946A000B7315 /* LoggerCommon.h */,
@@ -603,7 +621,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* GameBookAppDelegate.m in Sources */,
 				DDFBF144126A39A800B21630 /* PagesViewController.m in Sources */,
-				DD098D24126CFE3200BF8B8C /* OptionViewController.m in Sources */,
 				DDCC9E3512724D29005C5745 /* PrologueViewController.m in Sources */,
 				DDCC9E6912726B86005C5745 /* BookViewController.m in Sources */,
 				DDCC9EC412738E9E005C5745 /* CoverViewController.m in Sources */,
@@ -617,6 +634,9 @@
 				DD53BE8B12A36A8A005093BA /* TextView.m in Sources */,
 				DDBB8BF712AAEE2300C1F885 /* GamebookLog.m in Sources */,
 				DDE5EFB912D6946A000B7315 /* LoggerClient.m in Sources */,
+				DDAC812112E8BB5700E2B011 /* LeavesCache.m in Sources */,
+				DDAC812212E8BB5700E2B011 /* LeavesView.m in Sources */,
+				DDAC812312E8BB5700E2B011 /* LeavesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

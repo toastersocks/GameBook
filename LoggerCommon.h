@@ -63,6 +63,10 @@
  *  - if logging an image, PART_KEY_IMAGE_WIDTH and PART_KEY_IMAGE_HEIGHT let the desktop know the image size without having to actually decode it
  */
 
+#undef LogImageData
+#undef LogMessage
+#undef LogMessageCompat
+
 // Constants for the "part key" field
 #define	PART_KEY_MESSAGE_TYPE	0
 #define	PART_KEY_TIMESTAMP_S	1			// "seconds" component of timestamp

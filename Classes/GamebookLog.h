@@ -26,10 +26,10 @@
 @property (retain, nonatomic) NSMutableArray *databaseLog;
 
 
-- (void) logSection: (NSString *) sectionIndex;
-- (void) logKeyEvent: (NSString *) newKeyEvent;
-- (void) logInventoryItem: (NSString *) inventoryItem;
-- (void) logDatabaseEntry: (NSString *) newDatabaseEntry;
+- (void) logSection: (NSString *)sectionIndex;
+- (void) logKeyEvent: (NSString *)newKeyEvent;
+- (void) logInventoryItem: (NSString *)inventoryItem;
+- (void) logDatabaseEntry: (NSString *)newDatabaseEntry;
 
 - (BOOL) logItem: (NSString *)newLogItem existsInLog: (NSArray *)log;
 

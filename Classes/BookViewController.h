@@ -42,13 +42,15 @@
 
 - (void) cutToController: (UIViewController *)controllerToDisplay;
 
+- (void) displayCover;
+
 
 @property (retain, nonatomic) IBOutlet PagesViewController *pagesViewController;
 @property (retain, nonatomic) IBOutlet PrologueViewController *prologueViewController;
 @property (retain, nonatomic) IBOutlet CoverViewController *coverViewController;
 @property (retain, nonatomic) IBOutlet MainTitleMenu *mainTitleMenu;
 
-@property (nonatomic, retain) IBOutlet GamebookLog *gamebookLog;
+@property (retain, nonatomic) IBOutlet GamebookLog *gamebookLog;
 
 @property (retain, nonatomic) UIViewController *activeController;
 

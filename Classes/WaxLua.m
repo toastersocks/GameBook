@@ -80,7 +80,7 @@
 		//[self.fetchedLuaGlobal release];
 	NSLog(@"fetchedLuaGlobal retain count is: %i", [fetchedLuaGlobal retainCount]);
 	
-		return [fetchedLuaGlobal autorelease];
+		return fetchedLuaGlobal;
 		//return fetchedLuaGlobal;
 		//do i need to pop the object off the lua stack?
 

@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "GameBookViewWithDelegate.h"
 #import "SectionParser.h"
+#import "SectionView.h"
+
 	//#import "SectionView.h"
+//@protocol LeavesViewDelegate;
+//@protocol LeavesViewDataSource;
 
 @class SectionContents;
 @class OptionViewController;
@@ -19,7 +23,7 @@
 @class TextView;
 
 
-@interface PagesViewController : GameBookViewWithDelegate <GameBookViewDelegate, UIPopoverControllerDelegate> { // how to declare in the interface that a class can take a delegate protocol? this probably exists and would eliminate a lot of duplicate code...
+@interface PagesViewController : GameBookViewWithDelegate <GameBookViewDelegate, UIPopoverControllerDelegate, LeavesViewDelegate, LeavesViewDataSource> { // how to declare in the interface that a class can take a delegate protocol? this probably exists and would eliminate a lot of duplicate code...
 	
 	NSDictionary *section;
 	
@@ -31,12 +35,17 @@
 	
 	NSDictionary *currentObject;
 	
+	NSDictionary *currentOption;
+	
 	GameBookViewWithDelegate *objectTextPopupController;
 	UIPopoverController *popoverController;
 	TextView *popupTextView;
 
-//	OptionViewController *optionContainerController;
-//	UITextView *mainText;
+	NSMutableArray *renderedImageCache;
+	
+	NSString *currentSectionIndex;
+	NSString *nextSectionIndex;
+	NSString *previousSectionIndex;
 
 }
 
@@ -51,6 +60,14 @@
 
 @property (retain, nonatomic) NSDictionary *currentObject;
 
+
+@property (nonatomic, retain) NSMutableArray *renderedImageCache;
+
+@property (nonatomic, retain) NSString *currentSectionIndex;
+@property (nonatomic, retain) NSString *nextSectionIndex;
+
+
+
 	//@property (retain, nonatomic) GameBookViewWithDelegate *objectTextPopupController;
 
 //@property (retain, nonatomic) IBOutlet OptionViewController *optionContainerController;
@@ -60,16 +77,16 @@
 
 - (void) startParser;
 
-
 - (void) beginNewGame;
-
 - (void) continueGame;
 
 - (void) initPopup;
 
 
+- (CGImageRef) renderImageForView: (UIView *)viewToRender;
 
-- (void) loadSection: (NSString *) sectionIndex;
+
+- (SectionView *) viewForSection: (NSString *) sectionIndex;
 - (IBAction) getChosenOption: (id) sender;
 //- (void) logChoice: (NSString *) pageIndex;
 

@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LeavesView.h"
 @class SceneView;
 @class TextView;
 //@class OptionViewController;
 
-@interface SectionView : UIView {
+@interface SectionView : LeavesView {
 
 	NSDictionary *section;
 	

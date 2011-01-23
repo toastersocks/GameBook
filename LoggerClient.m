@@ -33,6 +33,12 @@
  * SOFTWARE,   EVEN  IF   ADVISED  OF   THE  POSSIBILITY   OF  SUCH   DAMAGE.
  * 
  */
+
+#undef LogImageData
+#undef LogMessage
+#undef LogMessageCompat
+
+
 #import <sys/time.h>
 #if TARGET_OS_MAC
 #import <sys/types.h>
