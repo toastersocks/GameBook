@@ -199,7 +199,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 }
 
 
-- (void) getImages {
+- (void) setImagesForTopPage: (NSString *)topPageIndex BottomPage: (NSString *)bottomPageIndex {
 
 	/* //TODO: implement these for rendering the possible choice images if needed.
 	if (currentPageIndex > 1 && backgroundRendering) {
@@ -210,23 +210,23 @@ CGFloat distance(CGPoint a, CGPoint b);
 	}
 	*/
 	
-	CGImageRef fullPageCurrentPageImage = [pageCache cachedImageForPageIndex: currentPageIndex];
-	CGImageRef fullPageNextPageImage = [pageCache cachedImageForPageIndex: nextPageIndex];
-	LogImageData(@"leavesView", 2, 1024, 786, UIImagePNGRepresentation([UIImage imageWithCGImage: fullPageNextPageImage]));
+	CGImageRef fullTopPageImage = [pageCache cachedImageForPageIndex: topPageIndex];
+	CGImageRef fullBottomPageImage = [pageCache cachedImageForPageIndex: bottomPageIndex];
+	LogImageData(@"leavesView", 2, 1024, 786, UIImagePNGRepresentation([UIImage imageWithCGImage: fullBottomPageImage]));
 
 
 	if (currentPageIndex) {
-		topPage.contents = (id)CGImageCreateWithImageInRect(fullPageCurrentPageImage, rightHalf);
-		leftPage.contents = (id)CGImageCreateWithImageInRect(fullPageCurrentPageImage, leftHalf);
+		topPage.contents = (id)CGImageCreateWithImageInRect(fullTopPageImage, rightHalf);
+		leftPage.contents = (id)CGImageCreateWithImageInRect(fullTopPageImage, leftHalf);
 	} else {
 		LogMessage(@"error", 0, @"currentPageIndex is NULL");
 	}
 	if (nextPageIndex) {
-		topPageReverseImage.contents = (id)CGImageCreateWithImageInRect(fullPageNextPageImage, leftHalf);
+		topPageReverseImage.contents = (id)CGImageCreateWithImageInRect(fullBottomPageImage, leftHalf);
 			//	bottomPage.backgroundColor = [UIColor orangeColor].CGColor;
-		CGImageRef bottomRightPageImage = CGImageCreateWithImageInRect(fullPageNextPageImage, rightHalf);
+		CGImageRef bottomRightPageImage = CGImageCreateWithImageInRect(fullBottomPageImage, rightHalf);
 		LogImageData(@"leavesView", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: bottomRightPageImage]));
-		bottomPage.contents = (id)CGImageCreateWithImageInRect(fullPageNextPageImage, rightHalf);
+		bottomPage.contents = (id)CGImageCreateWithImageInRect(fullBottomPageImage, rightHalf);
 	}
 
 		//           [pageCache minimizeToPageIndex:currentPageIndex viewMode:self.mode]; //TODO: implement this later to flush old images from the cache
@@ -311,23 +311,21 @@ CGFloat distance(CGPoint a, CGPoint b);
 }
 
 - (void) didTurnToPageAtIndex:(NSString *)index {
-	if ([delegate respondsToSelector:@selector(leavesView:didTurnToPageAtIndex:)])
+	[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)NO];
+	if ([delegate respondsToSelector:@selector(leavesView:didTurnToPageAtIndex:)]) {
 		[delegate leavesView:self didTurnToPageAtIndex:index];
+	}
+		//[self.subviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)NO];
 }
 
-- (void) didTurnPageBackward {
+- (void) didTurnPageBackwardToIndex: (NSString *)anIndex {
 	interactionLocked = NO;
-	[self didTurnToPageAtIndex:currentPageIndex];
+	[self didTurnToPageAtIndex: anIndex];
 }
 
-- (void) didTurnPageForward {
+- (void) didTurnPageForwardToIndex: (NSString *)anIndex {
 	interactionLocked = NO;
-		//nsstring *tempString = [NSString stringWithString: currentPageIndex];
-
-	previousPageIndex = self.currentPageIndex;
-	self.currentPageIndex = nextPageIndex;
-		//	self.currentPageIndex = self.currentPageIndex + numberOfVisiblePages;	
-	[self didTurnToPageAtIndex:currentPageIndex];
+	[self didTurnToPageAtIndex: anIndex];
 }
 
 - (BOOL) hasPrevPage {
@@ -429,39 +427,43 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	LogMessage(@"LeavesView", 2, @"In the touchesBegan method of LeavesView");
+	dragged = NO;
+	UITouch *touch = [event.allTouches anyObject];
+	//UITouch *touch = [touches anyObject];
+	touchBeganPoint = [touch locationInView:self];
 
+	
 	if (!nextPageIndex) {
 		return;
 	}
 	if (interactionLocked)
 		return;
 	
-	
-		//	[self getImages];
-		//[self layoutSubviews];
-	UITouch *touch = [event.allTouches anyObject];
-	touchBeganPoint = [touch locationInView:self];
+//	UITouch *touch = [touches anyObject];
+//	touchBeganPoint = [touch locationInView:self];
 	
 	LogMessage(@"leavesview", 0, @"touchedNextPage is %@, hasNextPage is %@", [self touchedNextPage]? @"TRUE":@"FALSE", [self hasNextPage]? @"TRUE":@"FALSE");
+	pageSubviews = self.subviews;
 	
-	if ([self touchedPrevPage] && [self hasPrevPage]) {		
+	if ([self touchedPrevPage] && [self hasNextPage]) {
 		[CATransaction begin];
 		[CATransaction setValue:(id)kCFBooleanTrue
 						 forKey:kCATransactionDisableActions];
-		NSString *tempString = [NSString stringWithString: currentPageIndex];
-		currentPageIndex = previousPageIndex;
-		previousPageIndex = tempString;
-			//  self.currentPageIndex = self.currentPageIndex - numberOfVisiblePages;
+		
+		[self setImagesForTopPage: nextPageIndex BottomPage: currentPageIndex];
+		//[self.subviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+		[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+		
         self.leafEdge = 0.0;
 		[CATransaction commit];
 		touchIsActive = YES;		
 	} 
 	else if ([self touchedNextPage] && [self hasNextPage]) {
 		touchIsActive = YES;
-		[self.subviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
-			//[self setUpLayers];
-			//[self initialize];
-		[self getImages];
+		
+		[self setImagesForTopPage: currentPageIndex BottomPage: nextPageIndex];
+		//[self.subviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+		[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
 	} else 
 		touchIsActive = NO;
 }
@@ -471,54 +473,109 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 	if (!touchIsActive)
 		return;
-	UITouch *touch = [event.allTouches anyObject];
-	CGPoint touchPoint = [touch locationInView:self];
+	UITouch *touch = [touches anyObject];
+	touchPoint = [touch locationInView:self];
 	
 	[CATransaction begin];
 	[CATransaction setValue:[NSNumber numberWithFloat:0.07]
 					 forKey:kCATransactionAnimationDuration];
 	self.leafEdge = touchPoint.x / self.bounds.size.width;
 	[CATransaction commit];
+		//LogMessage
+	if (!dragged && distance(touchPoint, touchBeganPoint) > [self dragThreshold]) {
+		dragged = YES;
+	}
 }
 
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	LogMessage(@"LeavesView", 2, @"In the touchesEnded method of LeavesView");
 
+	UITouch *touch = [event.allTouches anyObject];
+	touchPoint = [touch locationInView: self];
+	
 	if (!touchIsActive)
 		return;
 	touchIsActive = NO;
+//	BOOL draggedRight = NO;
+//	BOOL draggedLeft = NO;
+		//	BOOL dragged = NO;
 	
-	UITouch *touch = [event.allTouches anyObject];
-	CGPoint touchPoint = [touch locationInView:self];
-	BOOL dragged = distance(touchPoint, touchBeganPoint) > [self dragThreshold];
-	
+//	UITouch *touch = [event.allTouches anyObject];
+//	CGPoint touchPoint = [touch locationInView: self];
+//	if (touchBeganPoint.x < 100 && (distance(touchPoint, touchBeganPoint) > 40) ) {
+//		draggedRight = YES;
+//	} else if (touchBeganPoint.x > 924 && (distance(touchBeganPoint, touchPoint) > 40) ) {
+//		draggedLeft = YES;
+//	}
+//	if (draggedLeft || draggedRight) {
+//		dragged = YES;
+//	}
+//BOOL dragged = distance(touchPoint, touchBeganPoint) > [self dragThreshold];
+	LogMessage(@"leavesview", 3, @"touchedNextPage is %@, touchedPrevPage is %@, dragged is %@, leafEdge is %f", [self touchedNextPage]? @"TRUE":@"FALSE", [self touchedPrevPage]? @"TRUE":@"FALSE", dragged? @"TRUE":@"FALSE", self.leafEdge);
+
 	[CATransaction begin];
 	float duration;
-	if ((dragged && self.leafEdge < 0.5) || (!dragged && [self touchedNextPage])) {
-		
-        //[self willTurnToPageAtIndex:currentPageIndex + numberOfVisiblePages];
-		[self willTurnToPageAtIndex:nextPageIndex];
+	if ((dragged && self.leafEdge < 0.5) || (!dragged && ([self touchedNextPage]) )) {
 
-		
+	//	if ( (draggedLeft && self.leafEdge < 0.5) || (!dragged && [self touchedNextPage]) ) {
 		self.leafEdge = 0;
 		duration = leafEdge;
 		interactionLocked = YES;
-		if (nextPageIndex && backgroundRendering)
-			[pageCache precacheImageForPageIndex:nextPageIndex];
-		[self performSelector:@selector(didTurnPageForward)
-				   withObject:nil 
-				   afterDelay:duration + 0.25];
+		if ([self touchedNextPage]) {
+			[self performSelector:@selector(didTurnPageForwardToIndex:)
+					   withObject: nextPageIndex
+					   afterDelay:duration + 0.25];
+		} else if ([self touchedPrevPage]) {
+			[self performSelector:@selector(didTurnPageForwardToIndex:)
+					   withObject: currentPageIndex
+					   afterDelay:duration + 0.25];
+		}
+			
+
+	} else if ( (dragged && self.leafEdge >= 0.5) || (!dragged && [self touchedPrevPage]) ) {
+			self.leafEdge = 1;
+			duration = 1 - leafEdge;
+			interactionLocked = YES;
+		if ([self touchedPrevPage]) {
+			[self performSelector:@selector(didTurnPageBackwardToIndex:)
+					   withObject: nextPageIndex 
+					   afterDelay:duration + 0.25];			
+		} else if ([self touchedNextPage]) {
+			[self performSelector:@selector(didTurnPageBackwardToIndex:)
+					   withObject: currentPageIndex 
+					   afterDelay:duration + 0.25];			
+		}
 	}
-	else {
-		[self willTurnToPageAtIndex:currentPageIndex];
-		self.leafEdge = 1.0;
-		duration = 1 - leafEdge;
-		interactionLocked = YES;
-		[self performSelector:@selector(didTurnPageBackward)
-				   withObject:nil 
-				   afterDelay:duration + 0.25];
-	}
+//		
+//			
+//		} else if (!draggedLeft && self.leafEdge < 0.5) {
+//			self.leafEdge = 0;
+//			duration = leafEdge;
+//			interactionLocked = YES;
+//			[self performSelector:@selector(didTurnPageForwardToIndex:)
+//					   withObject: currentPageIndex
+//					   afterDelay:duration + 0.25];
+//			
+//		}
+//			
+////		interactionLocked = YES;
+////		if (nextPageIndex && backgroundRendering)
+////			[pageCache precacheImageForPageIndex:nextPageIndex];
+////		[self performSelector:@selector(didTurnPageForwardToIndex:)
+////				   withObject: nextPageIndex
+////				   afterDelay:duration + 0.25];
+//	
+//	else if (!draggedRight && self.leafEdge >= 0.5) {
+//			//[self willTurnToPageAtIndex: currentPageIndex];
+//		self.leafEdge = 1.0;
+//		duration = 1 - leafEdge;
+//		interactionLocked = YES;
+//		[self performSelector:@selector(didTurnPageBackwardToIndex:)
+//				   withObject: currentPageIndex 
+//				   afterDelay:duration + 0.25];
+//	}
+	
 	[CATransaction setValue:[NSNumber numberWithFloat:duration]
 					 forKey:kCATransactionAnimationDuration];
 	[CATransaction commit];
@@ -545,27 +602,28 @@ CGFloat distance(CGPoint a, CGPoint b);
 			//	[self getImages];
 		
 		CGFloat touchRectsWidth = self.bounds.size.width / 7;
-//		nextPageRect = CGRectMake(self.bounds.size.width - touchRectsWidth,
-//								  0,
-//								  touchRectsWidth,
-//								  self.bounds.size.height);
-//		prevPageRect = CGRectMake(0,
-//								  0,
-//								  touchRectsWidth,
-//								  self.bounds.size.height);
-
-		nextPageRect = CGRectMake(877,
+		nextPageRect = CGRectMake(self.bounds.size.width - touchRectsWidth,
 								  0,
-								  146,
-								  768);
+								  touchRectsWidth,
+								  self.bounds.size.height);
 		prevPageRect = CGRectMake(0,
 								  0,
-								  146,
-								  768);
+								  touchRectsWidth,
+								  self.bounds.size.height);
+
+//		nextPageRect = CGRectMake(877,
+//								  0,
+//								  146,
+//								  768);
+//		prevPageRect = CGRectMake(0,
+//								  0,
+//								  146,
+//								  768);
 		
 	
 	
 	}
+
 }
 
 @end
@@ -573,3 +631,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 CGFloat distance(CGPoint a, CGPoint b) {
 	return sqrtf(powf(a.x-b.x, 2) + powf(a.y-b.y, 2));
 }
+//CGFloat distance(CGPoint a, CGPoint b) {
+//	return a.x - b.x;
+//}
+
+

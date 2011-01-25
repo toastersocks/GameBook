@@ -59,13 +59,17 @@ typedef enum {
 	LeavesCache *pageCache;
 	BOOL backgroundRendering;
 	
+	BOOL dragged;
 	CGPoint touchBeganPoint;
+	CGPoint touchPoint;
 	BOOL touchIsActive;
 	CGRect nextPageRect, prevPageRect;
 	BOOL interactionLocked;
 	
 	CGRect rightPageBoundsRect;
 	CGRect leftHalf, rightHalf;
+	
+	NSArray *pageSubviews;
 
 }
 	

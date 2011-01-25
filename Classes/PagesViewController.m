@@ -45,6 +45,8 @@
 
 
 - (void) leavesView:(LeavesView *)leavesView didTurnToPageAtIndex:(NSString *)pageIndex {
+	LogMessage(@"leaves delegate", 3, @"didTurnToPageAtIndex: %@", pageIndex);
+
 	if (![pageIndex isEqualToString: self.currentSectionIndex]) {
 		[self.gamebookLog logSection: [currentOption valueForKey: @"load"]]; // record the choice in the log
 		if ([currentOption valueForKey: @"logs"]) {
@@ -58,14 +60,18 @@
 		[self.sectionView removeFromSuperview];
 		self.sectionView = [self viewForSection: currentSectionIndex];
 		self.sectionView.currentPageIndex = self.currentSectionIndex;
-		self.section = [self.gameData contentsForSection: currentSectionIndex];
+		self.section = self.sectionView.section;
+			//self.section = [self.gameData contentsForSection: currentSectionIndex];
 		[self.view addSubview: self.sectionView];
+	} else {
+			//	[self.sectionView.subviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)NO];
 	}
+
 }
 
 
 - (void) renderPageAtIndex:(NSString *)index inContext:(CGContextRef)ctx {
-	LogMessage(@"leaves delegate", 0, @"In the renderPageAtIndex method.\nRequested page was: %@", index);
+	LogMessage(@"leaves delegate", 3, @"In the renderPageAtIndex method.\nRequested page was: %@", index);
 		//	if (![self.renderedImageCache objectAtIndex: index + 1]) {
 		//		return;
 		//	}
@@ -338,6 +344,13 @@
 			//	NSLog(@"Checking %@", currentOption);
 		
 			// find the chosen option
+		
+		LogMessage(@"getChosenOption", 3, @"Comparing %@ with %@", [currentOption valueForKey: optionFace], [sender performSelector: currentFace]);
+		if ([sender currentImage]) {
+			LogImageData(@"getChosenOption", 3, 300, 300, UIImagePNGRepresentation([currentOption valueForKey: optionFace]));
+			LogImageData(@"getChosenOption", 3, 300, 300, UIImagePNGRepresentation([sender performSelector: currentFace]));
+		}
+		
 		if ( [[currentOption valueForKey: optionFace] isEqual: [sender performSelector: currentFace]] ) {
 			NSLog(@"Found the option");
 			

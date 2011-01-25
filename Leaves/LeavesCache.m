@@ -110,7 +110,7 @@
 
 - (void) setPageSize:(CGSize)value {
 	pageSize = value;
-	[self flush];
+		//[self flush];
 }
 
 @end

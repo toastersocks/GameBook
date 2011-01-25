@@ -8,6 +8,7 @@
 
 #import "TextView.h"
 #import "Constants.h"
+#import "PassTouchButton.h"
 
 	//TODO: create a 'resize' method that resizes the various elements appropriately. OR even better just returns the optimum size of the various elements, and another method that actualy does the resizing. 
 
@@ -30,8 +31,8 @@
 		mainTextView.backgroundColor = [UIColor clearColor];
 
 		optionsContainer = [[UIView alloc] initWithFrame: CGRectMake(20, 454, 472, 294)]; //frame height-> 294)];
-				mainTextView.backgroundColor = [UIColor redColor]; //debug
-				optionsContainer.backgroundColor = [UIColor greenColor]; //debug
+																						  //	mainTextView.backgroundColor = [UIColor redColor]; //debug
+																						  //optionsContainer.backgroundColor = [UIColor greenColor]; //debug
 
 			//optionsContainer.backgroundColor = [UIColor whiteColor];
 		
@@ -112,7 +113,8 @@
 			//NSInteger index = 0;
 		nextButtonYLocation = 10;
 		for (NSDictionary *option in options) {
-			UIButton *button = [UIButton buttonWithType: UIButtonTypeCustom ];
+			PassTouchButton *button = [PassTouchButton buttonWithType: UIButtonTypeCustom];
+				//UIButton *button = [UIButton buttonWithType: UIButtonTypeCustom ];
 				//UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect ];//debug
 			
 				//Button Looks
@@ -146,21 +148,30 @@
 			newFrame.origin.y = nextButtonYLocation;
 			button.titleLabel.frame = newFrame;
 
-			
-			
+			if (self.frame.origin.x > 500 && self.tag != OBJECT_POPUP_TEXT) {
+			button.frame = CGRectMake(optionsContainer.bounds.size.width - expectedLabelSize.width,
+									  nextButtonYLocation,
+									  expectedLabelSize.width + 10, 
+									  expectedLabelSize.height + 10); // <-- magic number is to give the button a little margin 
+			} else {			
 			button.frame = CGRectMake(0,
 									  nextButtonYLocation,
 									  expectedLabelSize.width + 10, 
 									  expectedLabelSize.height + 10); // <-- magic number is to give the button a little margin around the text, otherwise it's exactly the size of the text.
-			
+			}
 			 
 				//	[button.titleLabel sizeToFit]; // <-- this causes the buttons to always be one line tall, even when there is more text than can fit in one line. Seems like this shouldn't be the case. sizeToFit is turning out to be pretty useless in most situations...
 			
 			nextButtonYLocation = button.frame.origin.y + button.frame.size.height + 10;
 			
+//			[button addTarget: NULL 
+//					   action: @selector(getChosenOption:) 
+//			 forControlEvents: UIControlEventTouchUpInside];
+
 			[button addTarget: NULL 
 					   action: @selector(getChosenOption:) 
-			 forControlEvents: UIControlEventTouchUpInside];
+			 forControlEvents: UIControlEventTouchDown];
+			
 			
 			[optionsContainer addSubview: button];
 		}

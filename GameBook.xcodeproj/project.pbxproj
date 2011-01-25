@@ -58,6 +58,7 @@
 		DD8A99541259829700C2F04F /* factorySmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8A994F1259829700C2F04F /* factorySmall.png */; };
 		DD8A99551259829700C2F04F /* motherSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8A99501259829700C2F04F /* motherSmall.png */; };
 		DD8A99561259829700C2F04F /* passageSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8A99511259829700C2F04F /* passageSmall.png */; };
+		DD8AD83512ECA99B00083F77 /* PassTouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8AD83412ECA99B00083F77 /* PassTouchButton.m */; };
 		DDAC812112E8BB5700E2B011 /* LeavesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC811C12E8BB5600E2B011 /* LeavesCache.m */; };
 		DDAC812212E8BB5700E2B011 /* LeavesView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC811E12E8BB5600E2B011 /* LeavesView.m */; };
 		DDAC812312E8BB5700E2B011 /* LeavesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC812012E8BB5600E2B011 /* LeavesViewController.m */; };
@@ -161,6 +162,8 @@
 		DD8A994F1259829700C2F04F /* factorySmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = factorySmall.png; sourceTree = "<group>"; };
 		DD8A99501259829700C2F04F /* motherSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = motherSmall.png; sourceTree = "<group>"; };
 		DD8A99511259829700C2F04F /* passageSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = passageSmall.png; sourceTree = "<group>"; };
+		DD8AD83312ECA99B00083F77 /* PassTouchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassTouchButton.h; sourceTree = "<group>"; };
+		DD8AD83412ECA99B00083F77 /* PassTouchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassTouchButton.m; sourceTree = "<group>"; };
 		DDAC811B12E8BB5600E2B011 /* LeavesCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesCache.h; sourceTree = "<group>"; };
 		DDAC811C12E8BB5600E2B011 /* LeavesCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesCache.m; sourceTree = "<group>"; };
 		DDAC811D12E8BB5600E2B011 /* LeavesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesView.h; sourceTree = "<group>"; };
@@ -341,6 +344,8 @@
 		DD53BA37129C4E40005093BA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DD8AD83312ECA99B00083F77 /* PassTouchButton.h */,
+				DD8AD83412ECA99B00083F77 /* PassTouchButton.m */,
 				DD53BA38129C4E5E005093BA /* SceneView.h */,
 				DD53BA39129C4E5E005093BA /* SceneView.m */,
 				DD53BB8012A04B53005093BA /* SectionView.h */,
@@ -637,6 +642,7 @@
 				DDAC812112E8BB5700E2B011 /* LeavesCache.m in Sources */,
 				DDAC812212E8BB5700E2B011 /* LeavesView.m in Sources */,
 				DDAC812312E8BB5700E2B011 /* LeavesViewController.m in Sources */,
+				DD8AD83512ECA99B00083F77 /* PassTouchButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,6 +695,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -706,6 +714,8 @@
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
