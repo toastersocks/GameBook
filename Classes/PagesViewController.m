@@ -21,6 +21,8 @@
 #import "GameBookViewWithDelegate.h"
 #import "GamebookLog.h"
 
+#import "NSDictionary+Section.h"
+
 
 
 @implementation PagesViewController
@@ -63,6 +65,15 @@
 		self.section = self.sectionView.section;
 			//self.section = [self.gameData contentsForSection: currentSectionIndex];
 		[self.view addSubview: self.sectionView];
+//		[self performSelectorInBackground: @selector(cachePages) withObject: nil];
+//		[self performSelectorOnMainThread:@selector(cachePages) withObject: nil waitUntilDone: YES];
+//		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
+//		[self cachePages];
+		[self performSelector:@selector(cachePages) withObject: nil afterDelay: 0.0];
+//		for (NSDictionary *link in [self.section sectionLinks]) {
+//			//[self.sectionView.pageCache cachedImageForPageIndex: link];
+//			[self.sectionView.pageCache precacheImageForPageIndex: link];
+//		}
 	} else {
 			//	[self.sectionView.subviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)NO];
 	}
@@ -72,9 +83,6 @@
 
 - (void) renderPageAtIndex:(NSString *)index inContext:(CGContextRef)ctx {
 	LogMessage(@"leaves delegate", 3, @"In the renderPageAtIndex method.\nRequested page was: %@", index);
-		//	if (![self.renderedImageCache objectAtIndex: index + 1]) {
-		//		return;
-		//	}
 		//LogImageData(@"leaves delegate", 0, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: (CGImageRef)[self.renderedImageCache objectAtIndex: index]]));
 	
 		//CGImageRef image = (CGImageRef)[renderedImageCache objectAtIndex: index + 1];
@@ -106,7 +114,15 @@
 	
 }
 
-
+- (void) cachePages {
+	for (NSDictionary *link in [self.section sectionLinks]) {
+			//		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+		[self.sectionView.pageCache cachedImageForPageIndex: link];
+			//		[pool release];
+			//[self.sectionView.pageCache precacheImageForPageIndex: link];
+	}
+	
+}
 
 
 

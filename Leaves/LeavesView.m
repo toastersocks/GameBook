@@ -36,6 +36,9 @@ CGFloat distance(CGPoint a, CGPoint b);
 @synthesize leafEdge, backgroundRendering;
 @synthesize currentPageIndex, nextPageIndex;
 
+@synthesize pageCache;
+
+
 
 
 - (void) setUpLayers {
@@ -406,7 +409,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 - (void) setNextPageIndex:(NSString *)aNextPageIndex {
 	nextPageIndex = aNextPageIndex;
-	[pageCache cachedImageForPageIndex: nextPageIndex];
+		//	[pageCache cachedImageForPageIndex: nextPageIndex];
 	
 }
 
@@ -428,10 +431,6 @@ CGFloat distance(CGPoint a, CGPoint b);
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	LogMessage(@"LeavesView", 2, @"In the touchesBegan method of LeavesView");
 	dragged = NO;
-	UITouch *touch = [event.allTouches anyObject];
-	//UITouch *touch = [touches anyObject];
-	touchBeganPoint = [touch locationInView:self];
-
 	
 	if (!nextPageIndex) {
 		return;
@@ -439,9 +438,9 @@ CGFloat distance(CGPoint a, CGPoint b);
 	if (interactionLocked)
 		return;
 	
-//	UITouch *touch = [touches anyObject];
-//	touchBeganPoint = [touch locationInView:self];
-	
+	UITouch *touch = [event.allTouches anyObject];
+	touchBeganPoint = [touch locationInView: self];
+
 	LogMessage(@"leavesview", 0, @"touchedNextPage is %@, hasNextPage is %@", [self touchedNextPage]? @"TRUE":@"FALSE", [self hasNextPage]? @"TRUE":@"FALSE");
 	pageSubviews = self.subviews;
 	
@@ -473,8 +472,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 	if (!touchIsActive)
 		return;
-	UITouch *touch = [touches anyObject];
-	touchPoint = [touch locationInView:self];
+	UITouch *touch = [event.allTouches anyObject];
+	touchPoint = [touch locationInView: self];
 	
 	[CATransaction begin];
 	[CATransaction setValue:[NSNumber numberWithFloat:0.07]
@@ -491,34 +490,19 @@ CGFloat distance(CGPoint a, CGPoint b);
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	LogMessage(@"LeavesView", 2, @"In the touchesEnded method of LeavesView");
 
-	UITouch *touch = [event.allTouches anyObject];
-	touchPoint = [touch locationInView: self];
 	
 	if (!touchIsActive)
 		return;
 	touchIsActive = NO;
-//	BOOL draggedRight = NO;
-//	BOOL draggedLeft = NO;
-		//	BOOL dragged = NO;
-	
-//	UITouch *touch = [event.allTouches anyObject];
-//	CGPoint touchPoint = [touch locationInView: self];
-//	if (touchBeganPoint.x < 100 && (distance(touchPoint, touchBeganPoint) > 40) ) {
-//		draggedRight = YES;
-//	} else if (touchBeganPoint.x > 924 && (distance(touchBeganPoint, touchPoint) > 40) ) {
-//		draggedLeft = YES;
-//	}
-//	if (draggedLeft || draggedRight) {
-//		dragged = YES;
-//	}
-//BOOL dragged = distance(touchPoint, touchBeganPoint) > [self dragThreshold];
+	UITouch *touch = [event.allTouches anyObject];
+	touchPoint = [touch locationInView: self];
+
 	LogMessage(@"leavesview", 3, @"touchedNextPage is %@, touchedPrevPage is %@, dragged is %@, leafEdge is %f", [self touchedNextPage]? @"TRUE":@"FALSE", [self touchedPrevPage]? @"TRUE":@"FALSE", dragged? @"TRUE":@"FALSE", self.leafEdge);
 
 	[CATransaction begin];
 	float duration;
 	if ((dragged && self.leafEdge < 0.5) || (!dragged && ([self touchedNextPage]) )) {
 
-	//	if ( (draggedLeft && self.leafEdge < 0.5) || (!dragged && [self touchedNextPage]) ) {
 		self.leafEdge = 0;
 		duration = leafEdge;
 		interactionLocked = YES;
@@ -547,34 +531,6 @@ CGFloat distance(CGPoint a, CGPoint b);
 					   afterDelay:duration + 0.25];			
 		}
 	}
-//		
-//			
-//		} else if (!draggedLeft && self.leafEdge < 0.5) {
-//			self.leafEdge = 0;
-//			duration = leafEdge;
-//			interactionLocked = YES;
-//			[self performSelector:@selector(didTurnPageForwardToIndex:)
-//					   withObject: currentPageIndex
-//					   afterDelay:duration + 0.25];
-//			
-//		}
-//			
-////		interactionLocked = YES;
-////		if (nextPageIndex && backgroundRendering)
-////			[pageCache precacheImageForPageIndex:nextPageIndex];
-////		[self performSelector:@selector(didTurnPageForwardToIndex:)
-////				   withObject: nextPageIndex
-////				   afterDelay:duration + 0.25];
-//	
-//	else if (!draggedRight && self.leafEdge >= 0.5) {
-//			//[self willTurnToPageAtIndex: currentPageIndex];
-//		self.leafEdge = 1.0;
-//		duration = 1 - leafEdge;
-//		interactionLocked = YES;
-//		[self performSelector:@selector(didTurnPageBackwardToIndex:)
-//				   withObject: currentPageIndex 
-//				   afterDelay:duration + 0.25];
-//	}
 	
 	[CATransaction setValue:[NSNumber numberWithFloat:duration]
 					 forKey:kCATransactionAnimationDuration];
@@ -582,10 +538,10 @@ CGFloat distance(CGPoint a, CGPoint b);
 }
 
 - (void) layoutSubviews {
-	[super layoutSubviews];
-	
+	[super layoutSubviews];	
     
 	CGSize desiredPageSize = self.bounds.size;
+	
     if (self.mode == LeavesViewModeFacingPages) {
         desiredPageSize = CGSizeMake(self.bounds.size.width, self.bounds.size.height);
     }

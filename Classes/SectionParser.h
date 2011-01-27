@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class WaxLua;
+@class Section;
 
 
 @interface SectionParser : NSObject {
@@ -20,6 +21,8 @@
 	WaxLua *parserEngine;
 	
 	NSDictionary *section;
+//	Section *section;
+
 	NSDictionary *sceneObject;
 
 }
@@ -32,9 +35,13 @@
 @property (retain, nonatomic) NSArray *databaseLog;
 
 @property (retain, nonatomic) NSDictionary *section;
+//@property (retain, nonatomic) Section *section;
+
 @property (retain, nonatomic) NSDictionary *sceneObject;
 
 - (NSDictionary *) contentsForSection: (NSString*)sectionIndex;
+//- (Section *) contentsForSection: (NSString *)sectionIndex;
+
 - (NSDictionary *) objectNamed: (NSString *)objectIndex;
 
 - (id) initWithSectionLog: (NSArray *)sectionLog keyEventLog: (NSArray *)keyEventLog inventoryLog: (NSArray *)inventoryLog databaseLog: (NSArray *)inDatabaseLog;

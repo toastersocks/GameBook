@@ -32,7 +32,10 @@
 		scene = [inScene retain];
 	}
 		//NSLog(@"%@: setting scene:\n%@", self, scene);
-	self.image = [scene valueForKey: @"baseImage"];
+	if ([scene valueForKey: @"baseImage"]) {
+		self.image = [scene valueForKey: @"baseImage"];
+	}
+//	self.image = [scene valueForKey: @"baseImage"];
 	
 	if ([scene valueForKey: @"touchables"]) {
 		self.touchables = [scene valueForKey: @"touchables"];

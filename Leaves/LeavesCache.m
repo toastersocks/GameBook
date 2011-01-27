@@ -76,7 +76,7 @@
 	return pageImage.CGImage;
 }
 
-- (void) precacheImageForPageIndexNumber:(NSString *)pageIndex {
+- (void) precacheImageForPageIndexNumber:(NSString *)pageIndex { // these naming conventions are an artifact of the old leaves implementation. Not sure what to call them here. Not sure how to run code in the background without it being in a seperate method.
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	[self cachedImageForPageIndex: pageIndex];
 	[pool release];

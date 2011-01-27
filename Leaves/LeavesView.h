@@ -80,6 +80,9 @@ typedef enum {
 @property (nonatomic, retain) NSString *currentPageIndex;
 @property (nonatomic, retain) NSString *nextPageIndex;
 
+@property (nonatomic, retain) LeavesCache *pageCache;
+
+
 @property (assign) BOOL backgroundRendering;
 
 - (void) reloadData;

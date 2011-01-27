@@ -8,6 +8,7 @@
 
 #import "SectionParser.h"
 #import "WaxLua.h"
+#import "NSDictionary+Section.h"
 	//#import "SectionContents.h"
 
 
@@ -78,7 +79,8 @@
 	
 	[self.parserEngine setObject: sectionIndexWithPath asGlobalNamed: "sectionIndex"];
 	[self.parserEngine doScript: @"ParseHelper"];
-	section = [self.parserEngine getObjectFromGlobalNamed: "section"];
+	self.section = [self.parserEngine getObjectFromGlobalNamed: "section"];
+		//self.section = [Section initWithSectionDictionary: [self.parserEngine getObjectFromGlobalNamed: "section"] ];
 		//return [section autorelease]; //release? return as autorelease?
 	return self.section;
 }
