@@ -17,22 +17,25 @@
 
 @synthesize text;
 @synthesize options;
-@synthesize layout;
+@synthesize pageContents;
 @synthesize mainTextView;
 @synthesize optionsContainer;
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-        mainTextView = [[UITextView alloc] initWithFrame: CGRectMake(20, 20, 472, 565)];
+		margins = 20;
+		
+        mainTextView = [[UITextView alloc] initWithFrame: CGRectMake(margins, margins, self.bounds.size.width - margins*2, 565)];
 			//text = mainTextView.text;
 		mainTextView.editable = NO;
 		mainTextView.scrollEnabled = NO;
 		mainTextView.font = [UIFont fontWithName:@"Helvetica" size: 17.0];
 		mainTextView.backgroundColor = [UIColor clearColor];
 
-		optionsContainer = [[UIView alloc] initWithFrame: CGRectMake(20, 454, 472, 294)]; //frame height-> 294)];
+		//optionsContainer = [[UIView alloc] initWithFrame: CGRectMake(20, 454, 472, 294)]; //frame height-> 294)];
+		optionsContainer = [[UIView alloc] initWithFrame: CGRectMake(margins, 454, self.bounds.size.width - margins*2, 294)];
 																						  //	mainTextView.backgroundColor = [UIColor redColor]; //debug
-																						  //optionsContainer.backgroundColor = [UIColor greenColor]; //debug
+																						  //	  optionsContainer.backgroundColor = [UIColor greenColor]; //debug
 
 			//optionsContainer.backgroundColor = [UIColor whiteColor];
 		
@@ -43,16 +46,16 @@
     return self;
 }
 
-- (void) setLayout: (NSDictionary *)inLayout {
+- (void) setPageContents: (NSDictionary *)inPageContents {
 		//NSLog(@"inLayout:\n%@", inLayout);
-	if (layout != inLayout) {
+	if (pageContents != inPageContents) {
 			//NSLog(@"layout set...");
-		[layout release];
-		layout = [inLayout retain];
+		[pageContents release];
+		pageContents = [inPageContents retain];
 	}
-	self.text = [layout valueForKey: @"text"];
-	if ([layout valueForKey: @"options"]) {
-		self.options = [layout valueForKey: @"options"];
+	self.text = [pageContents valueForKey: @"text"];
+	if ([pageContents valueForKey: @"options"]) {
+		self.options = [pageContents valueForKey: @"options"];
 	} else {
 		NSLog(@"No options to set");
 		self.options = nil; // TODO: change to nil
@@ -115,7 +118,7 @@
 		for (NSDictionary *option in options) {
 			PassTouchButton *button = [PassTouchButton buttonWithType: UIButtonTypeCustom];
 				//UIButton *button = [UIButton buttonWithType: UIButtonTypeCustom ];
-				//UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect ];//debug
+				//PassTouchButton *button = [PassTouchButton buttonWithType: UIButtonTypeRoundedRect ];//debug
 			
 				//Button Looks
 			button.titleLabel.lineBreakMode = UILineBreakModeWordWrap;
@@ -149,7 +152,7 @@
 			button.titleLabel.frame = newFrame;
 
 			if (self.frame.origin.x > 500 && self.tag != OBJECT_POPUP_TEXT) {
-			button.frame = CGRectMake(optionsContainer.bounds.size.width - expectedLabelSize.width,
+			button.frame = CGRectMake(optionsContainer.bounds.size.width - expectedLabelSize.width - 10,
 									  nextButtonYLocation,
 									  expectedLabelSize.width + 10, 
 									  expectedLabelSize.height + 10); // <-- magic number is to give the button a little margin 
@@ -176,9 +179,9 @@
 			[optionsContainer addSubview: button];
 		}
 			//keep the options at the bottom of the page
-		optionsContainer.frame = CGRectMake(20, 
+		optionsContainer.frame = CGRectMake(margins, 
 											optionsContainer.frame.origin.y + (optionsContainer.frame.size.height - nextButtonYLocation),
-											472, 
+											self.bounds.size.width - margins*2, 
 											nextButtonYLocation);
 	}
 	
@@ -197,7 +200,7 @@
 //	if ( self.mainTextView.contentSize.width < (size.width - 40) ) {
 //		textFrame.size.width = self.mainTextView.contentSize.width;
 //	}
-	CGSize maximumTextViewSize = CGSizeMake(self.bounds.size.width - 40, 768);
+	CGSize maximumTextViewSize = CGSizeMake(self.bounds.size.width - margins*2, 768);
 
 	
 	
@@ -214,13 +217,13 @@
 
 	
 	if ( [self.text sizeWithFont: self.mainTextView.font 
-			   constrainedToSize: size].width < (size.width - 40) ) {
+			   constrainedToSize: size].width < (size.width - margins*2) ) {
 		textFrame.size.width = [self.text sizeWithFont: self.mainTextView.font 
 									 constrainedToSize: size].width;
 		textFrame.size.height = 400;
 	}	
 	else {
-		textFrame.size.width = size.width - 40;
+		textFrame.size.width = size.width - margins*2;
 
 	}
 	
@@ -257,8 +260,8 @@
 		//self.mainTextView.contentSize = textFrame.size;
 	
 		//self.bounds = CGRectMake(0, 0, self.mainTextView.bounds.size.width, self.mainTextView.bounds.size.height + self.optionsContainer.bounds.size.height + 40);
-	CGSize sizeThatFitsPopup = CGSizeMake (self.mainTextView.bounds.size.width + 40, 
-										   self.mainTextView.bounds.size.height + self.optionsContainer.bounds.size.height + 40);
+	CGSize sizeThatFitsPopup = CGSizeMake (self.mainTextView.bounds.size.width + margins*2, 
+										   self.mainTextView.bounds.size.height + self.optionsContainer.bounds.size.height + margins*2);
 	NSLog(@"The content size to fit in a popup is: width: %f, height: %f", sizeThatFitsPopup.width, sizeThatFitsPopup.height);
 		//self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, sizeThatFitsPopup.width, sizeThatFitsPopup.height);
 	return sizeThatFitsPopup;
@@ -280,7 +283,7 @@
 */
 
 - (void)dealloc {
-	[layout release];
+	[pageContents release];
 	[text release];
 	[options release];
 		//layout;

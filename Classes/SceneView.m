@@ -11,7 +11,7 @@
 
 @implementation SceneView
 
-@synthesize scene;
+@synthesize pageContents;
 	//@synthesize baseImage;
 @synthesize touchables;
 
@@ -26,19 +26,19 @@
 }
 
 
-- (void) setScene:(NSDictionary *) inScene {
-	if (scene != inScene) {
-		[scene release];
-		scene = [inScene retain];
+- (void) setPageContents:(NSDictionary *) inPageContents {
+	if (pageContents != inPageContents) {
+		[pageContents release];
+		pageContents = [inPageContents retain];
 	}
 		//NSLog(@"%@: setting scene:\n%@", self, scene);
-	if ([scene valueForKey: @"baseImage"]) {
-		self.image = [scene valueForKey: @"baseImage"];
+	if ([pageContents valueForKey: @"baseImage"]) {
+		self.image = [pageContents valueForKey: @"baseImage"];
 	}
 //	self.image = [scene valueForKey: @"baseImage"];
 	
-	if ([scene valueForKey: @"touchables"]) {
-		self.touchables = [scene valueForKey: @"touchables"];
+	if ([pageContents valueForKey: @"touchables"]) {
+		self.touchables = [pageContents valueForKey: @"touchables"];
 
 	}
 }

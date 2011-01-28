@@ -14,9 +14,10 @@
 	UIView *optionsContainer;
 	NSString *text;
 	NSArray *options;
-	NSDictionary *layout;
+	NSDictionary *pageContents;
 	
 	int nextButtonYLocation;
+	int margins;
 
 	
 
@@ -24,7 +25,7 @@
 
 @property (nonatomic, retain) NSString *text;
 @property (nonatomic, retain) NSArray  *options;
-@property (nonatomic, retain) NSDictionary *layout;
+@property (nonatomic, retain) NSDictionary *pageContents;
 
 @property (nonatomic, retain) UITextView *mainTextView;
 @property (nonatomic, retain) UIView *optionsContainer;

@@ -10,14 +10,14 @@
 
 
 @interface SceneView : UIImageView {
-	NSDictionary *scene;
+	NSDictionary *pageContents;
 	//UIImage *baseImage;
 	NSArray *touchables;
 		//UIImageView *background;
 
 }
 
-@property (retain, nonatomic) NSDictionary *scene;
+@property (retain, nonatomic) NSDictionary *pageContents;
 //@property (retain, nonatomic) UIImage *baseImage;
 @property (retain, nonatomic) NSArray *touchables;
 

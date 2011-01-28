@@ -84,9 +84,7 @@
 - (void) renderPageAtIndex:(NSString *)index inContext:(CGContextRef)ctx {
 	LogMessage(@"leaves delegate", 3, @"In the renderPageAtIndex method.\nRequested page was: %@", index);
 		//LogImageData(@"leaves delegate", 0, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: (CGImageRef)[self.renderedImageCache objectAtIndex: index]]));
-	
-		//CGImageRef image = (CGImageRef)[renderedImageCache objectAtIndex: index + 1];
-	CGImageRef image = (CGImageRef)[self renderImageForView: [self viewForSection: index]];
+		CGImageRef image = (CGImageRef)[self renderImageForView: [self viewForSection: index]];
 	LogImageData(@"leaves delegate", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage:image]));
 
 	
@@ -106,6 +104,8 @@
 	
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	[viewToRender.layer renderInContext: context];
+//	[viewToRender.layer.presentationLayer renderInContext: context];
+
 	CGImageRef renderedImage = [UIGraphicsGetImageFromCurrentImageContext() CGImage];
 	
 	UIGraphicsEndImageContext();
@@ -199,7 +199,7 @@
 		}			
 	}
 
-	popupTextView.layout = self.currentObject;
+	popupTextView.pageContents = self.currentObject;
 		//objectTextPopupController.contentSizeForViewInPopover = [popupTextView sizeThatFits: CGSizeMake(250, 100)];
 		//popupTextView.bounds = CGRectMake(0, 0, [popupTextView sizeThatFits: CGSizeMake(250, 100)].width, [popupTextView sizeThatFits: CGSizeMake(250, 100)].height);//[popupTextView sizeThatFits: CGSizeMake(250, 100)];
 

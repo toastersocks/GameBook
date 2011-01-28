@@ -20,6 +20,8 @@
 		DD1634281276098100456EE0 /* fancy cover.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1634271276098100456EE0 /* fancy cover.png */; };
 		DD163491127615DA00456EE0 /* MainTitleMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DD16348F127615DA00456EE0 /* MainTitleMenu.m */; };
 		DD163492127615DA00456EE0 /* MainTitleMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD163490127615DA00456EE0 /* MainTitleMenu.xib */; };
+		DD2B78FE12F28C570038901C /* pageEdge_left.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2B78FC12F28C570038901C /* pageEdge_left.png */; };
+		DD2B78FF12F28C570038901C /* pageEdge_right.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2B78FD12F28C570038901C /* pageEdge_right.png */; };
 		DD53BB3312A02F2E005093BA /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = DD53BB2112A02F2D005093BA /* bird.png */; };
 		DD53BB3412A02F2E005093BA /* branch.png in Resources */ = {isa = PBXBuildFile; fileRef = DD53BB2212A02F2D005093BA /* branch.png */; };
 		DD53BB3512A02F2E005093BA /* deer.png in Resources */ = {isa = PBXBuildFile; fileRef = DD53BB2312A02F2D005093BA /* deer.png */; };
@@ -120,6 +122,8 @@
 		DD163490127615DA00456EE0 /* MainTitleMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainTitleMenu.xib; path = Classes/MainTitleMenu.xib; sourceTree = "<group>"; };
 		DD2774DD128D1B31003156B3 /* AppDelegate.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = AppDelegate.lua; sourceTree = "<group>"; };
 		DD2B783412D42A6A002DABB0 /* prologueHelper.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = prologueHelper.lua; sourceTree = "<group>"; };
+		DD2B78FC12F28C570038901C /* pageEdge_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pageEdge_left.png; sourceTree = "<group>"; };
+		DD2B78FD12F28C570038901C /* pageEdge_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pageEdge_right.png; sourceTree = "<group>"; };
 		DD53BA38129C4E5E005093BA /* SceneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneView.h; sourceTree = "<group>"; };
 		DD53BA39129C4E5E005093BA /* SceneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneView.m; sourceTree = "<group>"; wrapsLines = 1; };
 		DD53BB2112A02F2D005093BA /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
@@ -326,6 +330,33 @@
 			path = data/scripts;
 			sourceTree = "<group>";
 		};
+		DD2B790112F28C670038901C /* content images */ = {
+			isa = PBXGroup;
+			children = (
+				DD53BFE812A490B7005093BA /* forestSmall.png */,
+				DD8A994D1259829700C2F04F /* ambushSmall.png */,
+				DD8A994E1259829700C2F04F /* deerSmall.png */,
+				DD8A994F1259829700C2F04F /* factorySmall.png */,
+				DD8A99501259829700C2F04F /* motherSmall.png */,
+				DD8A99511259829700C2F04F /* passageSmall.png */,
+			);
+			name = "content images";
+			sourceTree = "<group>";
+		};
+		DD2B790212F28CA50038901C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DD2B78FC12F28C570038901C /* pageEdge_left.png */,
+				DD2B78FD12F28C570038901C /* pageEdge_right.png */,
+				DD89688D12D7CE4300021330 /* prologue_button.png */,
+				DDDF51B212CBC48800B62509 /* robotSmall.png */,
+				DD1634271276098100456EE0 /* fancy cover.png */,
+				DDCC9F2D1273D28B005C5745 /* cover.jpg */,
+				DD89689612D7D88900021330 /* prologue_button_2.png */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		DD46ACB2127246F0007AE0AA /* Inside Pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,17 +418,8 @@
 		DD8A994C1259829700C2F04F /* images */ = {
 			isa = PBXGroup;
 			children = (
-				DD89688D12D7CE4300021330 /* prologue_button.png */,
-				DDDF51B212CBC48800B62509 /* robotSmall.png */,
-				DD53BFE812A490B7005093BA /* forestSmall.png */,
-				DD1634271276098100456EE0 /* fancy cover.png */,
-				DDCC9F2D1273D28B005C5745 /* cover.jpg */,
-				DD8A994D1259829700C2F04F /* ambushSmall.png */,
-				DD8A994E1259829700C2F04F /* deerSmall.png */,
-				DD8A994F1259829700C2F04F /* factorySmall.png */,
-				DD8A99501259829700C2F04F /* motherSmall.png */,
-				DD8A99511259829700C2F04F /* passageSmall.png */,
-				DD89689612D7D88900021330 /* prologue_button_2.png */,
+				DD2B790212F28CA50038901C /* UI */,
+				DD2B790112F28C670038901C /* content images */,
 				DD53BB2012A02F2D005093BA /* forestSprites */,
 			);
 			path = images;
@@ -602,6 +624,8 @@
 				DDDA66B212D28E1F00EC1457 /* prologue.txt in Resources */,
 				DD89688E12D7CE4300021330 /* prologue_button.png in Resources */,
 				DD89689712D7D88900021330 /* prologue_button_2.png in Resources */,
+				DD2B78FE12F28C570038901C /* pageEdge_left.png in Resources */,
+				DD2B78FF12F28C570038901C /* pageEdge_right.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,6 +755,7 @@
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
