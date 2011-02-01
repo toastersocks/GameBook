@@ -31,9 +31,11 @@
 		mainTextView.scrollEnabled = NO;
 		mainTextView.font = [UIFont fontWithName:@"Helvetica" size: 17.0];
 		mainTextView.backgroundColor = [UIColor clearColor];
+		self.userInteractionEnabled = YES;
 
 		//optionsContainer = [[UIView alloc] initWithFrame: CGRectMake(20, 454, 472, 294)]; //frame height-> 294)];
 		optionsContainer = [[UIView alloc] initWithFrame: CGRectMake(margins, 454, self.bounds.size.width - margins*2, 294)];
+		optionsContainer.userInteractionEnabled = YES;
 																						  //	mainTextView.backgroundColor = [UIColor redColor]; //debug
 																						  //	  optionsContainer.backgroundColor = [UIColor greenColor]; //debug
 
@@ -106,6 +108,7 @@
 			CGRect textViewFrame = self.bounds;
 			textViewFrame.size.width = POPUP_WIDTH;
 			self.bounds = textViewFrame;
+			self.backgroundColor = [UIColor whiteColor];
 		}
 		CGSize maximumLabelSize = CGSizeMake(optionsContainer.bounds.size.width, 200);
 		NSLog(@"textView: self.bounds.size.width is: %f", self.bounds.size.width);
@@ -151,16 +154,16 @@
 			newFrame.origin.y = nextButtonYLocation;
 			button.titleLabel.frame = newFrame;
 
-			if (self.frame.origin.x > 500 && self.tag != OBJECT_POPUP_TEXT) {
-			button.frame = CGRectMake(optionsContainer.bounds.size.width - expectedLabelSize.width - 10,
-									  nextButtonYLocation,
-									  expectedLabelSize.width + 10, 
-									  expectedLabelSize.height + 10); // <-- magic number is to give the button a little margin 
+			if (self.frame.origin.x > 480 && self.tag != OBJECT_POPUP_TEXT) {
+				button.frame = CGRectMake(optionsContainer.bounds.size.width - expectedLabelSize.width - 10,
+										  nextButtonYLocation,
+										  expectedLabelSize.width + 10, 
+										  expectedLabelSize.height + 10); // <-- magic number is to give the button a little margin 
 			} else {			
-			button.frame = CGRectMake(0,
-									  nextButtonYLocation,
-									  expectedLabelSize.width + 10, 
-									  expectedLabelSize.height + 10); // <-- magic number is to give the button a little margin around the text, otherwise it's exactly the size of the text.
+				button.frame = CGRectMake(0,
+										  nextButtonYLocation,
+										  expectedLabelSize.width + 10, 
+										  expectedLabelSize.height + 10); // <-- magic number is to give the button a little margin around the text, otherwise it's exactly the size of the text.
 			}
 			 
 				//	[button.titleLabel sizeToFit]; // <-- this causes the buttons to always be one line tall, even when there is more text than can fit in one line. Seems like this shouldn't be the case. sizeToFit is turning out to be pretty useless in most situations...

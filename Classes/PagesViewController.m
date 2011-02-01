@@ -40,6 +40,9 @@
 @synthesize currentSectionIndex;
 @synthesize nextSectionIndex;
 
+@synthesize sectionViewCache;
+
+
 	//@synthesize objectTextPopupController;
 
 
@@ -59,12 +62,12 @@
 		previousSectionIndex = currentSectionIndex;
 		currentSectionIndex = nextSectionIndex;
 		nextSectionIndex = nil;
-		[self.sectionView removeFromSuperview];
-		self.sectionView = [self viewForSection: currentSectionIndex];
+			//[self.sectionView removeFromSuperview];
+		self.sectionView.contentView = [self viewForSection: currentSectionIndex];
 		self.sectionView.currentPageIndex = self.currentSectionIndex;
-		self.section = self.sectionView.section;
+		self.section = [self viewForSection: currentSectionIndex].section;
 			//self.section = [self.gameData contentsForSection: currentSectionIndex];
-		[self.view addSubview: self.sectionView];
+			//[self.view addSubview: self.sectionView];
 //		[self performSelectorInBackground: @selector(cachePages) withObject: nil];
 //		[self performSelectorOnMainThread:@selector(cachePages) withObject: nil waitUntilDone: YES];
 //		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
@@ -115,11 +118,17 @@
 }
 
 - (void) cachePages {
-	for (NSDictionary *link in [self.section sectionLinks]) {
+	self.sectionViewCache = [NSMutableDictionary dictionaryWithCapacity: 2];
+	for (NSString *link in [self.section sectionLinks]) {
 			//		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-		[self.sectionView.pageCache cachedImageForPageIndex: link];
+			//[self.sectionView.pageCache cachedImageForPageIndex: link];
 			//		[pool release];
 			//[self.sectionView.pageCache precacheImageForPageIndex: link];
+		[sectionViewCache setObject: [self viewForSection: link] forKey: link];
+	}
+	for (UIView *link in [self.section sectionLinks]) {
+			//[self.sectionView.pageCache precacheImageForPageIndex: link]; //somthing changed in this method is causing the page not to turn sometimes for some reason
+		[self.sectionView.pageCache cachedImageForPageIndex: link];
 	}
 	
 }
@@ -157,8 +166,11 @@
 
 
 
-- (void) startParser {
+- (void) initialize {
 	self.gameData = [[SectionParser alloc] init];
+	
+		//	sectionViewCache = [NSMutableDictionary dictionaryWithCapacity: 2];
+
 }
 
 
@@ -398,42 +410,49 @@
 
 - (SectionView *) viewForSection: (NSString *)sectionIndexToLoad {
 	
-	
-	
 	NSLog(@"section at %p retainCount before assignment is: %i", self.section, self.section.retainCount);
 			
-		//self.section = [self.gameData contentsForSection: sectionIndex];
-	NSDictionary *sectionToLoad = [self.gameData contentsForSection: sectionIndexToLoad];
-	
-	NSLog(@"section at %p retainCount after assignment is: %i", self.section, self.section.retainCount);
+	if ([self.sectionViewCache valueForKey: sectionIndexToLoad]) {
+		return [self.sectionViewCache valueForKey: sectionIndexToLoad];
+	} else {
+		
+		
+		NSDictionary *sectionToLoad = [self.gameData contentsForSection: sectionIndexToLoad];
+		
+			//NSLog(@"section at %p retainCount after assignment is: %i", self.section, self.section.retainCount);
 
-	NSLog(@"the sectionLog so far is:\n%@", self.gamebookLog.sectionLog);
+		NSLog(@"the sectionLog so far is:\n%@", self.gamebookLog.sectionLog);
 
-	NSLog(@"the keyEventLog so far is:\n%@", self.gamebookLog.keyEventLog);
-	NSLog(@"the databaseLog so far is:\n%@", self.gamebookLog.databaseLog);
+		NSLog(@"the keyEventLog so far is:\n%@", self.gamebookLog.keyEventLog);
+		NSLog(@"the databaseLog so far is:\n%@", self.gamebookLog.databaseLog);
+		
+			//self.sectionView = [[SectionView alloc] initWithFrame: self.view.bounds];
+		SectionView *sectionViewToReturn = [[SectionView alloc] initWithFrame: CGRectMake(12, 0, self.view.bounds.size.width - 24, self.view.bounds.size.height)];
+		sectionViewToReturn.section = sectionToLoad;
+		
+			//	currentView = self.sectionView;
+			//	nextView = self.sectionView;
+		
+		
+	//	self.sectionView.delegate = self;
+	//	self.sectionView.dataSource = self;
 	
-		//self.sectionView = [[SectionView alloc] initWithFrame: self.view.bounds];
-	SectionView *sectionViewToReturn = [[SectionView alloc] initWithFrame: self.view.bounds];
-	sectionViewToReturn.section = sectionToLoad;
-	
-		//	currentView = self.sectionView;
-		//	nextView = self.sectionView;
-	
-	
-//	self.sectionView.delegate = self;
-//	self.sectionView.dataSource = self;
-	sectionViewToReturn.delegate = self;
-	sectionViewToReturn.dataSource = self;
-		//	sectionViewToReturn.currentPageIndex = sectionIndexToLoad;
+			
+	//sectionViewToReturn.delegate = self;
+	//sectionViewToReturn.dataSource = self;
+		
+		
+			//	sectionViewToReturn.currentPageIndex = sectionIndexToLoad;
 
-	
-		//[self cachePages];
+		
+			//[self cachePages];
 
-		//NSLog(@"The section type is: %@", [section class]);
-		//NSLog(@"The current section contents are:\n%@", self.section);
-	
-		//[self.view addSubview: self.sectionView];
-	return sectionViewToReturn;
+			//NSLog(@"The section type is: %@", [section class]);
+			//NSLog(@"The current section contents are:\n%@", self.section);
+		
+			//[self.view addSubview: self.sectionView];
+		return sectionViewToReturn;
+	}
 }
 
 
@@ -444,37 +463,39 @@
 //	
 //}
 
+- (void) startGameWithSection: (NSString *)aSection {
+	self.sectionView = [[LeavesView alloc] initWithFrame: self.view.bounds];
+	self.sectionView.delegate = self;
+	self.sectionView.dataSource = self;
+	self.sectionView.userInteractionEnabled = YES;
+	self.currentSectionIndex = aSection;
+	self.section = [self.gameData contentsForSection: currentSectionIndex];
+	self.sectionView.contentView = [self viewForSection: currentSectionIndex];
+
+	self.sectionView.currentPageIndex = self.currentSectionIndex;
+	[self.view addSubview: self.sectionView];
+	
+}
+
 
 
 - (void) beginNewGame {
-	self.currentSectionIndex = @"IndexTEST";
-	self.section = [self.gameData contentsForSection: currentSectionIndex];
-	self.sectionView = [self viewForSection: currentSectionIndex];
-		//	self.sectionView.delegate = self;
-		//	self.sectionView.dataSource = self;
-	self.sectionView.currentPageIndex = self.currentSectionIndex;
-
-	[self.view addSubview: self.sectionView];
+	[self startGameWithSection: @"IndexTEST"];
+	//[self startGameWithSection: @"wells"];
 }
 
 - (void) continueGame {
-		//[self.gamebookLog loadLogs];
-	self.currentSectionIndex = [self.gamebookLog.sectionLog lastObject];
-	previousSectionIndex = [self.gamebookLog.sectionLog objectAtIndex: [self.gamebookLog.sectionLog count] - 1];
+	[self startGameWithSection: [self.gamebookLog.sectionLog lastObject]];
+	
+	previousSectionIndex = [self.gamebookLog.sectionLog objectAtIndex: [self.gamebookLog.sectionLog count] - 2];
 
 	NSLog(@"Resuming game at section: %@", currentSectionIndex);
 	
-	self.section = [self.gameData contentsForSection: currentSectionIndex];
-	
-	self.sectionView = [self viewForSection: currentSectionIndex];
-	self.sectionView.currentPageIndex = self.currentSectionIndex;
-		//	self.sectionView.delegate = self;
-		//	self.sectionView.dataSource = self;
-	[self.view addSubview: self.sectionView];
-	
-	
-//	[self loadPages: savedGame.currentPage? //? something something?];
+//	self.section = [self.gameData contentsForSection: currentSectionIndex];
 //	
+//	self.sectionView.currentPageIndex = self.currentSectionIndex;
+//	self.sectionView.contentView = [self viewForSection: currentSectionIndex];
+//	[self.view addSubview: self.sectionView];
 }
 
 - (void) initPopup {
@@ -516,6 +537,7 @@
 	
 	
     [super viewDidLoad];
+	
 	[self initPopup];
 
 	
@@ -523,7 +545,7 @@
 
 - (void) awakeFromNib {
 	NSLog(@"PagesViewController has awoken from the nib...");
-	[self startParser];
+	[self initialize];
 	
 		//LoggerSetOptions(NULL, kLoggerOption_LogToConsole);
 

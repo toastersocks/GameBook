@@ -28,7 +28,7 @@
 	NSDictionary *section;
 	
 	SectionParser *gameData;
-	SectionView *sectionView;
+	LeavesView *sectionView;
 	
 	GamebookLog *gamebookLog;
 
@@ -46,6 +46,8 @@
 	NSString *currentSectionIndex;
 	NSString *nextSectionIndex;
 	NSString *previousSectionIndex;
+	
+	NSMutableDictionary *sectionViewCache;
 
 }
 
@@ -55,7 +57,7 @@
 @property (retain, nonatomic) SectionParser *gameData;
 
 	//using one view which takes care of displaying the section correctly
-@property (retain, nonatomic) SectionView *sectionView;
+@property (retain, nonatomic) LeavesView *sectionView;
 @property (retain, nonatomic) GamebookLog *gamebookLog;
 
 @property (retain, nonatomic) NSDictionary *currentObject;
@@ -66,6 +68,8 @@
 @property (nonatomic, retain) NSString *currentSectionIndex;
 @property (nonatomic, retain) NSString *nextSectionIndex;
 
+@property (nonatomic, retain) NSMutableDictionary *sectionViewCache;
+
 
 
 	//@property (retain, nonatomic) GameBookViewWithDelegate *objectTextPopupController;
@@ -75,7 +79,7 @@
 
 
 
-- (void) startParser;
+- (void) initialize;
 
 - (void) beginNewGame;
 - (void) continueGame;

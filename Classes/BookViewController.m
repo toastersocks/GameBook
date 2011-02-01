@@ -113,7 +113,7 @@
 
 - (IBAction) openCover: (id)sender {
 	
-	[self crossfadeTo:self.mainTitleMenu duration: 1.0f];	
+	[self crossfadeTo: self.mainTitleMenu duration: 1.0f];	
 }
 
 - (void) startGamebook {

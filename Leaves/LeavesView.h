@@ -69,8 +69,16 @@ typedef enum {
 	CGRect rightPageBoundsRect;
 	CGRect leftHalf, rightHalf;
 	
+	UIView *contentView;
+	
 	NSArray *pageSubviews;
-
+	
+	CGRect pageEdgeLeftFrame;
+	CGRect pageEdgeRightFrame;
+	CGRect contentViewFrame;
+	
+  CAGradientLayer * leftPageShadow;
+  CAGradientLayer * rightPageShadow;
 }
 	
 @property (assign) id<LeavesViewDataSource> dataSource;
@@ -82,11 +90,25 @@ typedef enum {
 
 @property (nonatomic, retain) LeavesCache *pageCache;
 
+@property (nonatomic, retain) IBOutlet UIView *contentView;
+@property (nonatomic, assign) CGRect contentViewFrame;
+
+
+
 
 @property (assign) BOOL backgroundRendering;
 
 - (void) reloadData;
 
+//@property (nonatomic, retain) IBOutlet UIView *leftTextView;
+//@property (nonatomic, retain) IBOutlet UIView *rightTextView;
+
+
+- (void) setupDecorations;
+
+// methods for instance variable 'leftPageShadow'
+
+// methods for instance variable 'rightPageShadow'
 @end
 
 

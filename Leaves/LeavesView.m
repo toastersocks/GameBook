@@ -36,6 +36,11 @@ CGFloat distance(CGPoint a, CGPoint b);
 @synthesize leafEdge, backgroundRendering;
 @synthesize currentPageIndex, nextPageIndex;
 
+@synthesize contentView;
+@synthesize contentViewFrame;
+
+
+
 @synthesize pageCache;
 
 
@@ -129,6 +134,10 @@ CGFloat distance(CGPoint a, CGPoint b);
         topPageReverseOverlay.backgroundColor = [[[UIColor whiteColor] colorWithAlphaComponent:0.0] CGColor];
         topPageReverseImage.transform = CATransform3DMakeScale(1, 1, 1);
     }
+	pageEdgeLeftFrame = CGRectMake(0, -3, 12, self.bounds.size.height + 5);
+	pageEdgeRightFrame = CGRectMake(self.bounds.size.width - 12, -2, 12, self.bounds.size.height + 5);
+	contentViewFrame = CGRectMake(pageEdgeLeftFrame.size.width, 0, pageEdgeRightFrame.origin.x, self.bounds.size.height);
+		//[self addSubview: self.contentView];
 }
 
 
@@ -159,6 +168,13 @@ CGFloat distance(CGPoint a, CGPoint b);
 			[self initialize];
     }
     return self;
+}
+
+- (id) initWithFrame:(CGRect)frame contentView: (UIView *)newContentView {
+	if ([self initWithFrame: frame]) {
+		self.contentView = newContentView;
+	}
+	return self;
 }
 
 	//- (void) startTransition
@@ -204,7 +220,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 - (void) setImagesForTopPage: (NSString *)topPageIndex BottomPage: (NSString *)bottomPageIndex {
 
-	/* //TODO: implement these for rendering the possible choice images if needed.
+	/* 
 	if (currentPageIndex > 1 && backgroundRendering) {
 		[pageCache precacheImageForPageIndex:currentPageIndex-2];
 	}
@@ -221,14 +237,17 @@ CGFloat distance(CGPoint a, CGPoint b);
 	if (currentPageIndex) {
 		topPage.contents = (id)CGImageCreateWithImageInRect(fullTopPageImage, rightHalf);
 		leftPage.contents = (id)CGImageCreateWithImageInRect(fullTopPageImage, leftHalf);
+//		topPage.backgroundColor = [UIColor blueColor].CGColor;
+//		leftPage.backgroundColor = [UIColor greenColor].CGColor;
 	} else {
 		LogMessage(@"error", 0, @"currentPageIndex is NULL");
 	}
 	if (nextPageIndex) {
-		topPageReverseImage.contents = (id)CGImageCreateWithImageInRect(fullBottomPageImage, leftHalf);
-			//	bottomPage.backgroundColor = [UIColor orangeColor].CGColor;
+//		bottomPage.backgroundColor = [UIColor orangeColor].CGColor;
+//		topPageReverseImage.backgroundColor = [UIColor redColor].CGColor;
 		CGImageRef bottomRightPageImage = CGImageCreateWithImageInRect(fullBottomPageImage, rightHalf);
 		LogImageData(@"leavesView", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: bottomRightPageImage]));
+		topPageReverseImage.contents = (id)CGImageCreateWithImageInRect(fullBottomPageImage, leftHalf);
 		bottomPage.contents = (id)CGImageCreateWithImageInRect(fullBottomPageImage, rightHalf);
 	}
 
@@ -243,6 +262,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 - (void) setLayerFrames {
     rightPageBoundsRect = self.layer.bounds;
+//rightPageBoundsRect = self.contentViewFrame;
+
 		//    CGRect leftHalf, rightHalf;
     CGRectDivide(rightPageBoundsRect, &leftHalf, &rightHalf, CGRectGetWidth(rightPageBoundsRect) / 2.0f, CGRectMinXEdge);
     if (self.mode == LeavesViewModeFacingPages) {
@@ -304,6 +325,11 @@ CGFloat distance(CGPoint a, CGPoint b);
                                    leftHalf.size.width, 
                                    leftHalf.size.height);
         leftPageOverlay.frame = leftPage.bounds;
+			//topPage.backgroundColor = [UIColor blueColor].CGColor;
+		leftPage.backgroundColor = [UIColor greenColor].CGColor;
+		bottomPage.backgroundColor = [UIColor orangeColor].CGColor;
+		topPageReverseImage.backgroundColor = [UIColor redColor].CGColor;
+		
         
     }
 }
@@ -359,6 +385,43 @@ CGFloat distance(CGPoint a, CGPoint b);
 	return MAX(28, self.bounds.size.width / 5);
 }
 
+
+- (void) setupDecorations {
+	leftPageShadow = [[CAGradientLayer alloc] init];
+	leftPageShadow.colors = [NSArray arrayWithObjects:
+							 (id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
+							 (id)[[UIColor clearColor] CGColor],
+							 nil];
+	leftPageShadow.startPoint = CGPointMake(0,0.5);
+	leftPageShadow.endPoint = CGPointMake(1,0.5);
+	leftPageShadow.frame = CGRectMake(contentViewFrame.size.width / 2, 
+									  contentViewFrame.origin.y, 
+									  40, 
+									  contentViewFrame.size.height);
+	rightPageShadow = [[CAGradientLayer alloc] init];
+	rightPageShadow.colors = [NSArray arrayWithObjects:
+							  (id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
+							  (id)[[UIColor clearColor] CGColor],
+							  nil];
+	rightPageShadow.startPoint = CGPointMake(1,0.5);
+	rightPageShadow.endPoint = CGPointMake(0,0.5);
+	rightPageShadow.frame = CGRectMake(contentViewFrame.size.width / 2, 
+									   contentViewFrame.origin.y, 
+									   -40, 
+									   contentViewFrame.size.height);
+	[self.contentView.layer insertSublayer:rightPageShadow below: topPageReverse];
+	[self.contentView.layer insertSublayer:leftPageShadow below: topPageReverse];
+	
+	CALayer *pageEdgeRight = [CALayer layer];
+	CALayer *pageEdgeLeft = [CALayer layer];
+	pageEdgeLeft.frame = pageEdgeLeftFrame;
+	pageEdgeRight.frame = pageEdgeRightFrame;
+	pageEdgeLeft.contents = (id)[UIImage imageNamed: @"pageEdge_left.png"].CGImage;
+	pageEdgeRight.contents = (id)[UIImage imageNamed: @"pageEdge_right.png"].CGImage;
+	[self.layer addSublayer: pageEdgeLeft];
+	[self.layer addSublayer: pageEdgeRight];
+}
+
 #pragma mark -
 #pragma mark accessors
 
@@ -378,9 +441,20 @@ CGFloat distance(CGPoint a, CGPoint b);
     topPageShadow.opacity        = pageOpacity;
 	bottomPageShadow.opacity     = pageOpacity;
 	topPageOverlay.opacity       = pageOpacity;
-	leftPageOverlay.opacity   = pageOpacity;
+	leftPageOverlay.opacity		 = pageOpacity;
 
     [self setLayerFrames];
+}
+
+
+- (void) setContentView: (UIView *)newContentView{
+	[contentView removeFromSuperview];
+		//contentView = nil here?
+	[contentView autorelease];
+	contentView = newContentView;
+	self.contentView.frame = contentViewFrame;
+	[self addSubview: contentView];
+	[self setupDecorations];
 }
 
 
@@ -581,6 +655,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	}
 
 }
+
 
 @end
 
