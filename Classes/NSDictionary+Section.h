@@ -22,6 +22,7 @@
 //
 //- (id)initWithSectionDictionary: (NSDictionary *)newSectionDict;
 
-	//- (NSArray *)touchables;
+- (NSArray *)touchables;
+- (NSArray *) sectionLinks;
 
 @end

@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GBTouchable.h"
 
 
-@interface PassTouchButton : UIButton {
-	NSSet *receivedTouch;
-	UIEvent *receivedEvent;
+@interface PassTouchButton : GBTouchable {
+//	NSSet *receivedTouch;
+//	UIEvent *receivedEvent;
 }
-@property (nonatomic, retain) NSSet *receivedTouch;
-@property (nonatomic, retain) UIEvent *receivedEvent;
+//@property (nonatomic, retain) NSSet *receivedTouch;
+//@property (nonatomic, retain) UIEvent *receivedEvent;
 
 @end

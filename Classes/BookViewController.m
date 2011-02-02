@@ -12,6 +12,8 @@
 #import "CoverViewController.h"
 #import "MainTitleMenu.h"
 #import "GamebookLog.h"
+#import "LeavesView.h"
+#import "OpenBookViewController.h"
 
 
 @implementation BookViewController 
@@ -24,6 +26,9 @@
 @synthesize gamebookLog;
 
 @synthesize activeController;
+	//@synthesize openBookView;
+@synthesize openBookViewController;
+
 
 
 
@@ -48,7 +53,7 @@
 }
 
 
-- (void) crossfadeTo: (UIViewController *)controllerToDisplay duration: (float)aDuration {
+- (void) crossfadeToViewController: (UIViewController *)controllerToDisplay duration: (float)aDuration {
 	NSLog(@"In the crossfadeTo:duration method");
 	NSLog(@"controllerToDisplay is:\n%@", controllerToDisplay);
 	NSLog(@"activeController is:\n%@", activeController);
@@ -56,7 +61,8 @@
 	[controllerToDisplay viewWillAppear:YES];
 	[activeController viewWillDisappear:YES];
 	
-	[controllerToDisplay.view setFrame: CGRectMake(0, 0, 1024, 768)];
+	controllerToDisplay.view.frame = CGRectMake(0, 0, 1024, 768);
+	LogMessage(@"bookViewController", 3, @"The frame of the new view is: %@", NSStringFromCGRect(controllerToDisplay.view.frame));
 	controllerToDisplay.view.alpha = 0.0f;
 	[self.view addSubview:controllerToDisplay.view];
 	
@@ -79,21 +85,6 @@
 	[controllerToDisplay viewWillAppear:YES];
 	[activeController viewWillDisappear:YES];
 	
-	/*
-	controllerToDisplay.view.alpha = 0.0f;
-	[self.view addSubview:controllerToDisplay.view];
-	
-	[controllerToDisplay viewDidAppear:YES];
-	
-	[UIView beginAnimations:@"crossfade" context:nil];
-	[UIView setAnimationDuration:aDuration];
-	controllerToDisplay.view.alpha = 1.0f;
-	activeController.view.alpha = 0.0f;
-	[UIView commitAnimations];
-	
-	[self performSelector:@selector(animationDone:) withObject:controllerToDisplay afterDelay:aDuration];
-	 */
-	
 	[controllerToDisplay.view setFrame: CGRectMake(0, 0, 1024, 768)];
 	[self.view addSubview:controllerToDisplay.view];
 	[self animationDone: controllerToDisplay];
@@ -112,8 +103,10 @@
 
 
 - (IBAction) openCover: (id)sender {
-	
-	[self crossfadeTo: self.mainTitleMenu duration: 1.0f];	
+		//self.openBookView = [[LeavesView alloc] initWithFrame: self.view.bounds];
+	self.openBookViewController.leavesView.contentView = self.mainTitleMenu.view;
+	[self crossfadeToViewController: self.openBookViewController duration: 1.0f];	
+
 }
 
 - (void) startGamebook {
@@ -129,7 +122,7 @@
 
 - (IBAction) showPrologue: (id)sender {
 
-	[self crossfadeTo: self.prologueViewController duration: 2.0f];
+	[self crossfadeToViewController: self.prologueViewController duration: 2.0f];
 	
 		//	[self.prologueViewController beginPrologue];
 	
@@ -140,7 +133,7 @@
 
 -(IBAction) newGame: (id)sender {
 	[self startGamebook];
-	[self crossfadeTo: self.pagesViewController duration: 1.0f];	
+	[self crossfadeToViewController: self.pagesViewController duration: 1.0f];	
 	[self.pagesViewController beginNewGame];
 
 }
@@ -149,8 +142,8 @@
 - (IBAction) continueGame: (id)sender {
 		//	[self.pagesViewController continueGame];
 	[self startGamebook];
-	[self crossfadeTo: self.pagesViewController duration: 1.0f];
-	
+		//	[self crossfadeToViewController: self.pagesViewController duration: 1.0f];
+	[self crossfadeToViewController: self.pagesViewController duration: 1.0f];
 	[[self gamebookLog] loadLogs];
 	[self.pagesViewController continueGame];
 

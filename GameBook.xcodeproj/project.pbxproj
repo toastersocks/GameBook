@@ -17,6 +17,10 @@
 		DD098E22126E300E00BF8B8C /* melville.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD098E1E126E300E00BF8B8C /* melville.txt */; };
 		DD098E23126E300E00BF8B8C /* kafka.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD098E1F126E300E00BF8B8C /* kafka.txt */; };
 		DD098E24126E300E00BF8B8C /* burroughs.txt in Resources */ = {isa = PBXBuildFile; fileRef = DD098E20126E300E00BF8B8C /* burroughs.txt */; };
+		DD11E9EA12F8D68500317E3C /* OpenBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD11E9E912F8D68500317E3C /* OpenBookViewController.m */; };
+		DD11E9EB12F8D68500317E3C /* OpenBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD11E9E912F8D68500317E3C /* OpenBookViewController.m */; };
+		DD11EB3212F9EF5D00317E3C /* GBTouchable.m in Sources */ = {isa = PBXBuildFile; fileRef = DD11EB3112F9EF5D00317E3C /* GBTouchable.m */; };
+		DD11EB3312F9EF5D00317E3C /* GBTouchable.m in Sources */ = {isa = PBXBuildFile; fileRef = DD11EB3112F9EF5D00317E3C /* GBTouchable.m */; };
 		DD1634281276098100456EE0 /* fancy cover.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1634271276098100456EE0 /* fancy cover.png */; };
 		DD163491127615DA00456EE0 /* MainTitleMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DD16348F127615DA00456EE0 /* MainTitleMenu.m */; };
 		DD163492127615DA00456EE0 /* MainTitleMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD163490127615DA00456EE0 /* MainTitleMenu.xib */; };
@@ -147,6 +151,12 @@
 		DDBC76AE12AA120000654D42 /* Index.txt in Resources */ = {isa = PBXBuildFile; fileRef = DDBC76AB12AA120000654D42 /* Index.txt */; };
 		DDBC76AF12AA120000654D42 /* factoryExplore_assembly.txt in Resources */ = {isa = PBXBuildFile; fileRef = DDBC76AC12AA120000654D42 /* factoryExplore_assembly.txt */; };
 		DDBC76B012AA120000654D42 /* factoryExplore_doors.txt in Resources */ = {isa = PBXBuildFile; fileRef = DDBC76AD12AA120000654D42 /* factoryExplore_doors.txt */; };
+		DDBD319F12F7CC0C00D1AEB4 /* MGSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBD319A12F7CC0C00D1AEB4 /* MGSplitViewController.m */; };
+		DDBD31A012F7CC0C00D1AEB4 /* MGSplitDividerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBD319C12F7CC0C00D1AEB4 /* MGSplitDividerView.m */; };
+		DDBD31A112F7CC0C00D1AEB4 /* MGSplitCornersView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBD319E12F7CC0C00D1AEB4 /* MGSplitCornersView.m */; };
+		DDBD31A212F7CC0C00D1AEB4 /* MGSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBD319A12F7CC0C00D1AEB4 /* MGSplitViewController.m */; };
+		DDBD31A312F7CC0C00D1AEB4 /* MGSplitDividerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBD319C12F7CC0C00D1AEB4 /* MGSplitDividerView.m */; };
+		DDBD31A412F7CC0C00D1AEB4 /* MGSplitCornersView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBD319E12F7CC0C00D1AEB4 /* MGSplitCornersView.m */; };
 		DDCC9E3512724D29005C5745 /* PrologueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCC9E3312724D29005C5745 /* PrologueViewController.m */; };
 		DDCC9E3612724D29005C5745 /* PrologueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDCC9E3412724D29005C5745 /* PrologueViewController.xib */; };
 		DDCC9E6912726B86005C5745 /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDCC9E6712726B86005C5745 /* BookViewController.m */; };
@@ -205,6 +215,10 @@
 		DD098E1E126E300E00BF8B8C /* melville.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = melville.txt; sourceTree = "<group>"; wrapsLines = 1; };
 		DD098E1F126E300E00BF8B8C /* kafka.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kafka.txt; sourceTree = "<group>"; wrapsLines = 1; };
 		DD098E20126E300E00BF8B8C /* burroughs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = burroughs.txt; sourceTree = "<group>"; wrapsLines = 1; };
+		DD11E9E812F8D68500317E3C /* OpenBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenBookViewController.h; sourceTree = "<group>"; };
+		DD11E9E912F8D68500317E3C /* OpenBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenBookViewController.m; sourceTree = "<group>"; };
+		DD11EB3012F9EF5D00317E3C /* GBTouchable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBTouchable.h; sourceTree = "<group>"; };
+		DD11EB3112F9EF5D00317E3C /* GBTouchable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBTouchable.m; sourceTree = "<group>"; };
 		DD1634271276098100456EE0 /* fancy cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fancy cover.png"; sourceTree = "<group>"; };
 		DD16348E127615DA00456EE0 /* MainTitleMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTitleMenu.h; sourceTree = "<group>"; };
 		DD16348F127615DA00456EE0 /* MainTitleMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTitleMenu.m; sourceTree = "<group>"; };
@@ -215,7 +229,6 @@
 		DD2B78FD12F28C570038901C /* pageEdge_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pageEdge_right.png; sourceTree = "<group>"; };
 		DD2B798112F2B3430038901C /* GameBook-iPhone-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GameBook-iPhone-Info.plist"; sourceTree = "<group>"; };
 		DD2B79E712F2B47C0038901C /* GameBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD2B79E912F2B47C0038901C /* GameBook-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GameBook-Info copy.plist"; sourceTree = "<group>"; };
 		DD53BA38129C4E5E005093BA /* SceneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneView.h; sourceTree = "<group>"; };
 		DD53BA39129C4E5E005093BA /* SceneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneView.m; sourceTree = "<group>"; wrapsLines = 1; };
 		DD53BB2112A02F2D005093BA /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
@@ -272,6 +285,12 @@
 		DDBC76AB12AA120000654D42 /* Index.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Index.txt; sourceTree = "<group>"; wrapsLines = 1; };
 		DDBC76AC12AA120000654D42 /* factoryExplore_assembly.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = factoryExplore_assembly.txt; sourceTree = "<group>"; };
 		DDBC76AD12AA120000654D42 /* factoryExplore_doors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = factoryExplore_doors.txt; sourceTree = "<group>"; };
+		DDBD319912F7CC0C00D1AEB4 /* MGSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSplitViewController.h; sourceTree = "<group>"; };
+		DDBD319A12F7CC0C00D1AEB4 /* MGSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSplitViewController.m; sourceTree = "<group>"; };
+		DDBD319B12F7CC0C00D1AEB4 /* MGSplitDividerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSplitDividerView.h; sourceTree = "<group>"; };
+		DDBD319C12F7CC0C00D1AEB4 /* MGSplitDividerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSplitDividerView.m; sourceTree = "<group>"; };
+		DDBD319D12F7CC0C00D1AEB4 /* MGSplitCornersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSplitCornersView.h; sourceTree = "<group>"; };
+		DDBD319E12F7CC0C00D1AEB4 /* MGSplitCornersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSplitCornersView.m; sourceTree = "<group>"; };
 		DDCC9E3212724D29005C5745 /* PrologueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrologueViewController.h; sourceTree = "<group>"; wrapsLines = 1; };
 		DDCC9E3312724D29005C5745 /* PrologueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrologueViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
 		DDCC9E3412724D29005C5745 /* PrologueViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PrologueViewController.xib; path = Classes/PrologueViewController.xib; sourceTree = "<group>"; };
@@ -393,7 +412,6 @@
 				DDFBF16F126A482500B21630 /* text */,
 				DDCC9EC912738ED4005C5745 /* xibs */,
 				8D1107310486CEB800E47090 /* GameBook-Info.plist */,
-				DD2B79E912F2B47C0038901C /* GameBook-Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -471,6 +489,8 @@
 			children = (
 				DDFBF141126A39A800B21630 /* PagesViewController.h */,
 				DDFBF142126A39A800B21630 /* PagesViewController.m */,
+				DD11E9E812F8D68500317E3C /* OpenBookViewController.h */,
+				DD11E9E912F8D68500317E3C /* OpenBookViewController.m */,
 			);
 			name = "Inside Pages";
 			sourceTree = "<group>";
@@ -489,6 +509,8 @@
 			children = (
 				DD8AD83312ECA99B00083F77 /* PassTouchButton.h */,
 				DD8AD83412ECA99B00083F77 /* PassTouchButton.m */,
+				DD11EB3012F9EF5D00317E3C /* GBTouchable.h */,
+				DD11EB3112F9EF5D00317E3C /* GBTouchable.m */,
 				DD53BA38129C4E5E005093BA /* SceneView.h */,
 				DD53BA39129C4E5E005093BA /* SceneView.m */,
 				DD53BB8012A04B53005093BA /* SectionView.h */,
@@ -547,6 +569,19 @@
 			path = Leaves;
 			sourceTree = "<group>";
 		};
+		DDBD319812F7CC0C00D1AEB4 /* MGSplitViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDBD319912F7CC0C00D1AEB4 /* MGSplitViewController.h */,
+				DDBD319A12F7CC0C00D1AEB4 /* MGSplitViewController.m */,
+				DDBD319B12F7CC0C00D1AEB4 /* MGSplitDividerView.h */,
+				DDBD319C12F7CC0C00D1AEB4 /* MGSplitDividerView.m */,
+				DDBD319D12F7CC0C00D1AEB4 /* MGSplitCornersView.h */,
+				DDBD319E12F7CC0C00D1AEB4 /* MGSplitCornersView.m */,
+			);
+			name = MGSplitViewController;
+			sourceTree = "<group>";
+		};
 		DDCC9EC912738ED4005C5745 /* xibs */ = {
 			isa = PBXGroup;
 			children = (
@@ -581,6 +616,7 @@
 		DDE5EFB312D6944F000B7315 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				DDBD319812F7CC0C00D1AEB4 /* MGSplitViewController */,
 				DDAC811A12E8BB5600E2B011 /* Leaves */,
 				DDE5EFB612D6946A000B7315 /* LoggerClient.h */,
 				DDE5EFB712D6946A000B7315 /* LoggerClient.m */,
@@ -873,6 +909,11 @@
 				DDAC812312E8BB5700E2B011 /* LeavesViewController.m in Sources */,
 				DD8AD83512ECA99B00083F77 /* PassTouchButton.m in Sources */,
 				DDEA092412F120130020D002 /* NSDictionary+Section.m in Sources */,
+				DDBD319F12F7CC0C00D1AEB4 /* MGSplitViewController.m in Sources */,
+				DDBD31A012F7CC0C00D1AEB4 /* MGSplitDividerView.m in Sources */,
+				DDBD31A112F7CC0C00D1AEB4 /* MGSplitCornersView.m in Sources */,
+				DD11E9EA12F8D68500317E3C /* OpenBookViewController.m in Sources */,
+				DD11EB3312F9EF5D00317E3C /* GBTouchable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -901,6 +942,11 @@
 				DD2B79D712F2B47C0038901C /* LeavesViewController.m in Sources */,
 				DD2B79D812F2B47C0038901C /* PassTouchButton.m in Sources */,
 				DD2B79D912F2B47C0038901C /* NSDictionary+Section.m in Sources */,
+				DDBD31A212F7CC0C00D1AEB4 /* MGSplitViewController.m in Sources */,
+				DDBD31A312F7CC0C00D1AEB4 /* MGSplitDividerView.m in Sources */,
+				DDBD31A412F7CC0C00D1AEB4 /* MGSplitCornersView.m in Sources */,
+				DD11E9EB12F8D68500317E3C /* OpenBookViewController.m in Sources */,
+				DD11EB3212F9EF5D00317E3C /* GBTouchable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

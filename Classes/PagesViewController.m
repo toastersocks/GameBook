@@ -23,6 +23,9 @@
 
 #import "NSDictionary+Section.h"
 
+#import "PassTouchButton.h"
+#import "GBTouchable.h"
+
 
 
 @implementation PagesViewController
@@ -280,7 +283,27 @@
 
 }
 	// TODO: break the various functionality of this method up into several methods
-- (IBAction) getChosenOption: (id) sender {
+- (IBAction) getChosenOption: (id)sender {
+	
+	currentOption = [sender option];
+	if ([[sender option] valueForKey: @"pop"]) {
+			//	NSLog(@"Popup object in choice method is:\n%@", currentObject);
+		[self showPopupForCurrentOptionFromButton: sender];
+		
+		
+	} else if ([[sender option] valueForKey: @"load"]) {
+		self.nextSectionIndex = [[sender option] valueForKey: @"load"];
+		
+	} else if ([[sender option] valueForKey: @"logs"]) {
+		for (NSString *currentLog in [[sender option] valueForKey: @"logs"]) {
+			[self.gamebookLog logKeyEvent: currentLog];
+		}
+	} else {
+		LogMessage(@"ERROR", 0, @"INVALID OR NO OPTION");
+	}
+	
+	
+	/*
 	NSLog(@"option was chosen");
 	NSString *senderPageSide;
 	SEL currentFace = nil;
@@ -312,6 +335,7 @@
 
 		//NSLog(@"Sender's superview is:\n%@", [sender superview] );
 		//NSLog(@"RIGHT_PAGE_TEXT is: %i", RIGHT_PAGE_TEXT);
+	/*
 	
 	if ( ([sender superview].tag == RIGHT_PAGE_TEXT) || ([sender superview].tag == RIGHT_PAGE_SCENE) ) {
 		NSLog(@"it's the right page");
@@ -372,6 +396,7 @@
 			//	NSLog(@"Checking %@", currentOption);
 		
 			// find the chosen option
+	/*
 		
 		LogMessage(@"getChosenOption", 3, @"Comparing %@ with %@", [currentOption valueForKey: optionFace], [sender performSelector: currentFace]);
 		if ([sender currentImage]) {
@@ -404,6 +429,7 @@
 
 		}
 	}
+	*/
 
 }
 
@@ -467,7 +493,7 @@
 	self.sectionView = [[LeavesView alloc] initWithFrame: self.view.bounds];
 	self.sectionView.delegate = self;
 	self.sectionView.dataSource = self;
-	self.sectionView.userInteractionEnabled = YES;
+		//	self.sectionView.userInteractionEnabled = YES;
 	self.currentSectionIndex = aSection;
 	self.section = [self.gameData contentsForSection: currentSectionIndex];
 	self.sectionView.contentView = [self viewForSection: currentSectionIndex];
@@ -486,8 +512,9 @@
 
 - (void) continueGame {
 	[self startGameWithSection: [self.gamebookLog.sectionLog lastObject]];
-	
-	previousSectionIndex = [self.gamebookLog.sectionLog objectAtIndex: [self.gamebookLog.sectionLog count] - 2];
+	if ([self.gamebookLog.sectionLog count] >= 2) {
+		previousSectionIndex = [self.gamebookLog.sectionLog objectAtIndex: [self.gamebookLog.sectionLog count] - 2];
+	}
 
 	NSLog(@"Resuming game at section: %@", currentSectionIndex);
 	

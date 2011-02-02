@@ -77,6 +77,9 @@ typedef enum {
 	CGRect pageEdgeRightFrame;
 	CGRect contentViewFrame;
 	
+	CALayer *pageEdgeLeft;
+	CALayer *pageEdgeRight;
+	
   CAGradientLayer * leftPageShadow;
   CAGradientLayer * rightPageShadow;
 }
@@ -99,16 +102,9 @@ typedef enum {
 @property (assign) BOOL backgroundRendering;
 
 - (void) reloadData;
-
-//@property (nonatomic, retain) IBOutlet UIView *leftTextView;
-//@property (nonatomic, retain) IBOutlet UIView *rightTextView;
-
-
 - (void) setupDecorations;
-
-// methods for instance variable 'leftPageShadow'
-
-// methods for instance variable 'rightPageShadow'
+- (void) flipForwardToPageIndex: (NSString *)pageIndexToFlipTo;
+- (void) flipBackwardToPageIndex: (NSString *)pageIndexToFlipTo;
 @end
 
 

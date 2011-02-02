@@ -140,7 +140,9 @@
 			NSLog(@"maximum size for the button is: %f, %f", maximumLabelSize.width, maximumLabelSize.height);
 			NSLog(@"expected size for the button is: %f, %f", expectedLabelSize.width, expectedLabelSize.height);
 			
-				//NSLog(@"Helvetica fonts are:\n%@", [UIFont fontNamesForFamilyName: @"Helvetica"]);	
+				//NSLog(@"Helvetica fonts are:\n%@", [UIFont fontNamesForFamilyName: @"Helvetica"]);
+			
+			button.option = option;
 			[button setTitle: [option valueForKey: @"optionText"]
 					forState: UIControlStateNormal]; 
 			

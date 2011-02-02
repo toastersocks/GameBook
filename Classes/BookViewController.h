@@ -15,7 +15,8 @@
 @class CoverViewController;
 @class MainTitleMenu;
 @class GamebookLog;
-
+@class LeavesView;
+@class OpenBookViewController;
 
 
 
@@ -30,6 +31,8 @@
 	
 	UIViewController *activeController;
 	
+		//LeavesView *openBookView;
+	OpenBookViewController *openBookViewController;
 
 }
 
@@ -37,7 +40,7 @@
 - (void) startGamebook;
 
 
-- (void) crossfadeTo: (UIViewController *)controllerToDisplay duration: (float)aDuration;
+- (void) crossfadeToViewController: (UIViewController *)controllerToDisplay duration: (float)aDuration;
 - (void) animationDone: (UIViewController *)aNewViewController;
 
 - (void) cutToController: (UIViewController *)controllerToDisplay;
@@ -53,5 +56,8 @@
 @property (retain, nonatomic) IBOutlet GamebookLog *gamebookLog;
 
 @property (retain, nonatomic) UIViewController *activeController;
+	//@property (nonatomic, retain) LeavesView *openBookView;
+@property (nonatomic, retain) IBOutlet OpenBookViewController *openBookViewController;
+
 
 @end

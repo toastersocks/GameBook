@@ -134,9 +134,10 @@ CGFloat distance(CGPoint a, CGPoint b);
         topPageReverseOverlay.backgroundColor = [[[UIColor whiteColor] colorWithAlphaComponent:0.0] CGColor];
         topPageReverseImage.transform = CATransform3DMakeScale(1, 1, 1);
     }
-	pageEdgeLeftFrame = CGRectMake(0, -3, 12, self.bounds.size.height + 5);
-	pageEdgeRightFrame = CGRectMake(self.bounds.size.width - 12, -2, 12, self.bounds.size.height + 5);
-	contentViewFrame = CGRectMake(pageEdgeLeftFrame.size.width, 0, pageEdgeRightFrame.origin.x, self.bounds.size.height);
+	LogMessage(@"leavesView", 3, @"self.bounds is: %@", NSStringFromCGRect(self.bounds));
+//	pageEdgeLeftFrame = CGRectMake(0, -3, 12, self.bounds.size.height + 5);
+//	pageEdgeRightFrame = CGRectMake(self.bounds.size.width - 12, -2, 12, self.bounds.size.height + 5);
+//	contentViewFrame = CGRectMake(pageEdgeLeftFrame.size.width, 0, pageEdgeRightFrame.origin.x, self.bounds.size.height);
 		//[self addSubview: self.contentView];
 }
 
@@ -180,11 +181,19 @@ CGFloat distance(CGPoint a, CGPoint b);
 	//- (void) startTransition
 
 
+//- (id) initWithCoder:(NSCoder *)aDecoder {
+//	if (self = [super initWithCoder:aDecoder]) {
+//		[self setUpLayers];
+//		[self initialize];
+//	}
+//	return self;
+//}
+
 - (void) awakeFromNib {
 	[super awakeFromNib];
-		//[self setUpLayers];
-		//[self initialize];
-	self.mode = LeavesViewModeFacingPages;
+	[self setUpLayers];
+	[self initialize];
+		//self.mode = LeavesViewModeFacingPages;
 }
 
 
@@ -309,6 +318,11 @@ CGFloat distance(CGPoint a, CGPoint b);
 	
 	topPageOverlay.frame = topPage.bounds;
 	
+//	pageEdgeLeftFrame = CGRectMake(0, -3, 12, self.bounds.size.height + 5);
+//	pageEdgeRightFrame = CGRectMake(self.bounds.size.width - 12, -2, 12, self.bounds.size.height + 5);
+//	contentViewFrame = CGRectMake(pageEdgeLeftFrame.size.width, 0, pageEdgeRightFrame.origin.x, self.bounds.size.height);
+	
+	
 		//topPageOverlay.backgroundColor = [UIColor blueColor].CGColor;
 
     
@@ -340,7 +354,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 }
 
 - (void) didTurnToPageAtIndex:(NSString *)index {
-	[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)NO];
+		//[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)NO];
 	if ([delegate respondsToSelector:@selector(leavesView:didTurnToPageAtIndex:)]) {
 		[delegate leavesView:self didTurnToPageAtIndex:index];
 	}
@@ -412,8 +426,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 	[self.contentView.layer insertSublayer:rightPageShadow below: topPageReverse];
 	[self.contentView.layer insertSublayer:leftPageShadow below: topPageReverse];
 	
-	CALayer *pageEdgeRight = [CALayer layer];
-	CALayer *pageEdgeLeft = [CALayer layer];
+	pageEdgeRight = [CALayer layer];
+	pageEdgeLeft = [CALayer layer];
 	pageEdgeLeft.frame = pageEdgeLeftFrame;
 	pageEdgeRight.frame = pageEdgeRightFrame;
 	pageEdgeLeft.contents = (id)[UIImage imageNamed: @"pageEdge_left.png"].CGImage;
@@ -497,6 +511,43 @@ CGFloat distance(CGPoint a, CGPoint b);
     [self setNeedsLayout];
 }
 
+- (void) flipBackwardToPageIndex: (NSString *)pageIndexToFlipTo {
+	float duration;
+	self.leafEdge = 0.0;
+	[self setImagesForTopPage: nextPageIndex BottomPage: currentPageIndex];
+	[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+
+	[CATransaction begin];
+
+	self.leafEdge = 1;
+	duration = 1 - leafEdge;
+	interactionLocked = YES;
+	[CATransaction setValue:[NSNumber numberWithFloat:duration]
+					 forKey:kCATransactionAnimationDuration];
+	[CATransaction commit];
+	
+	
+}
+
+
+- (void) flipForwardToPageIndex: (NSString *) pageIndexToFlipTo {
+	float duration;
+	self.leafEdge = 1.0;
+	[self setImagesForTopPage: currentPageIndex BottomPage: nextPageIndex];
+	[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+	
+	[CATransaction begin];
+	
+	self.leafEdge = 0.0;
+	duration = leafEdge;
+	interactionLocked = YES;
+	[CATransaction setValue:[NSNumber numberWithFloat:duration]
+					 forKey:kCATransactionAnimationDuration];
+	[CATransaction commit];
+	
+}
+
+
 
 
 #pragma mark -
@@ -516,7 +567,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	touchBeganPoint = [touch locationInView: self];
 
 	LogMessage(@"leavesview", 0, @"touchedNextPage is %@, hasNextPage is %@", [self touchedNextPage]? @"TRUE":@"FALSE", [self hasNextPage]? @"TRUE":@"FALSE");
-	pageSubviews = self.subviews;
+		//	pageSubviews = self.subviews;
 	
 	if ([self touchedPrevPage] && [self hasNextPage]) {
 		[CATransaction begin];
@@ -525,7 +576,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 		
 		[self setImagesForTopPage: nextPageIndex BottomPage: currentPageIndex];
 		//[self.subviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
-		[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+		//[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
 		
         self.leafEdge = 0.0;
 		[CATransaction commit];
@@ -536,7 +587,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 		
 		[self setImagesForTopPage: currentPageIndex BottomPage: nextPageIndex];
 		//[self.subviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
-		[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+		//	[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
 	} else 
 		touchIsActive = NO;
 }
@@ -615,6 +666,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	[super layoutSubviews];	
     
 	CGSize desiredPageSize = self.bounds.size;
+
 	
     if (self.mode == LeavesViewModeFacingPages) {
         desiredPageSize = CGSizeMake(self.bounds.size.width, self.bounds.size.height);
@@ -640,6 +692,21 @@ CGFloat distance(CGPoint a, CGPoint b);
 								  0,
 								  touchRectsWidth,
 								  self.bounds.size.height);
+		pageEdgeLeftFrame = CGRectMake(0, -3, 12, self.bounds.size.height + 5);
+		pageEdgeRightFrame = CGRectMake(self.bounds.size.width - 12, -2, 12, self.bounds.size.height + 5);
+		contentViewFrame = CGRectMake(pageEdgeLeftFrame.size.width, 0, pageEdgeRightFrame.origin.x, self.bounds.size.height);
+		
+		pageEdgeLeft.frame = pageEdgeLeftFrame;
+		pageEdgeRight.frame = pageEdgeRightFrame;
+		self.contentView.frame = contentViewFrame;
+		leftPageShadow.frame = CGRectMake(contentViewFrame.size.width / 2, 
+										  contentViewFrame.origin.y, 
+										  40, 
+										  contentViewFrame.size.height);
+		rightPageShadow.frame = CGRectMake(contentViewFrame.size.width / 2, 
+										   contentViewFrame.origin.y, 
+										   -40, 
+										   contentViewFrame.size.height);
 
 //		nextPageRect = CGRectMake(877,
 //								  0,

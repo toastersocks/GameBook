@@ -7,6 +7,7 @@
 //
 
 #import "SceneView.h"
+#import "GBTouchable.h"
 
 
 @implementation SceneView
@@ -53,8 +54,10 @@
 	//touchables = newTouchables;
 	
 	for (NSDictionary *touchable in touchables) {
-		UIButton *button = [UIButton buttonWithType: UIButtonTypeCustom];
+//		UIButton *button = [UIButton buttonWithType: UIButtonTypeCustom];
+		GBTouchable *button = [GBTouchable buttonWithType: UIButtonTypeCustom];
 		
+		button.option = touchable;
 		
 		[button setImage: [touchable valueForKey: @"sceneSprite"]  
 				forState: UIControlStateNormal];

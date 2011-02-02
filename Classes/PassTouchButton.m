@@ -11,15 +11,28 @@
 
 @implementation PassTouchButton
 
-@synthesize receivedTouch;
-@synthesize receivedEvent;
+//@synthesize receivedTouch;
+//@synthesize receivedEvent;
+
+	//=========================================================== 
+	// - setOption:
+	//=========================================================== 
+//- (void)setOption:(NSDictionary *)anOption
+//{
+//    if (option != anOption) {
+//        [option release];
+//        option = [anOption retain];
+//    }
+//	
+//}
+
 
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	LogMessage(@"PassTouchButton", 2, @"In the touchesBegan method of PassTouchButton");
 
-	self.receivedTouch = touches;
-	self.receivedEvent = event;
+//	self.receivedTouch = touches;
+//	self.receivedEvent = event;
 	[super touchesBegan: touches withEvent: event];
 
 	[self.nextResponder touchesBegan:touches withEvent:event];
