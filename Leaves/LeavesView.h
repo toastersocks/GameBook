@@ -80,11 +80,11 @@ typedef enum {
 	CALayer *pageEdgeLeft;
 	CALayer *pageEdgeRight;
 	
-  CAGradientLayer * leftPageShadow;
-  CAGradientLayer * rightPageShadow;
+  CAGradientLayer *leftPageShadow;
+  CAGradientLayer *rightPageShadow;
 }
 	
-@property (assign) id<LeavesViewDataSource> dataSource;
+@property (assign) IBOutlet id<LeavesViewDataSource> dataSource;
 @property (assign) id<LeavesViewDelegate> delegate;
 @property (nonatomic, assign) LeavesViewMode mode;
 @property (readonly) CGFloat targetWidth;

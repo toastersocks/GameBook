@@ -181,20 +181,20 @@ CGFloat distance(CGPoint a, CGPoint b);
 	//- (void) startTransition
 
 
-//- (id) initWithCoder:(NSCoder *)aDecoder {
-//	if (self = [super initWithCoder:aDecoder]) {
-//		[self setUpLayers];
-//		[self initialize];
-//	}
-//	return self;
-//}
-
-- (void) awakeFromNib {
-	[super awakeFromNib];
-	[self setUpLayers];
-	[self initialize];
-		//self.mode = LeavesViewModeFacingPages;
+- (id) initWithCoder:(NSCoder *)aDecoder {
+	if (self = [super initWithCoder:aDecoder]) {
+		[self setUpLayers];
+		[self initialize];
+	}
+	return self;
 }
+
+//- (void) awakeFromNib {
+//	[super awakeFromNib];
+//	[self setUpLayers];
+//	[self initialize];
+//		//self.mode = LeavesViewModeFacingPages;
+//}
 
 
 - (void)dealloc {
@@ -240,7 +240,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	
 	CGImageRef fullTopPageImage = [pageCache cachedImageForPageIndex: topPageIndex];
 	CGImageRef fullBottomPageImage = [pageCache cachedImageForPageIndex: bottomPageIndex];
-	LogImageData(@"leavesView", 2, 1024, 786, UIImagePNGRepresentation([UIImage imageWithCGImage: fullBottomPageImage]));
+		//LogImageData(@"leavesView", 2, 1024, 786, UIImagePNGRepresentation([UIImage imageWithCGImage: fullBottomPageImage]));
 
 
 	if (currentPageIndex) {
@@ -255,7 +255,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 //		bottomPage.backgroundColor = [UIColor orangeColor].CGColor;
 //		topPageReverseImage.backgroundColor = [UIColor redColor].CGColor;
 		CGImageRef bottomRightPageImage = CGImageCreateWithImageInRect(fullBottomPageImage, rightHalf);
-		LogImageData(@"leavesView", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: bottomRightPageImage]));
+			//LogImageData(@"leavesView", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: bottomRightPageImage]));
 		topPageReverseImage.contents = (id)CGImageCreateWithImageInRect(fullBottomPageImage, leftHalf);
 		bottomPage.contents = (id)CGImageCreateWithImageInRect(fullBottomPageImage, rightHalf);
 	}
@@ -354,7 +354,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 }
 
 - (void) didTurnToPageAtIndex:(NSString *)index {
-		//[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)NO];
+	[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)NO];
 	if ([delegate respondsToSelector:@selector(leavesView:didTurnToPageAtIndex:)]) {
 		[delegate leavesView:self didTurnToPageAtIndex:index];
 	}
@@ -567,7 +567,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	touchBeganPoint = [touch locationInView: self];
 
 	LogMessage(@"leavesview", 0, @"touchedNextPage is %@, hasNextPage is %@", [self touchedNextPage]? @"TRUE":@"FALSE", [self hasNextPage]? @"TRUE":@"FALSE");
-		//	pageSubviews = self.subviews;
+		pageSubviews = self.subviews;
 	
 	if ([self touchedPrevPage] && [self hasNextPage]) {
 		[CATransaction begin];
@@ -576,7 +576,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 		
 		[self setImagesForTopPage: nextPageIndex BottomPage: currentPageIndex];
 		//[self.subviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
-		//[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+		[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
 		
         self.leafEdge = 0.0;
 		[CATransaction commit];
@@ -587,7 +587,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 		
 		[self setImagesForTopPage: currentPageIndex BottomPage: nextPageIndex];
 		//[self.subviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
-		//	[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+		[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
 	} else 
 		touchIsActive = NO;
 }

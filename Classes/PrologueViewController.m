@@ -6,7 +6,7 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-//#define LogImageData(domain, level, width, height, data)	LogImageDataF(__FILE__,__LINE__,__FUNCTION__,domain,level,width,height,data)
+//#define //LogImageData(domain, level, width, height, data)	//LogImageDataF(__FILE__,__LINE__,__FUNCTION__,domain,level,width,height,data)
 
 //#define LogMessage(domain, level, ...)	LogMessageF(__FILE__,__LINE__,__FUNCTION__,domain,level,__VA_ARGS__)
 
@@ -199,75 +199,16 @@
 				}			
 				
 			}
-				//			else if (currentChar == '…') {
-				//				
-				//				
-				//			}
+
 		}
 		else {
 			delay = 0.00;
 		}
-			//		[self performSelector: @selector(printChar) withObject: nil afterDelay: delay];
-			//
-			//		[[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] addTimeInterval: delay] ];
-			//		[self performSelector: @selector(printChar) withObject: nil afterDelay: delay];
-		
-		
 	}
-		// make the ending button appear at the end
-		//[[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] addTimeInterval: delay] ];
-/*
-	
-	[UIView beginAnimations:@"buttonAppear" context:nil];
-		//[UIView setAnimationDelay: 2.0f];
-	[UIView setAnimationDuration: 0.5];
-	self.doneWithPrologueButton.alpha = 0.5;
-	[UIView setAnimationDelegate:self];
-	
-	[UIView setAnimationDidStopSelector: @selector(pulseButton:finished:context:)];
-		//[UIView setAnimationDidStopSelector: @selector(longPulse:finished:context:)];
-	[UIView commitAnimations];
-*/	 
-		//[self performSelector: @selector(pulseButton:finished:context:) withObject: nil afterDelay: delay];
-		//[self pulseButton: nil finished: nil context: nil];
 	self.doneWithPrologueButton.alpha = 0.1;
-		//[self pulseButton: nil finished: nil context: nil];
-		//	longPulseAnimation = [CABasicAnimation animationWithKeyPath: @"opacity"];
-		//shortPulseAnimation = [CABasicAnimation animationWithKeyPath: @"opacity"];
-//	pulseAnimation = [CABasicAnimation animationWithKeyPath: @"opacity"];
 	
-	/* //this shit is not working no matter how i try and do it and i have no idea why
-	longPulseAnimation = [ [CABasicAnimation animationWithKeyPath: @"opacity"] retain];
-	shortPulseAnimation = [ [CABasicAnimation animationWithKeyPath: @"opacity"] retain];
-
-	longPulse = YES;
-	longPulseAnimation.delegate = self;
-	shortPulseAnimation.delegate = self;
-	
-	longPulseAnimation.fromValue = [NSNumber numberWithFloat: 0.1];
-	longPulseAnimation.toValue = [NSNumber numberWithFloat: 1.0];
-	longPulseAnimation.repeatCount = 1.0;
-	longPulseAnimation.duration = 2.0;
-	longPulseAnimation.autoreverses = YES;
-	longPulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseInEaseOut]; 
-	
-	
-	shortPulseAnimation.fromValue = [NSNumber numberWithFloat: 0.1];
-	shortPulseAnimation.toValue = [NSNumber numberWithFloat: 1.0];
-	shortPulseAnimation.repeatCount = 2.0;
-	shortPulseAnimation.duration = 2.0;
-	shortPulseAnimation.autoreverses = YES;
-	shortPulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseInEaseOut]; 
-	 */
-	
-
-		//[self pulseButton];
-	
-		[self shortPulse: nil finished: nil context: NULL];
-		//	prologueTextIndex = 0;
-	
-		//[self longPulse: @"buttonPulse" finished: nil context: nil];
-		//[self shortPulse: @"buttonPulse" finished: YES context: nil];
+		//	[self shortPulse: nil finished: nil context: NULL];
+	[self pulseButton];
 }
 
 - (void) pulseButton: (NSString *)animationID finished: (NSNumber *)finished context: (void *)context {
@@ -296,61 +237,53 @@
 		self.doneWithPrologueButton.alpha = 1.0;	
 		[UIView commitAnimations];
 	
-//		[UIView beginAnimations: nil context: nil];	
-//			[UIView setAnimationDelegate:self];
-//				//[UIView setAnimationDidStopSelector: @selector(pulseButton:finished:context:)];
-//			[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-//			[UIView setAnimationRepeatCount: 2];
-//			[UIView setAnimationRepeatAutoreverses: YES];
-//			[UIView setAnimationDelay: 4.0];
-//			[UIView setAnimationDuration: 1.0];
-//			self.doneWithPrologueButton.alpha = 0.1;
-//		[UIView commitAnimations];
-	
-		//	[UIView commitAnimations];
 }
 
 
 - (void) pulseButton {
 	
 	
-		//	[UIView beginAnimations: @"buttonPulse" context: NULL];
+		//[self.doneWithPrologueButton.layer addAnimation: longPulseAnimation forKey: @"opacity"];
+	CAKeyframeAnimation *buttonPulse = [CAKeyframeAnimation animationWithKeyPath: @"opacity"];
+	NSArray *alphaValues = [NSArray arrayWithObjects: 
+							[NSNumber numberWithFloat: 0.01],
+							[NSNumber numberWithFloat: 1.0],
+							[NSNumber numberWithFloat: 0.01],
+							[NSNumber numberWithFloat: 1.0],
+							[NSNumber numberWithFloat: 0.01],
+							nil];
 	
-		//[UIView setAnimationRepeatCount: 10.0];
-		//[UIView setAnimationBeginsFromCurrentState: YES];
-/*	
-	[UIView beginAnimations: @"longPulse" context: NULL];	
-	[UIView setAnimationRepeatCount: 1.0];
-	[UIView setAnimationDuration: 2.0];
-	[UIView setAnimationRepeatAutoreverses: YES];
-	self.doneWithPrologueButton.alpha = 1.0;
-	[UIView setAnimationBeginsFromCurrentState: YES];	
-	[UIView commitAnimations];
-
-	self.doneWithPrologueButton.alpha = 0.1;
+//	NSArray *alphaValues = [NSArray arrayWithObjects: 
+//							[NSNumber numberWithFloat: 0.01],
+//							[NSNumber numberWithFloat: 1.0],
+//							[NSNumber numberWithFloat: 0.01],
+//							[NSNumber numberWithFloat: 1.0],
+//							[NSNumber numberWithFloat: 0.01],
+//							[NSNumber numberWithFloat: 0.01],
+//							nil];
 	
-	[UIView beginAnimations: @"shortPulse" context: NULL];
-	[UIView setAnimationRepeatCount: 2.0];
-	[UIView setAnimationDelay: 4.0];
-	[UIView setAnimationDuration: 1.0];
-	[UIView setAnimationRepeatAutoreverses: YES];
-	[UIView setAnimationBeginsFromCurrentState: YES];
-	[UIView commitAnimations];
+	NSArray *keyTimes = [NSArray arrayWithObjects: 
+						 [NSNumber numberWithFloat: 0.0],
+						 [NSNumber numberWithFloat: .335],
+						 [NSNumber numberWithFloat: 0.5],
+						 [NSNumber numberWithFloat: 0.665],
+						 [NSNumber numberWithFloat: 1.0],
+						 nil];
 	
-		//	[UIView commitAnimations];
-*/ 
+//	NSArray *keyTimes = [NSArray arrayWithObjects: 
+//						 [NSNumber numberWithFloat: 0.0],
+//						 [NSNumber numberWithFloat: .251],
+//						 [NSNumber numberWithFloat: 0.416],
+//						 [NSNumber numberWithFloat: 0.582],
+//						 [NSNumber numberWithFloat: 0.95],
+//						 [NSNumber numberWithFloat: 1.0],
+//						 nil];
 	
-	
-//	pulseAnimation.fromValue = [NSNumber numberWithFloat: 0.1];
-//	pulseAnimation.toValue = [NSNumber numberWithFloat: 1.0];
-//	pulseAnimation.autoreverses = YES;
-//	pulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseInEaseOut]; 
-	//pulseAnimation.duration = 2.0;
-//	pulseAnimation.repeatCount = 10.0;
-//	pulseAnimation.delegate = self;
-	
-		//	[self.doneWithPrologueButton.layer addAnimation: pulseAnimation forKey: @"opacity"];
-	[self.doneWithPrologueButton.layer addAnimation: longPulseAnimation forKey: @"opacity"];
+	buttonPulse.duration = 4.0;
+	buttonPulse.values = alphaValues;
+	buttonPulse.keyTimes = keyTimes;
+	buttonPulse.repeatCount = HUGE_VAL;
+	[self.doneWithPrologueButton.layer addAnimation: buttonPulse forKey: @"opacity"];
 	
 	
 }

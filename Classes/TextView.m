@@ -9,6 +9,7 @@
 #import "TextView.h"
 #import "Constants.h"
 #import "PassTouchButton.h"
+#import <QuartzCore/QuartzCore.h>
 
 	//TODO: create a 'resize' method that resizes the various elements appropriately. OR even better just returns the optimum size of the various elements, and another method that actualy does the resizing. 
 
@@ -36,6 +37,9 @@
 		//optionsContainer = [[UIView alloc] initWithFrame: CGRectMake(20, 454, 472, 294)]; //frame height-> 294)];
 		optionsContainer = [[UIView alloc] initWithFrame: CGRectMake(margins, 454, self.bounds.size.width - margins*2, 294)];
 		optionsContainer.userInteractionEnabled = YES;
+		self.layer.opaque = YES;
+		self.optionsContainer.layer.opaque = YES;
+		self.mainTextView.layer.opaque = YES;
 																						  //	mainTextView.backgroundColor = [UIColor redColor]; //debug
 																						  //	  optionsContainer.backgroundColor = [UIColor greenColor]; //debug
 

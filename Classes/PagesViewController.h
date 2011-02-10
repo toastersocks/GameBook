@@ -10,6 +10,7 @@
 #import "GameBookViewWithDelegate.h"
 #import "SectionParser.h"
 #import "SectionView.h"
+#import "ViewSwitchProtocol.h"
 
 	//#import "SectionView.h"
 //@protocol LeavesViewDelegate;
@@ -28,7 +29,8 @@
 	NSDictionary *section;
 	
 	SectionParser *gameData;
-	LeavesView *sectionView;
+	SectionView *sectionView;
+	SectionView *nextSectionView;
 	
 	GamebookLog *gamebookLog;
 
@@ -48,7 +50,7 @@
 	NSString *previousSectionIndex;
 	
 	NSMutableDictionary *sectionViewCache;
-
+	id transitionDelegate;
 }
 
 @property (retain, nonatomic) NSDictionary *section;
@@ -57,7 +59,9 @@
 @property (retain, nonatomic) SectionParser *gameData;
 
 	//using one view which takes care of displaying the section correctly
-@property (retain, nonatomic) LeavesView *sectionView;
+@property (retain, nonatomic) SectionView *sectionView;
+@property (nonatomic, retain) SectionView *nextSectionView;
+
 @property (retain, nonatomic) GamebookLog *gamebookLog;
 
 @property (retain, nonatomic) NSDictionary *currentObject;
@@ -70,6 +74,7 @@
 
 @property (nonatomic, retain) NSMutableDictionary *sectionViewCache;
 
+@property (nonatomic, assign) id <ViewSwitchDelegateProtocol> transitionDelegate;
 
 
 	//@property (retain, nonatomic) GameBookViewWithDelegate *objectTextPopupController;
@@ -92,6 +97,7 @@
 
 - (SectionView *) viewForSection: (NSString *) sectionIndex;
 - (IBAction) getChosenOption: (id) sender;
+- (void)willLoadSectionFromTouchable: (id)touchable;
 //- (void) logChoice: (NSString *) pageIndex;
 
 

@@ -132,6 +132,7 @@ end
 
 
 dofile(sectionIndex)
+section["sectionIndex"] = sectionIndex
 
 --print "The section from lua: \n"
 --printT(section)

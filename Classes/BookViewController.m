@@ -114,6 +114,7 @@
 		//[self crossfadeTo: self.prologueViewController duration: 2.0f];
 	self.gamebookLog = [[GamebookLog alloc] init];
 	self.pagesViewController.gamebookLog = self.gamebookLog;
+	self.pagesViewController.transitionDelegate = openBookViewController;
 		//[self crossfadeTo: self.pagesViewController duration: 1.0f];
 	//[self.pagesViewController beginNewGame];
 
@@ -131,9 +132,13 @@
 	[self.prologueViewController performSelector:@selector(beginPrologueWithLineScroll) withObject: nil afterDelay: 2.0f];
 }
 
--(IBAction) newGame: (id)sender {
+- (IBAction) newGame: (id)sender {
 	[self startGamebook];
-	[self crossfadeToViewController: self.pagesViewController duration: 1.0f];	
+		//[self crossfadeToViewController: self.pagesViewController duration: 1.0f];
+		//	[self.pagesViewController beginNewGame];
+		//self.openBookViewController.currentView = self.pagesViewController.view;
+	self.openBookViewController.leavesView.contentView = pagesViewController.view;
+	[self crossfadeToViewController: self.openBookViewController duration: 1.0f];		
 	[self.pagesViewController beginNewGame];
 
 }
@@ -143,7 +148,9 @@
 		//	[self.pagesViewController continueGame];
 	[self startGamebook];
 		//	[self crossfadeToViewController: self.pagesViewController duration: 1.0f];
-	[self crossfadeToViewController: self.pagesViewController duration: 1.0f];
+		//[self crossfadeToViewController: self.pagesViewController duration: 1.0f];
+	[self.openBookViewController viewController: self willTransitionToView: pagesViewController.view withID: @"gameSections"];
+	self.openBookViewController.leavesView.contentView = pagesViewController.view;
 	[[self gamebookLog] loadLogs];
 	[self.pagesViewController continueGame];
 
@@ -155,6 +162,13 @@
 	
 }
 	
+-(IBAction)actionForLeftEdge: (id)sender {
+	
+
+}
+-(IBAction)actionForRightEdge: (id)sender{
+
+}
 
 							
 
@@ -182,6 +196,8 @@
 	NSLog(@"The bookViewController view has loaded");
 	
     [super viewDidLoad];
+	
+		//	self.openBookViewController.bookSections = [NSArray arrayWithObjects: self.mainTitleMenu.view, self.pagesViewController.view, nil];
 		//[self displayCover];
 		//now calling this method from the appDelegate
 		//	[self performSelector: @selector(displayCover) withObject: NULL afterDelay:0.0]; // this is a stupid hack workaround because the presentModalView method does nothing unless you delay it. Even delaying by 0.0 will make it work... STUPID

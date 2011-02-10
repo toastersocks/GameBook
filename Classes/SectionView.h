@@ -23,6 +23,8 @@
 	CGRect rightHalfRect;
 	CGRect leftHalfRect;
 	
+	CGImageRef cgImage;
+	
 }
 
 @property (nonatomic, retain) NSDictionary *section;
@@ -31,7 +33,9 @@
 @property (nonatomic, retain) UIView *leftPageView;
 @property (nonatomic, retain) UIView *rightPageView;
 @property (nonatomic, retain) UIView *spreadSceneView;
+@property (nonatomic, assign) CGImageRef cgImage;
 
 
+- (CGImageRef) renderImageForView: (UIView *)viewToRender;
 
 @end

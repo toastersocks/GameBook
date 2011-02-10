@@ -13,13 +13,14 @@
 	#import "LoggerClient.h"
 
 	#define NSLog(...) LogMessageF(__FILE__,__LINE__,__FUNCTION__,nil,0,__VA_ARGS__)
-	#define LogImageData(domain, level, width, height, data)	LogImageDataF(__FILE__,__LINE__,__FUNCTION__,domain,level,width,height,data)
+	//
+	//#define //LogImageData(domain, level, width, height, data)	//LogImageDataF(__FILE__,__LINE__,__FUNCTION__,domain,level,width,height,data)
 	#define LogMessage(domain, level, ...)	LogMessageF(__FILE__,__LINE__,__FUNCTION__,domain,level,__VA_ARGS__)
 
 #else
 
 	#define NSLog
 	#define LogMessage 
-	#define LogImageData
+	//#define //LogImageData
 
 #endif

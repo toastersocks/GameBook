@@ -8,6 +8,7 @@
 
 #import "SceneView.h"
 #import "GBTouchable.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @implementation SceneView
@@ -22,6 +23,7 @@
     if ((self = [super initWithFrame:frame])) {
         // Initialization code
 		self.userInteractionEnabled = YES;
+		self.layer.opaque = YES;
     }
     return self;
 }

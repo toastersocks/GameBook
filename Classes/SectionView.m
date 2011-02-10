@@ -21,6 +21,8 @@
 @synthesize leftPageView; 
 @synthesize rightPageView;
 @synthesize spreadSceneView;
+@synthesize cgImage;
+
 
 //@synthesize leftTextView;
 //@synthesize rightTextView;
@@ -37,6 +39,7 @@
 			//		leftHalfRect = fullSpreadRect;
 
 		CGRectDivide(fullSpreadRect, &leftHalfRect, &rightHalfRect, CGRectGetWidth(fullSpreadRect) / 2.0f, CGRectMinXEdge);
+		self.layer.opaque = YES;
 		
 		// Initialization code
 		//NSLog(@"%@: Frame is:%@", self, NSStringFromCGRect(frame));
@@ -118,13 +121,8 @@
 			[self addSubview: self.rightPageView];
 				//	[self.layer insertSublayer: self.rightPageView.layer below: topPageReverse];
 
-				//[self addSubview: self.rightPageView];			
-			
-			
-			
-		}
-		
-			  
+				//[self addSubview: self.rightPageView];
+		}			  
 	}
 #pragma mark Spread Page
 
@@ -140,9 +138,35 @@
 	}
 		//[self setupShadows];
 
+	self.cgImage = [self renderImageForView: self];
+	//LogImageData(@"sectionView", 3, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: self.cgImage]));
 }
 
 
+
+- (CGImageRef) renderImageForView: (UIView *)viewToRender {
+	UIGraphicsBeginImageContext(viewToRender.bounds.size);
+	
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	[viewToRender.layer renderInContext: context];
+		//	[viewToRender.layer.presentationLayer renderInContext: context];
+	
+	CGImageRef renderedImage = [UIGraphicsGetImageFromCurrentImageContext() CGImage];
+	
+	UIGraphicsEndImageContext();
+	LogMessage(@"sectionView", 3, @"Retain count for renderedImage is: %i", CFGetRetainCount(renderedImage));
+
+	return renderedImage;
+	
+}
+
+-(void)setCgImage: (CGImageRef)newCGImageRef {
+	if (!(newCGImageRef == cgImage)) {
+		CGImageRelease(cgImage);
+		cgImage = newCGImageRef;
+		CGImageRetain(cgImage);
+	}
+}
 
 
 

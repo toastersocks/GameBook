@@ -35,6 +35,8 @@
 @synthesize gameData;
 
 @synthesize sectionView;
+@synthesize nextSectionView;
+
 @synthesize gamebookLog;
 @synthesize currentObject;
 
@@ -44,6 +46,9 @@
 @synthesize nextSectionIndex;
 
 @synthesize sectionViewCache;
+@synthesize transitionDelegate;
+
+
 
 
 	//@synthesize objectTextPopupController;
@@ -51,17 +56,13 @@
 
 #pragma mark LeavesView delegate/datasource methods
 
-
+/*
 - (void) leavesView:(LeavesView *)leavesView didTurnToPageAtIndex:(NSString *)pageIndex {
 	LogMessage(@"leaves delegate", 3, @"didTurnToPageAtIndex: %@", pageIndex);
 
 	if (![pageIndex isEqualToString: self.currentSectionIndex]) {
-		[self.gamebookLog logSection: [currentOption valueForKey: @"load"]]; // record the choice in the log
-		if ([currentOption valueForKey: @"logs"]) {
-			for (NSString *logItem in [currentOption valueForKey: @"logs"]) {
-				[self.gamebookLog logKeyEvent: logItem];
-			}			
-		}
+			//CALL THE METHOD TO PROCESS THE COMMANDS HERE!!!
+		
 		previousSectionIndex = currentSectionIndex;
 		currentSectionIndex = nextSectionIndex;
 		nextSectionIndex = nil;
@@ -85,13 +86,17 @@
 	}
 
 }
+*/
 
+//- (SectionView *)sectionView {
+//	return (SectionView *)self.view;
+//}
 
 - (void) renderPageAtIndex:(NSString *)index inContext:(CGContextRef)ctx {
 	LogMessage(@"leaves delegate", 3, @"In the renderPageAtIndex method.\nRequested page was: %@", index);
-		//LogImageData(@"leaves delegate", 0, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: (CGImageRef)[self.renderedImageCache objectAtIndex: index]]));
+		////LogImageData(@"leaves delegate", 0, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: (CGImageRef)[self.renderedImageCache objectAtIndex: index]]));
 		CGImageRef image = (CGImageRef)[self renderImageForView: [self viewForSection: index]];
-	LogImageData(@"leaves delegate", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage:image]));
+	//LogImageData(@"leaves delegate", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage:image]));
 
 	
 	CGRect imageRect = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
@@ -120,6 +125,7 @@
 	
 }
 
+/*
 - (void) cachePages {
 	self.sectionViewCache = [NSMutableDictionary dictionaryWithCapacity: 2];
 	for (NSString *link in [self.section sectionLinks]) {
@@ -136,7 +142,7 @@
 	
 }
 
-
+*/
 
 /*
 
@@ -158,7 +164,7 @@
 	[self.renderedImageCache addObject: (id)CGImageCreateWithImageInRect([self renderImageForView: nextView], halfPageRect)];
 	
 	for (id cachedImage in self.renderedImageCache) {
-		LogImageData(@"leavesViewController", 2, 512, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: (CGImageRef)cachedImage]));
+		//LogImageData(@"leavesViewController", 2, 512, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: (CGImageRef)cachedImage]));
 	}
 	
 }
@@ -170,10 +176,8 @@
 
 
 - (void) initialize {
-	self.gameData = [[SectionParser alloc] init];
-	
-		//	sectionViewCache = [NSMutableDictionary dictionaryWithCapacity: 2];
-
+	self.gameData = [[SectionParser alloc] init];	
+	self.sectionViewCache = [NSMutableDictionary dictionaryWithCapacity: 3];
 }
 
 
@@ -182,7 +186,7 @@
 }
 
 
-- (void) showPopupForCurrentOptionFromButton: (id)sender  {
+- (void) showPopupForCurrentOptionFromTouchable: (id)touchable  {
     NSLog(@"loading the popup...");
 	
 	if (popupTextView != nil) {
@@ -206,13 +210,6 @@
 	
 	objectTextPopupController.view.backgroundColor = self.sectionView.backgroundColor;
 
-	[self.gamebookLog logDatabaseEntry: [currentOption valueForKey: @"pop"]];
-	
-	if ([currentOption valueForKey: @"logs"]) {		
-		for (NSString *logItem in [currentOption valueForKey: @"logs"]) {
-			[self.gamebookLog logKeyEvent: logItem];
-		}			
-	}
 
 	popupTextView.pageContents = self.currentObject;
 		//objectTextPopupController.contentSizeForViewInPopover = [popupTextView sizeThatFits: CGSizeMake(250, 100)];
@@ -228,8 +225,8 @@
 		//[popController setPopoverContentSize:CGSizeMake(200.0, 200.0)];
 	popoverController.popoverContentSize = [popupTextView sizeThatFits: CGSizeMake(250, 100)];
 
-	[popoverController presentPopoverFromRect: [sender frame] 
-								   inView: [sender superview] 
+	[popoverController presentPopoverFromRect: [touchable frame] 
+								   inView: [touchable superview] 
 				 permittedArrowDirections: UIPopoverArrowDirectionAny 
 								 animated: YES];
 
@@ -244,64 +241,70 @@
 	NSLog(@"The popup's view size is %f, %f", popupTextView.frame.size.width, popupTextView.frame.size.height);
 	
 		//[self.currentObject release];
-
 }
 
-- (void) handleOptionForSender: (id) sender  {
-				// record the logs, if there are any
-				// TODO: create a 'log' method that records the logs and makes sure there aren't duplicates.
-			  if ([currentOption valueForKey: @"logs"]) {
 
-				for (NSString *logItem in [currentOption valueForKey: @"logs"]) {
-					
-					[self.gamebookLog logKeyEvent: logItem];
-					
-				}			
-			}
-				//TODO: clean up this code.
 
-				
-				//show the popup, if there is one
-			if ([currentOption valueForKey: @"pop"]) {
-					//	NSLog(@"Popup object in choice method is:\n%@", currentObject);
-				[self showPopupForCurrentOptionFromButton: sender];
-				//	NSLog(@"the sceneObject is:\n%@", [gameData objectNamed: [currentOption valueForKey: @"pop"]]);
-				//[self loadSection: [currentOption valueForKey: @"load"]];
+- (void)processCommandsForTouchable: (id)touchable {
+	if ([currentOption valueForKey: @"pop"]) {
+		[self.gamebookLog logDatabaseEntry: [currentOption valueForKey: @"pop"]];
+		
+	} else if ([currentOption valueForKey: @"load"]) {
+		[self.gamebookLog logSection: [currentOption valueForKey: @"load"]]; // record the choice in the log
+	}
+	
+	if ([currentOption valueForKey: @"logs"]) {
+		for (NSString *logItem in [currentOption valueForKey: @"logs"]) {
+			[self.gamebookLog logKeyEvent: logItem];
 			}
-			
-			
-			
-				// load the section, if there's a load command
-			if ([currentOption valueForKey: @"load"]) {
-				NSLog(@"loading the next section: %@", [currentOption valueForKey: @"load"]);
-//				[self.gamebookLog logSection: [currentOption valueForKey: @"load"]]; // record the choice in the log
-				
-					//[self loadSection: [currentOption valueForKey: @"load"]];
-					nextSectionIndex = [currentOption valueForKey: @"load"];
-				
-			}
-
+	}
 }
+
 
 - (IBAction) getChosenOption: (id)sender {
 	
 	currentOption = [sender option];
-	if ([[sender option] valueForKey: @"pop"]) {
+	if ([currentOption valueForKey: @"pop"]) {
 			//	NSLog(@"Popup object in choice method is:\n%@", currentObject);
-		[self showPopupForCurrentOptionFromButton: sender];
+		[self showPopupForCurrentOptionFromTouchable: sender];
 		
 		
-	} else if ([[sender option] valueForKey: @"load"]) {
-		self.nextSectionIndex = [[sender option] valueForKey: @"load"];
+	} else if ([currentOption valueForKey: @"load"]) {
+		[self willLoadSectionFromTouchable: sender];
+			//self.nextSectionIndex = [currentOption valueForKey: @"load"];
 		
-	} else if ([[sender option] valueForKey: @"logs"]) {
-		for (NSString *currentLog in [[sender option] valueForKey: @"logs"]) {
+	} else if ([currentOption valueForKey: @"logs"]) {
+		for (NSString *currentLog in [currentOption valueForKey: @"logs"]) {
 			[self.gamebookLog logKeyEvent: currentLog];
 		}
 	} else {
 		LogMessage(@"ERROR", 0, @"INVALID OR NO OPTION");
 	}
 	
+}
+
+- (void)willLoadSectionFromTouchable: (id)touchable {
+	self.nextSectionView = [self viewForSection: [currentOption valueForKey: @"load"]];
+//	[self.transitionDelegate viewController: self willTransitionToView: [self viewForSection: [currentOption valueForKey: @"load"]]];
+	[self.transitionDelegate viewController: self willTransitionToView: self.nextSectionView withID: [currentOption valueForKey: @"load"]];
+
+}
+
+- (void) didTransitionToView: (UIView *)newView withID: (NSString *)viewID {
+	if ((newView == self.nextSectionView)) {
+		[self processCommandsForTouchable: nil];
+		[self.sectionView removeFromSuperview];
+		self.sectionView = (SectionView *)newView;
+		[self.view addSubview: self.sectionView];
+		previousSectionIndex = currentSectionIndex;
+		currentSectionIndex = nextSectionIndex;
+		nextSectionIndex = nil;
+		self.section = self.sectionView.section;
+			//cache the possible next views for the new section
+		for (NSString *link in [self.section sectionLinks]) {
+			[self viewForSection: link];
+		}
+	}
 }
 
 
@@ -323,31 +326,10 @@
 		NSLog(@"the keyEventLog so far is:\n%@", self.gamebookLog.keyEventLog);
 		NSLog(@"the databaseLog so far is:\n%@", self.gamebookLog.databaseLog);
 		
-			//self.sectionView = [[SectionView alloc] initWithFrame: self.view.bounds];
-		SectionView *sectionViewToReturn = [[SectionView alloc] initWithFrame: CGRectMake(12, 0, self.view.bounds.size.width - 24, self.view.bounds.size.height)];
+		SectionView *sectionViewToReturn = [[SectionView alloc] initWithFrame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
 		sectionViewToReturn.section = sectionToLoad;
+		[self.sectionViewCache setValue: sectionViewToReturn forKey: sectionIndexToLoad];
 		
-			//	currentView = self.sectionView;
-			//	nextView = self.sectionView;
-		
-		
-	//	self.sectionView.delegate = self;
-	//	self.sectionView.dataSource = self;
-	
-			
-	//sectionViewToReturn.delegate = self;
-	//sectionViewToReturn.dataSource = self;
-		
-		
-			//	sectionViewToReturn.currentPageIndex = sectionIndexToLoad;
-
-		
-			//[self cachePages];
-
-			//NSLog(@"The section type is: %@", [section class]);
-			//NSLog(@"The current section contents are:\n%@", self.section);
-		
-			//[self.view addSubview: self.sectionView];
 		return sectionViewToReturn;
 	}
 }
@@ -361,15 +343,14 @@
 //}
 
 - (void) startGameWithSection: (NSString *)aSection {
-	self.sectionView = [[LeavesView alloc] initWithFrame: self.view.bounds];
-	self.sectionView.delegate = self;
-	self.sectionView.dataSource = self;
-		//	self.sectionView.userInteractionEnabled = YES;
 	self.currentSectionIndex = aSection;
 	self.section = [self.gameData contentsForSection: currentSectionIndex];
-	self.sectionView.contentView = [self viewForSection: currentSectionIndex];
+	self.sectionView = [self viewForSection: currentSectionIndex];
+	//self.sectionView.contentView = [self viewForSection: currentSectionIndex];
 
-	self.sectionView.currentPageIndex = self.currentSectionIndex;
+		//	self.sectionView.currentPageIndex = self.currentSectionIndex;
+	self.currentSectionIndex = aSection;
+	[self.transitionDelegate setCurrentView: self.sectionView];
 	[self.view addSubview: self.sectionView];
 	
 }
@@ -410,15 +391,15 @@
 
 
 
-- (void) setNextSectionIndex: (NSString *)newNextSectionIndex {
-	nextSectionIndex = newNextSectionIndex;
-	sectionView.nextPageIndex = newNextSectionIndex;
-}
+//- (void) setNextSectionIndex: (NSString *)newNextSectionIndex {
+//	nextSectionIndex = newNextSectionIndex;
+//	sectionView.nextPageIndex = newNextSectionIndex;
+//}
 
-- (void) setCurrentSectionIndex: (NSString *)newCurrentSectionIndex {
-	currentSectionIndex = newCurrentSectionIndex;
-	sectionView.currentPageIndex = newCurrentSectionIndex;
-}
+//- (void) setCurrentSectionIndex: (NSString *)newCurrentSectionIndex {
+//	currentSectionIndex = newCurrentSectionIndex;
+//	sectionView.currentPageIndex = newCurrentSectionIndex;
+//}
 
 
 #pragma mark -

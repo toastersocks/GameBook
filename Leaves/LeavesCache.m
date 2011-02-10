@@ -6,7 +6,7 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-//#define LogImageData(domain, level, width, height, data)	LogImageDataF(__FILE__,__LINE__,__FUNCTION__,domain,level,width,height,data)
+//#define //LogImageData(domain, level, width, height, data)	//LogImageDataF(__FILE__,__LINE__,__FUNCTION__,domain,level,width,height,data)
 
 //#define LogMessage(domain, level, ...)	LogMessageF(__FILE__,__LINE__,__FUNCTION__,domain,level,__VA_ARGS__)
 
@@ -52,10 +52,10 @@
 	CGImageRef image = CGBitmapContextCreateImage(context);
 	CGContextRelease(context);
 	
-	LogImageData(@"leaves Cache", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage:image]));
+	//LogImageData(@"leaves Cache", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage:image]));
 
-	
-	CGImageRelease(image);
+		//!!!: DONT FORGET TO UNCOMMENT THIS LINE! should need it, but the cgimageref is being overreleased somewhere...
+		//CGImageRelease(image);
 	
 	return image;
 }
