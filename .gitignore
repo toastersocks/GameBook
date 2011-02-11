@@ -9,6 +9,7 @@
 *.perspectivev3
 *.pbxuser
 
+*.pbxproj
 
 # Generated files
 VersionX-revision.h
