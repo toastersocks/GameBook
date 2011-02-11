@@ -240,7 +240,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 	
 	CGImageRef fullTopPageImage = [pageCache cachedImageForPageIndex: topPageIndex];
 	CGImageRef fullBottomPageImage = [pageCache cachedImageForPageIndex: bottomPageIndex];
-		//LogImageData(@"leavesView", 2, 1024, 786, UIImagePNGRepresentation([UIImage imageWithCGImage: fullBottomPageImage]));
+	LogImageData(@"leavesView", 2, 1024, 786, UIImagePNGRepresentation([UIImage imageWithCGImage: fullBottomPageImage]));
 
 
 	if (currentPageIndex) {
@@ -255,7 +255,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 //		bottomPage.backgroundColor = [UIColor orangeColor].CGColor;
 //		topPageReverseImage.backgroundColor = [UIColor redColor].CGColor;
 		CGImageRef bottomRightPageImage = CGImageCreateWithImageInRect(fullBottomPageImage, rightHalf);
-			//LogImageData(@"leavesView", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: bottomRightPageImage]));
+		LogImageData(@"leavesView", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: bottomRightPageImage]));
 		topPageReverseImage.contents = (id)CGImageCreateWithImageInRect(fullBottomPageImage, leftHalf);
 		bottomPage.contents = (id)CGImageCreateWithImageInRect(fullBottomPageImage, rightHalf);
 	}
