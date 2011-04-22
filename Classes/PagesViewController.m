@@ -9,10 +9,7 @@
 
 #import "PagesViewController.h"
 
-	//#import "SectionContents.h"
 #import "SectionParser.h"
-	//#import "OptionViewController.h"
-//#import "SceneView.h"
 #import "SectionView.h"
 
 #import "Constants.h"
@@ -48,66 +45,6 @@
 @synthesize sectionViewCache;
 @synthesize transitionDelegate;
 
-
-
-
-	//@synthesize objectTextPopupController;
-
-
-#pragma mark LeavesView delegate/datasource methods
-
-/*
-- (void) leavesView:(LeavesView *)leavesView didTurnToPageAtIndex:(NSString *)pageIndex {
-	LogMessage(@"leaves delegate", 3, @"didTurnToPageAtIndex: %@", pageIndex);
-
-	if (![pageIndex isEqualToString: self.currentSectionIndex]) {
-			//CALL THE METHOD TO PROCESS THE COMMANDS HERE!!!
-		
-		previousSectionIndex = currentSectionIndex;
-		currentSectionIndex = nextSectionIndex;
-		nextSectionIndex = nil;
-			//[self.sectionView removeFromSuperview];
-		self.sectionView.contentView = [self viewForSection: currentSectionIndex];
-		self.sectionView.currentPageIndex = self.currentSectionIndex;
-		self.section = [self viewForSection: currentSectionIndex].section;
-			//self.section = [self.gameData contentsForSection: currentSectionIndex];
-			//[self.view addSubview: self.sectionView];
-//		[self performSelectorInBackground: @selector(cachePages) withObject: nil];
-//		[self performSelectorOnMainThread:@selector(cachePages) withObject: nil waitUntilDone: YES];
-//		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
-//		[self cachePages];
-		[self performSelector:@selector(cachePages) withObject: nil afterDelay: 0.0];
-//		for (NSDictionary *link in [self.section sectionLinks]) {
-//			//[self.sectionView.pageCache cachedImageForPageIndex: link];
-//			[self.sectionView.pageCache precacheImageForPageIndex: link];
-//		}
-	} else {
-			//	[self.sectionView.subviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)NO];
-	}
-
-}
-*/
-
-//- (SectionView *)sectionView {
-//	return (SectionView *)self.view;
-//}
-
-- (void) renderPageAtIndex:(NSString *)index inContext:(CGContextRef)ctx {
-	LogMessage(@"leaves delegate", 3, @"In the renderPageAtIndex method.\nRequested page was: %@", index);
-		////LogImageData(@"leaves delegate", 0, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: (CGImageRef)[self.renderedImageCache objectAtIndex: index]]));
-		CGImageRef image = (CGImageRef)[self renderImageForView: [self viewForSection: index]];
-	//LogImageData(@"leaves delegate", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage:image]));
-
-	
-	CGRect imageRect = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-		//CGAffineTransform transform = aspectFit(imageRect,
-		//						CGContextGetClipBoundingBox(ctx));
-		//	CGContextConcatCTM(ctx, transform);
-	CGContextDrawImage(ctx, imageRect, image);
-}
-
-
-
 #pragma mark -
 
 - (CGImageRef) renderImageForView: (UIView *)viewToRender {
@@ -115,7 +52,6 @@
 	
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	[viewToRender.layer renderInContext: context];
-//	[viewToRender.layer.presentationLayer renderInContext: context];
 
 	CGImageRef renderedImage = [UIGraphicsGetImageFromCurrentImageContext() CGImage];
 	
@@ -124,55 +60,6 @@
 	return renderedImage;
 	
 }
-
-/*
-- (void) cachePages {
-	self.sectionViewCache = [NSMutableDictionary dictionaryWithCapacity: 2];
-	for (NSString *link in [self.section sectionLinks]) {
-			//		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-			//[self.sectionView.pageCache cachedImageForPageIndex: link];
-			//		[pool release];
-			//[self.sectionView.pageCache precacheImageForPageIndex: link];
-		[sectionViewCache setObject: [self viewForSection: link] forKey: link];
-	}
-	for (UIView *link in [self.section sectionLinks]) {
-			//[self.sectionView.pageCache precacheImageForPageIndex: link]; //somthing changed in this method is causing the page not to turn sometimes for some reason
-		[self.sectionView.pageCache cachedImageForPageIndex: link];
-	}
-	
-}
-
-*/
-
-/*
-
-- (void) cachePages {
-		//[self.view addSubview: nextView];
-		//[currentView removeFromSuperview];
-	
-	self.renderedImageCache = [NSMutableArray arrayWithCapacity: 4];
-	
-	CGRect halfPageRect = CGRectMake(0, 0, currentView.bounds.size.width / 2, currentView.bounds.size.height);
-	
-	[self.renderedImageCache addObject: (id)CGImageCreateWithImageInRect([self renderImageForView: [self loadSection: currentSectionIndex], halfPageRect)];
-	halfPageRect.origin.x = halfPageRect.size.width;
-	[self.renderedImageCache addObject: (id)CGImageCreateWithImageInRect([self renderImageForView: currentView], halfPageRect)];
-	
-	halfPageRect.origin.x = 0;
-	[self.renderedImageCache addObject: (id)CGImageCreateWithImageInRect([self renderImageForView: nextView], halfPageRect)];
-	halfPageRect.origin.x = halfPageRect.size.width;
-	[self.renderedImageCache addObject: (id)CGImageCreateWithImageInRect([self renderImageForView: nextView], halfPageRect)];
-	
-	for (id cachedImage in self.renderedImageCache) {
-		//LogImageData(@"leavesViewController", 2, 512, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: (CGImageRef)cachedImage]));
-	}
-	
-}
-
-*/
-
-	//- (IBAction) touchedOption
-
 
 
 - (void) initialize {
@@ -212,9 +99,6 @@
 
 
 	popupTextView.pageContents = self.currentObject;
-		//objectTextPopupController.contentSizeForViewInPopover = [popupTextView sizeThatFits: CGSizeMake(250, 100)];
-		//popupTextView.bounds = CGRectMake(0, 0, [popupTextView sizeThatFits: CGSizeMake(250, 100)].width, [popupTextView sizeThatFits: CGSizeMake(250, 100)].height);//[popupTextView sizeThatFits: CGSizeMake(250, 100)];
-
 
 	NSLog(@"textView height is: %f\noptionsContainer height is: %f", popupTextView.mainTextView.bounds.size.height, popupTextView.optionsContainer.bounds.size.height);
 	NSLog(@"height of popup is %f", objectTextPopupController.contentSizeForViewInPopover.height);
@@ -222,7 +106,6 @@
 
 	NSLog(@"pop type is: %@", popoverController.contentViewController.view.class);
 
-		//[popController setPopoverContentSize:CGSizeMake(200.0, 200.0)];
 	popoverController.popoverContentSize = [popupTextView sizeThatFits: CGSizeMake(250, 100)];
 
 	[popoverController presentPopoverFromRect: [touchable frame] 
@@ -230,11 +113,6 @@
 				 permittedArrowDirections: UIPopoverArrowDirectionAny 
 								 animated: YES];
 
-		//objectTextPopupController.contentSizeForViewInPopover = [popupTextView sizeThatFits: CGSizeMake(250, 100)];
-
-	
-		//	[popup release];
-	
 	
 	NSLog(@"The textView's contentSize is %f, %f", popupTextView.mainTextView.contentSize.width, popupTextView.mainTextView.contentSize.height);
 
@@ -290,27 +168,37 @@
 
 }
 
+- (void) willTransitionToView: (UIView *)newView withID: (NSString *)viewID {
+
+
+	
+}
+
 - (void) didTransitionToView: (UIView *)newView withID: (NSString *)viewID {
 	if ((newView == self.nextSectionView)) {
 		[self processCommandsForTouchable: nil];
-		[self.sectionView removeFromSuperview];
+			//[self.sectionView removeFromSuperview];
 		self.sectionView = (SectionView *)newView;
-		[self.view addSubview: self.sectionView];
+			//[self.view addSubview: self.sectionView];
 		previousSectionIndex = currentSectionIndex;
 		currentSectionIndex = nextSectionIndex;
 		nextSectionIndex = nil;
 		self.section = self.sectionView.section;
 			//cache the possible next views for the new section
-		for (NSString *link in [self.section sectionLinks]) {
+		for (NSString *link in [self.sectionView.section sectionLinks]) {
 			[self viewForSection: link];
 		}
 	}
 }
 
+- (UIView *)view {
+	return sectionView;
+}
+
 
 - (SectionView *) viewForSection: (NSString *)sectionIndexToLoad {
 	
-	NSLog(@"section at %p retainCount before assignment is: %i", self.section, self.section.retainCount);
+		//NSLog(@"section at %p retainCount before assignment is: %i", self.section, self.section.retainCount);
 			
 	if ([self.sectionViewCache valueForKey: sectionIndexToLoad]) {
 		return [self.sectionViewCache valueForKey: sectionIndexToLoad];
@@ -326,7 +214,9 @@
 		NSLog(@"the keyEventLog so far is:\n%@", self.gamebookLog.keyEventLog);
 		NSLog(@"the databaseLog so far is:\n%@", self.gamebookLog.databaseLog);
 		
-		SectionView *sectionViewToReturn = [[SectionView alloc] initWithFrame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+//		SectionView *sectionViewToReturn = [[SectionView alloc] initWithFrame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+//		SectionView *sectionViewToReturn = [[SectionView alloc] initWithFrame: CGRectMake(0, 0, [[UIApplication sharedApplication] delegate].window.bounds.size.height, [UIApplication sharedApplication].delegate.window.bounds.size.width)];
+		SectionView *sectionViewToReturn = [[SectionView alloc] initWithFrame: CGRectMake(0, 0, 1000, 768)];
 		sectionViewToReturn.section = sectionToLoad;
 		[self.sectionViewCache setValue: sectionViewToReturn forKey: sectionIndexToLoad];
 		
@@ -344,18 +234,16 @@
 
 - (void) startGameWithSection: (NSString *)aSection {
 	self.currentSectionIndex = aSection;
-	self.section = [self.gameData contentsForSection: currentSectionIndex];
+		//	self.section = [self.gameData contentsForSection: currentSectionIndex];
 	self.sectionView = [self viewForSection: currentSectionIndex];
 	//self.sectionView.contentView = [self viewForSection: currentSectionIndex];
 
 		//	self.sectionView.currentPageIndex = self.currentSectionIndex;
 	self.currentSectionIndex = aSection;
 	[self.transitionDelegate setCurrentView: self.sectionView];
-	[self.view addSubview: self.sectionView];
+		//[self.view addSubview: self.sectionView];
 	
 }
-
-
 
 - (void) beginNewGame {
 	[self startGameWithSection: @"IndexTEST"];
@@ -369,12 +257,6 @@
 	}
 
 	NSLog(@"Resuming game at section: %@", currentSectionIndex);
-	
-//	self.section = [self.gameData contentsForSection: currentSectionIndex];
-//	
-//	self.sectionView.currentPageIndex = self.currentSectionIndex;
-//	self.sectionView.contentView = [self viewForSection: currentSectionIndex];
-//	[self.view addSubview: self.sectionView];
 }
 
 - (void) initPopup {
@@ -382,25 +264,7 @@
 	objectTextPopupController.delegate = self;
 	popoverController = [[UIPopoverController alloc] initWithContentViewController: objectTextPopupController];
 	popoverController.delegate = self;
-//	popupTextView = [[TextView alloc] init];
-//	
-//	popupTextView.tag = OBJECT_POPUP_TEXT;
-//		//[popupController.view addSubview: popup];
-//	objectTextPopupController.view = popupTextView;
 }
-
-
-
-//- (void) setNextSectionIndex: (NSString *)newNextSectionIndex {
-//	nextSectionIndex = newNextSectionIndex;
-//	sectionView.nextPageIndex = newNextSectionIndex;
-//}
-
-//- (void) setCurrentSectionIndex: (NSString *)newCurrentSectionIndex {
-//	currentSectionIndex = newCurrentSectionIndex;
-//	sectionView.currentPageIndex = newCurrentSectionIndex;
-//}
-
 
 #pragma mark -
 #pragma mark Boilerplate Methods
@@ -408,24 +272,20 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-		//[self beginNewGame];
-	
-	// Start off the view with the initial page
-	//[self loadPages: @"Index"]; // disabled for now. Need a method to call to start loading pages but not knowing whether it's a new game or not. Just a startup game method or something. Then that method can decide whether it's a new game or a continue.
-	
-	
+
 	
     [super viewDidLoad];
 	
-	[self initPopup];
+	
 
 	
 }
 
 - (void) awakeFromNib {
 	NSLog(@"PagesViewController has awoken from the nib...");
+	[self initPopup];
 	[self initialize];
-	
+	self.view = self.sectionView;
 		//LoggerSetOptions(NULL, kLoggerOption_LogToConsole);
 
 

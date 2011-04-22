@@ -35,6 +35,10 @@
 	return [self initWithSectionLog: nil keyEventLog: nil inventoryLog: nil databaseLog: nil];
 }
 
+- (void)awakeFromNib {
+	[self initWithSectionLog: nil keyEventLog: nil inventoryLog: nil databaseLog: nil];
+}
+
 - (id) initWithSectionLog:(NSArray *)inSectionLog keyEventLog:(NSArray *)inKeyEventLog inventoryLog:(NSArray *)inInventoryLog databaseLog: (NSArray *)inDatabaseLog {
 	if ((self = [super init])) {
 		

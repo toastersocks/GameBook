@@ -26,7 +26,7 @@
 
 @interface PagesViewController : GameBookViewWithDelegate <GameBookViewDelegate, UIPopoverControllerDelegate, LeavesViewDelegate, LeavesViewDataSource> { // how to declare in the interface that a class can take a delegate protocol? this probably exists and would eliminate a lot of duplicate code...
 	
-	NSDictionary *section;
+	NSDictionary *section;//DELETE
 	
 	SectionParser *gameData;
 	SectionView *sectionView;
@@ -35,7 +35,7 @@
 	GamebookLog *gamebookLog;
 
 	
-	NSDictionary *currentObject;
+	NSDictionary *currentObject; 
 	
 	NSDictionary *currentOption;
 	

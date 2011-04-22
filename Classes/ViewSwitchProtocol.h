@@ -20,7 +20,7 @@
 
 @protocol ViewSwitchDelegateProtocol <NSObject>
 @optional
-- (void)didTransitionToView: (UIView *)aView;
+- (void)didTransitionToView: (UIView *)aView withID: (NSString *)viewID;
 - (void)viewController: (UIViewController *)sender willTransitionToView: (UIView *)toView withID: (NSString *)viewID;
 - (BOOL)viewController: (UIViewController *)sender shouldTransitionToView: (UIView *)toView withID: (NSString *)viewID;
 

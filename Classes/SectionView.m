@@ -136,9 +136,8 @@
 			//	[self.layer insertSublayer: self.spreadSceneView.layer below: topPageReverse];
 				
 	}
-		//[self setupShadows];
 
-	self.cgImage = [self renderImageForView: self];
+		//self.cgImage = [self renderImageForView: self];
 	//LogImageData(@"sectionView", 3, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: self.cgImage]));
 }
 

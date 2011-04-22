@@ -132,7 +132,10 @@ end
 
 
 dofile(sectionIndex)
-section["sectionIndex"] = sectionIndex
+-- section["sectionIndex"] = toobjc(toobjc(toobjc(sectionIndex):lastPathComponent()):stringByDeletingPathExtention()) --can't seem to figure this out... might be easier to just do it in objective-c... //TODO: do this
+section["sectionIndex"] = toobjc(toobjc(sectionIndex):lastPathComponent()):stringByDeletingPathExtension()
+print (section["sectionIndex"])
+--section["sectionIndex"] = sectionIndex
 
 --print "The section from lua: \n"
 --printT(section)

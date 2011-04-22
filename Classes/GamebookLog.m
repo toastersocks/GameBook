@@ -8,8 +8,11 @@
 
 #import "GamebookLog.h"
 
+#import "SynthesizeSingleton.h"
+
 
 @implementation GamebookLog
+SYNTHESIZE_SINGLETON_FOR_CLASS(GamebookLog);
 
 	// the Logs...
 @synthesize sectionLog;
@@ -28,6 +31,20 @@
 	self.databaseLog = [NSMutableArray arrayWithCapacity: 2];
 	
 	return self;
+}
+
+- (void) logOptions: (NSDictionary *)options {
+	if ([options valueForKey: @"logs"]) {
+		for (NSString *currentLog in options) {
+			[self.keyEventLog addObject: currentLog];
+		}
+	}
+	if ([options valueForKey: @"pop"]) {
+		[self.databaseLog addObject: [options valueForKey: @"pop"]];
+	}
+	if ([options valueForKey: @"load"]) {
+		[self.sectionLog addObject: [options valueForKey: @"load"]];
+	}
 }
 
 

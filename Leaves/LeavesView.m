@@ -265,7 +265,6 @@ CGFloat distance(CGPoint a, CGPoint b);
 }
 
 
-
 #pragma mark -
 #pragma mark Layout
 
@@ -342,9 +341,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 			//topPage.backgroundColor = [UIColor blueColor].CGColor;
 		leftPage.backgroundColor = [UIColor greenColor].CGColor;
 		bottomPage.backgroundColor = [UIColor orangeColor].CGColor;
-		topPageReverseImage.backgroundColor = [UIColor redColor].CGColor;
-		
-        
+		topPageReverseImage.backgroundColor = [UIColor redColor].CGColor;        
     }
 }
 
@@ -464,7 +461,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 - (void) setContentView: (UIView *)newContentView{
 	[contentView removeFromSuperview];
 		//contentView = nil here?
-	[contentView autorelease];
+		//[contentView autorelease];
 	contentView = newContentView;
 	self.contentView.frame = contentViewFrame;
 	[self addSubview: contentView];
@@ -683,7 +680,9 @@ CGFloat distance(CGPoint a, CGPoint b);
 		pageCache.pageSize = pageSize;
 			//	[self getImages];
 		
-		CGFloat touchRectsWidth = self.bounds.size.width / 7;
+//		CGFloat touchRectsWidth = self.bounds.size.width / 7;
+		CGFloat touchRectsWidth = self.bounds.size.width / 4;
+
 		nextPageRect = CGRectMake(self.bounds.size.width - touchRectsWidth,
 								  0,
 								  touchRectsWidth,

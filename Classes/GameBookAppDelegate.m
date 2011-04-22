@@ -9,11 +9,11 @@
 #import "wax/wax.h"
 
 #import "GameBookAppDelegate.h"
-#import "BookViewController.h"
-#import "PagesViewController.h"
+#import "BookController.h"
+//#import "PagesViewController.h"
 #import "GamebookLog.h"
 
-#import "WaxLua.h"
+//#import "WaxLua.h"
 //#import "PageContents.h"
 
 
@@ -21,9 +21,9 @@
 @implementation GameBookAppDelegate
 
 @synthesize window;
-@synthesize pagesViewController;
+//@synthesize pagesViewController;
 
-@synthesize bookViewController;
+@synthesize bookController;
 
 	//@synthesize gamebookLog;
 
@@ -41,12 +41,12 @@
 	NSLog(@"The app has finished launching");
 	//wax_start();
 //	[bookViewController.view setFrame:[[UIScreen mainScreen] applicationFrame]];
-	[bookViewController.view setFrame: CGRectMake(0, 0, 1024, 768)];
+	[bookController.view setFrame: CGRectMake(0, 0, 1024, 768)];
 
 	NSLog(@"applicationFrame is: %@", NSStringFromCGRect([[UIScreen mainScreen] applicationFrame]));
-    [window addSubview: self.bookViewController.view];
+    [window addSubview: self.bookController.view];
     [window makeKeyAndVisible];
-	[self.bookViewController displayCover]; 
+//	[self.bookViewController displayCover]; 
 	
 	return YES;
 }
@@ -75,8 +75,8 @@
 		// TODO: Move this crap into the pagesViewController or bookViewController and call the method from here
 		// Save the logs before quitting
 
-	
-	[self.bookViewController.gamebookLog saveLogs]; 
+	[[GamebookLog sharedGamebookLog] saveLogs];
+//	[self.bookController saveLogs]; 
 		//[[[self bookViewController] gamebookLog] saveLogs];
 
 	

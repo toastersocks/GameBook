@@ -14,4 +14,6 @@
 
 }
 
+//- (IBACTION)(void)newGame:(id)sender
+
 @end

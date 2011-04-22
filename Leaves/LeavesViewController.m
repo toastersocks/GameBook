@@ -14,7 +14,7 @@
 
 
 - (id)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
 		leavesView = [[LeavesView alloc] initWithFrame:CGRectZero];
         leavesView.mode = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? LeavesViewModeSinglePage : LeavesViewModeFacingPages;
     }

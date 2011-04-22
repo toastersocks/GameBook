@@ -33,6 +33,9 @@
 	
 		//LeavesView *openBookView;
 	OpenBookViewController *openBookViewController;
+	
+	UIViewController *transitionDelegate;
+	
 
 }
 
@@ -58,6 +61,8 @@
 @property (retain, nonatomic) UIViewController *activeController;
 	//@property (nonatomic, retain) LeavesView *openBookView;
 @property (nonatomic, retain) IBOutlet OpenBookViewController *openBookViewController;
+
+@property (assign, nonatomic) UIViewController *transitionDelegate;
 
 
 @end

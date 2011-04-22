@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 
+
+
 @interface GamebookLog : NSObject {
 	NSMutableArray *sectionLog;
 	NSMutableArray *keyEventLog;
@@ -19,11 +21,16 @@
 
 	
 }
+
+
+
 	// Logs...
 @property (retain, nonatomic) NSMutableArray *sectionLog;
 @property (retain, nonatomic) NSMutableArray *keyEventLog;
 @property (retain, nonatomic) NSMutableArray *inventoryLog;
 @property (retain, nonatomic) NSMutableArray *databaseLog;
+
++ (GamebookLog *)sharedGamebookLog;
 
 
 - (void) logSection: (NSString *)sectionIndex;
@@ -35,5 +42,6 @@
 
 - (void) saveLogs;
 - (void) loadLogs;
+- (void) logOptions: (NSDictionary *)options;
 
 @end

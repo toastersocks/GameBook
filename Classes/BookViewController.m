@@ -28,6 +28,7 @@
 @synthesize activeController;
 	//@synthesize openBookView;
 @synthesize openBookViewController;
+@synthesize transitionDelegate;
 
 
 
@@ -105,7 +106,11 @@
 - (IBAction) openCover: (id)sender {
 		//self.openBookView = [[LeavesView alloc] initWithFrame: self.view.bounds];
 	self.openBookViewController.leavesView.contentView = self.mainTitleMenu.view;
-	[self crossfadeToViewController: self.openBookViewController duration: 1.0f];	
+	self.openBookViewController.currentViewID = @"MainMenu";
+	self.openBookViewController.currentView = self.mainTitleMenu.view;
+	[self crossfadeToViewController: self.openBookViewController duration: 1.0f];
+	LogMessage(@"bookViewController", 0, @"openBookViewController is: %@", self.openBookViewController);
+	
 
 }
 
@@ -123,7 +128,8 @@
 
 - (IBAction) showPrologue: (id)sender {
 
-	[self crossfadeToViewController: self.prologueViewController duration: 2.0f];
+		//[self crossfadeToViewController: self.prologueViewController duration: 2.0f];
+	[self.view addSubview: self.prologueViewController.view];
 	
 		//	[self.prologueViewController beginPrologue];
 	
@@ -133,13 +139,21 @@
 }
 
 - (IBAction) newGame: (id)sender {
+//	[self showPrologue: self];
 	[self startGamebook];
+	
 		//[self crossfadeToViewController: self.pagesViewController duration: 1.0f];
 		//	[self.pagesViewController beginNewGame];
 		//self.openBookViewController.currentView = self.pagesViewController.view;
-	self.openBookViewController.leavesView.contentView = pagesViewController.view;
-	[self crossfadeToViewController: self.openBookViewController duration: 1.0f];		
 	[self.pagesViewController beginNewGame];
+	
+	self.openBookViewController.nextView = self.pagesViewController.sectionView;
+	self.openBookViewController.nextViewID = [pagesViewController.sectionView.section objectForKey: @"sectionIndex"];
+	self.openBookViewController.leavesView.currentPageIndex = [pagesViewController.sectionView.section objectForKey: @"sectionIndex"];
+	self.openBookViewController.leavesView.contentView = pagesViewController.sectionView;
+		//[self crossfadeToViewController: self.openBookViewController duration: 1.0f];
+	[self.prologueViewController.view removeFromSuperview];
+	
 
 }
 
@@ -149,10 +163,16 @@
 	[self startGamebook];
 		//	[self crossfadeToViewController: self.pagesViewController duration: 1.0f];
 		//[self crossfadeToViewController: self.pagesViewController duration: 1.0f];
-	[self.openBookViewController viewController: self willTransitionToView: pagesViewController.view withID: @"gameSections"];
-	self.openBookViewController.leavesView.contentView = pagesViewController.view;
 	[[self gamebookLog] loadLogs];
+		//[self.openBookViewController viewController: self willTransitionToView: pagesViewController.view withID: @"gameSections"];
+	[self.openBookViewController.leavesView flipForwardToPageIndex: @"Kafka"];
+
 	[self.pagesViewController continueGame];
+
+}
+
+- (void)didTransitionToView: (UIView *)aView withID: (NSString *)viewID {
+	self.openBookViewController.leavesView.contentView = pagesViewController.view;
 
 }
 
@@ -196,6 +216,7 @@
 	NSLog(@"The bookViewController view has loaded");
 	
     [super viewDidLoad];
+	self.mainTitleMenu.delegate = self;
 	
 		//	self.openBookViewController.bookSections = [NSArray arrayWithObjects: self.mainTitleMenu.view, self.pagesViewController.view, nil];
 		//[self displayCover];

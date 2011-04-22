@@ -15,12 +15,18 @@
 //@protocol LeavesViewDataSource;
 
 @class LeavesView;
+@class PagesViewController;
 
 @interface OpenBookViewController : UIViewController <ViewSwitchDelegateProtocol, LeavesViewDelegate, LeavesViewDataSource> {
 	LeavesView *leavesView;
 	UIView *nextView;
 	UIView *currentView;
 	NSString *currentViewID;
+	NSString *nextViewID;
+	NSString *currentSectionViewID;
+	
+	PagesViewController *bookSectionController;
+	
 		//NSMutableDictionary *viewIndexKeyPaths;
 		//NSArray *bookSections;
 	id delegatingSender;
@@ -29,7 +35,12 @@
 @property (nonatomic, retain) IBOutlet LeavesView *leavesView;
 @property (nonatomic, retain) IBOutlet UIView *nextView;
 @property (nonatomic, retain) IBOutlet UIView *currentView;
-@property (nonatomic, retain) NSString *currentViewID;
+@property (nonatomic, copy) NSString *currentViewID;
+@property (nonatomic, copy) NSString *nextViewID;
+@property (nonatomic, copy) NSString *currentSectionViewID;
+
+@property (nonatomic, retain) PagesViewController *bookSectionController;
+
 
 @property (nonatomic, assign) id delegate;
 

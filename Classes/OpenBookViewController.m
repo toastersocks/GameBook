@@ -8,6 +8,7 @@
 
 #import "OpenBookViewController.h"
 #import "ViewSwitchProtocol.h"
+#import "PagesViewController.h"
 
 #import "LeavesView.h"
 
@@ -15,9 +16,12 @@
 @synthesize leavesView;
 @synthesize nextView;
 @synthesize currentView;
-@synthesize currentViewID;
+@synthesize currentViewID, nextViewID;
+@synthesize bookSectionController;
+@synthesize currentSectionViewID;
 
 @synthesize delegate;
+
 
 
 //@synthesize viewIndexKeyPaths;
@@ -65,8 +69,9 @@
 - (void) viewController: (UIViewController *)sender willTransitionToView: (UIView *)toView withID: (NSString *)viewID {
 		//self.leavesView
 	self.nextView = toView;
-	self.leavesView.currentPageIndex = @"currentView";
-	self.leavesView.nextPageIndex = @"nextView";
+	self.nextViewID = viewID;
+		//self.leavesView.currentPageIndex = @"currentView";
+	self.leavesView.nextPageIndex = viewID;
 	delegatingSender = sender;
 		//self.leavesView.nextPageIndex = @"nextView";
 }
@@ -75,35 +80,39 @@
 - (void) leavesView:(LeavesView *)leavesView didTurnToPageAtIndex:(NSString *)pageIndex {
 	LogMessage(@"leaves delegate", 3, @"didTurnToPageAtIndex: %@", pageIndex);
 	
-	if (![pageIndex isEqualToString: @"currentView"]) {
+	if (![pageIndex isEqualToString: self.leavesView.currentPageIndex]) {
 		self.currentView = self.nextView;
 		self.nextView = nil;
 		self.leavesView.nextPageIndex = nil;
 		[self.leavesView.pageCache flush];
 		[delegatingSender didTransitionToView: self.currentView withID: self.currentViewID];
+		self.leavesView.contentView = self.currentView;
 	}		
 }
 - (void) renderPageAtIndex:(NSString *)index inContext:(CGContextRef)ctx {
 	LogMessage(@"leaves delegate", 3, @"In the renderPageAtIndex method.\nRequested page was: %@", index);
 	CGImageRef image = nil;
-	if ([index isEqualToString: @"nextView"]) {
+	if ([index isEqualToString: self.nextViewID] && [self.nextView cgImage]) {
 		image = (CGImageRef)[self.nextView cgImage];
-	} else if ([index isEqualToString: @"currentView"]) {
+	} else if ([index isEqualToString: self.currentViewID] && [self.currentView cgImage]) {
 		image = (CGImageRef)[self.currentView cgImage];
-
+	} else {
+		image = [self renderImageForView: self.nextView];
 	}
-	LogMessage(@"leavesDelegate", 3, @"Retain count for image is: %i", CFGetRetainCount(image));
+
+	
+		//	LogMessage(@"leavesDelegate", 3, @"Retain count for image is: %i", CFGetRetainCount(image));
 		//CGImageRef image = [self viewForIndexKeyPath: index].cgImage;
 
 		//CGImageRef image = (CGImageRef)[self renderImageForView: [self viewForSection: index]];
-		//	//LogImageData(@"leaves delegate", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage:image]));
+		LogImageData(@"leaves delegate", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage:image]));
 	
 	
 	CGRect imageRect = CGRectMake(0, 0, self.leavesView.contentViewFrame.size.width, self.leavesView.contentViewFrame.size.height);
 		//CGAffineTransform transform = aspectFit(imageRect,
 		//						CGContextGetClipBoundingBox(ctx));
 		//	CGContextConcatCTM(ctx, transform);
-		////LogImageData(@"leaves delegate", 0, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: image]));
+		//LogImageData(@"leaves delegate", 0, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: image]));
 
 	CGContextDrawImage(ctx, imageRect, image);
 }
