@@ -44,7 +44,7 @@
 	self.currentBookSectionID = @"MainMenu";
 		//	[self.insideBookView addSubview: self.mainTitleMenu.view];
 	self.insideBookView.frame = self.insideTransitionDelegate.leavesView.contentViewFrame;
-	self.insideTransitionDelegate.leavesView.contentView = self.insideBookView;
+	self.insideTransitionDelegate.contentView = self.insideBookView;
 	self.insideTransitionDelegate.view.frame = CGRectMake(0, 0, 1024, 768);
 	[self.view addSubview: self.insideTransitionDelegate.view];
 	
@@ -57,10 +57,17 @@
 
 - (IBAction)newGame:(id)sender {
 	LogMessage(@"BookController", 0, @"In the newGame method");
-	self.currentBookSectionID = @"StorySections";
 	self.sectionViewController.sectionView = [self.sectionViewController viewForSection: @"IndexTest"];
+	[self.insideTransitionDelegate beginCutToView: [_bookParts objectForKey: @"StorySections"] sender: self];
+//	self.currentBookSectionID = @"StorySections";
+//	self.sectionViewController.sectionView = [self.sectionViewController viewForSection: @"IndexTest"];
 	
 //	self.insideTransitionDelegate.leavesView.contentView = 
+}
+
+- (void)didTransitionToView: (UIView *)aView {
+	self.currentBookSectionID = [[_bookParts allKeysForObject: aView] lastObject];
+	NSAssert(self.currentBookSectionID != nil, @"currentBookSectionID is nil", nil);
 }
 
 - (void)saveLogs {
@@ -127,6 +134,7 @@
 	[_bookParts setObject: self.mainTitleMenu.view forKey:@"MainMenu"];
 	[_bookParts setObject: self.sectionViewController.view forKey:@"StorySections"];
 //	self.insideTransitionDelegate.leavesView.contentView = self.insideBookView;
+	self.sectionViewController.transitionDelegate = self.insideTransitionDelegate;
 }
 
 

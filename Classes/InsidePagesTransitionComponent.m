@@ -15,9 +15,17 @@
 @synthesize leavesView;
 @synthesize currentView, nextView;
 @synthesize transitionInitiator;
+@synthesize contentView;
 
 
-
+- (void)setContentView:(UIView *)aContentView {
+	if (aContentView != contentView) {
+//		[contentView release];
+//		[self.leavesView.contentView removeFromSuperview];
+		contentView = aContentView;
+	}
+	self.leavesView.contentView = contentView;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,19 +43,29 @@
 }
 
 - (void) renderPageAtIndex:(NSString *)index inContext:(CGContextRef)ctx {
+	CGImageRef image;
 	if ([index isEqualToString: @"currentView"]) {
-		[self renderImageForView: self.leavesView.contentView];
+		image = [self renderImageForView: self.leavesView.contentView];
 	} else if ([index isEqualToString: @"nextView"]) {
-		[self renderImageForView: self.nextView];
+		image = [self renderImageForView: self.nextView];
 	} else {
 		LogMessage(@"ERROR", 0, @"View Index \"%@\" is invalid", index);
 	}
+	CGRect imageRect = CGRectMake(0, 0, 1004, 768);
+	CGContextDrawImage(ctx, imageRect, image);
 	
+}
+
+- (void)beginCutToView: (UIView *)newNextView sender: (UIViewController *)sender {
+	self.nextView = newNextView;
+	self.transitionInitiator = sender;
+	[self leavesView:nil didTurnToPageAtIndex: @"nextView"];
 }
 
 - (void)beginTransitionToView: (UIView *)newNextView sender: (UIViewController *)sender {
 	
 	self.nextView = newNextView;
+	self.transitionInitiator = sender;
 	self.leavesView.currentPageIndex = @"currentView";
 	self.leavesView.nextPageIndex = @"nextView";
 	
@@ -59,6 +77,7 @@
 		self.currentView = self.nextView;
 		[self.transitionInitiator didTransitionToView: self.nextView];
 	}
+	[self.leavesView.pageCache flush];
 }
 
 - (CGImageRef) renderImageForView: (UIView *)viewToRender {
@@ -93,15 +112,17 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	self.leavesView.delegate = self;
+	self.leavesView.dataSource = self;
 //	[self.view addSubview: self.leavesView];
-	[self.view performSelector: @selector(addSubview:) withObject: self.leavesView afterDelay: 0.0];
+//	[self.view performSelector: @selector(addSubview:) withObject: self.leavesView afterDelay: 0.0];
 }
-*/
+
 
 - (void)viewDidUnload
 {

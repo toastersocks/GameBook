@@ -105,6 +105,16 @@ NSString *DescriptionForObject(NSObject *object, id locale, NSUInteger indent)
 	[dictionary setObject:anObject forKey:aKey];
 }
 
+
+- (id)allKeysForObject: (id)aObject {
+	return [dictionary allKeysForObject: aObject];
+}
+
+- (id)keyForObject:(id)aObject {
+	return [[dictionary allKeysForObject: aObject] lastObject];
+
+}
+
 - (NSUInteger)indexForKey: (id)key {
 	return [array indexOfObject: key];
 }

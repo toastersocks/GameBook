@@ -13,6 +13,7 @@
 @class SectionView;
 @class GamebookLog;
 @class SectionParser;
+@class InsidePagesTransitionComponent;
 
 @interface SectionViewController : GameBookViewWithDelegate {
 	SectionView *sectionView;
@@ -20,7 +21,7 @@
 	GamebookLog *gamebookLog;
 	SectionParser *gameData;
 	
-	UIViewController *transitionDelegate;
+	InsidePagesTransitionComponent *transitionDelegate;
 }
 
 @property (nonatomic, retain) SectionView *sectionView;
@@ -28,7 +29,7 @@
 @property (retain, nonatomic) GamebookLog *gamebookLog;
 @property (retain, nonatomic) IBOutlet SectionParser *gameData;
 
-@property (retain, nonatomic) UIViewController *transitionDelegate;
+@property (retain, nonatomic) InsidePagesTransitionComponent *transitionDelegate;
 
 - (void) showPopupForCurrentOptionFromTouchable: (id)touchable;
 - (SectionView *)viewForSection: (NSString *)sectionIndex;

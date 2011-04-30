@@ -18,6 +18,8 @@
 - (void)insertObject:(id)anObject forKey:(id)aKey atIndex:(NSUInteger)anIndex;
 - (id)keyAtIndex:(NSUInteger)anIndex;
 - (id)objectAtIndex:(NSUInteger)anIndex;
+- (id)keyForObject: (id)aObject;
+- (id)allKeysForObject: (id)aObject;
 - (NSUInteger)indexForKey: (id)key;
 - (NSEnumerator *)reverseKeyEnumerator;
 

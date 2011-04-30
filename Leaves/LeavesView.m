@@ -463,7 +463,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 		//contentView = nil here?
 		//[contentView autorelease];
 	contentView = newContentView;
-	self.contentView.frame = contentViewFrame;
+	contentView.frame = contentViewFrame;
 	[self addSubview: contentView];
 	[self setupDecorations];
 }

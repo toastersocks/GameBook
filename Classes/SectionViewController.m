@@ -11,6 +11,7 @@
 #import "GamebookLog.h"
 #import "GBTouchable.h"
 #import "SectionParser.h"
+#import "InsidePagesTransitionComponent.h"
 
 @implementation SectionViewController
 
@@ -46,7 +47,7 @@
 }
 
 - (void)beginTransitionToSection: (NSString *)sectionIndex {
-	[self.transitionDelegate beginTranitionToView: [self viewForSection: sectionIndex] sender: self];
+	[self.transitionDelegate beginTransitionToView: [self viewForSection: sectionIndex] sender: self];
 }
 
 - (SectionView *)viewForSection: (NSString *)sectionIndex {
@@ -67,9 +68,11 @@
 
 - (void)setSectionView:(SectionView *)newSectionView {
 	[sectionView removeFromSuperview];
-	[sectionView release];
+//	[sectionView release];
 	sectionView = newSectionView;
 		//sectionView.frame = self.view.frame;
+//	self.view.bounds = CGRectMake(0, 0, 1004, 768);
+//	sectionView.frame = CGRectMake(10, 0, 1004, 768);
 	[self.view addSubview: sectionView];
 }
 

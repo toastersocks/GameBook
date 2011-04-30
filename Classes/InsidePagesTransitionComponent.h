@@ -25,11 +25,11 @@
 @property (nonatomic, retain) IBOutlet UIView *nextView;
 @property (nonatomic, retain) IBOutlet UIView *currentView;
 @property (assign, nonatomic) UIViewController *transitionInitiator;
-
+@property (assign, nonatomic) UIView *contentView;
 
 - (CGImageRef) renderImageForView: (UIView *)viewToRender;
 - (void)beginTransitionToView: (UIView *)newNextView sender: (UIViewController *)sender;
-
+- (void)beginCutToView: (UIView *)newNextView sender: (UIViewController *)sender;
 
 
 @end
