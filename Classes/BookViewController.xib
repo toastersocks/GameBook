@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
 		<string key="IBDocument.SystemVersion">10J869</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1294</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">294</string>
+			<string key="NS.object.0">301</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUIViewController</string>
@@ -40,15 +40,15 @@
 							<object class="IBUIButton" id="161594583">
 								<reference key="NSNextResponder" ref="1046342988"/>
 								<int key="NSvFlags">301</int>
-								<string key="NSFrame">{{260, 20}, {504, 728}}</string>
+								<string key="NSFrame">{{260, 20}, {519, 728}}</string>
 								<reference key="NSSuperview" ref="1046342988"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIAutoresizesSubviews">NO</bool>
-								<int key="IBUIContentMode">1</int>
 								<int key="IBUITag">200</int>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentHorizontalAlignment">3</int>
 								<int key="IBUIContentVerticalAlignment">3</int>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
@@ -70,12 +70,13 @@
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">fancy cover.png</string>
+									<string key="NSResourceName">CoverFinalSmall.png</string>
 								</object>
 							</object>
 						</array>
 						<string key="NSFrameSize">{1024, 768}</string>
 						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="161594583"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -92,6 +93,7 @@
 				</array>
 				<string key="NSFrameSize">{1024, 768}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1046342988"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -398,6 +400,7 @@
 				<string key="35.IBEditorWindowLastContentRect">{{0, 4}, {1039, 752}}</string>
 				<string key="35.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="36.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="2" key="36.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<object class="NSAffineTransform" key="36.IBViewBoundsToFrameTransform">
 					<bytes key="NSTransformStruct">P4AAAL+AAABDmIAAxDqAAA</bytes>
 				</object>
@@ -606,8 +609,27 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">SectionParser</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SectionParser.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">SectionViewController</string>
 					<string key="superclassName">GameBookViewWithDelegate</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">gameData</string>
+						<string key="NS.object.0">SectionParser</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">gameData</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">gameData</string>
+							<string key="candidateClassName">SectionParser</string>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/SectionViewController.h</string>
@@ -628,9 +650,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">fancy cover.png</string>
-			<string key="NS.object.0">{512, 750}</string>
+			<string key="NS.key.0">CoverFinalSmall.png</string>
+			<string key="NS.object.0">{360, 504}</string>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">294</string>
+		<string key="IBCocoaTouchPluginVersion">301</string>
 	</data>
 </archive>

@@ -22,6 +22,7 @@
 		DD1634281276098100456EE0 /* fancy cover.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1634271276098100456EE0 /* fancy cover.png */; };
 		DD163491127615DA00456EE0 /* MainTitleMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DD16348F127615DA00456EE0 /* MainTitleMenu.m */; };
 		DD163492127615DA00456EE0 /* MainTitleMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD163490127615DA00456EE0 /* MainTitleMenu.xib */; };
+		DD19CB52136DF4DD0073A0FD /* CoverFinalSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD19CB51136DF4DD0073A0FD /* CoverFinalSmall.png */; };
 		DD22F422134AA35C00BD2C00 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8E7C8112FCF73E0085A8F6 /* OrderedDictionary.m */; };
 		DD2B78FE12F28C570038901C /* pageEdge_left.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2B78FC12F28C570038901C /* pageEdge_left.png */; };
 		DD2B78FF12F28C570038901C /* pageEdge_right.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2B78FD12F28C570038901C /* pageEdge_right.png */; };
@@ -138,6 +139,7 @@
 		DD16348E127615DA00456EE0 /* MainTitleMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTitleMenu.h; sourceTree = "<group>"; };
 		DD16348F127615DA00456EE0 /* MainTitleMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTitleMenu.m; sourceTree = "<group>"; };
 		DD163490127615DA00456EE0 /* MainTitleMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainTitleMenu.xib; path = Classes/MainTitleMenu.xib; sourceTree = "<group>"; };
+		DD19CB51136DF4DD0073A0FD /* CoverFinalSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CoverFinalSmall.png; sourceTree = "<group>"; };
 		DD22F421134A8A4B00BD2C00 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		DD2774DD128D1B31003156B3 /* AppDelegate.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = AppDelegate.lua; sourceTree = "<group>"; };
 		DD2B783412D42A6A002DABB0 /* prologueHelper.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = prologueHelper.lua; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				DD89688D12D7CE4300021330 /* prologue_button.png */,
 				DDDF51B212CBC48800B62509 /* robotSmall.png */,
 				DD1634271276098100456EE0 /* fancy cover.png */,
+				DD19CB51136DF4DD0073A0FD /* CoverFinalSmall.png */,
 				DDCC9F2D1273D28B005C5745 /* cover.jpg */,
 				DD89689612D7D88900021330 /* prologue_button_2.png */,
 			);
@@ -749,6 +752,7 @@
 				DD89689712D7D88900021330 /* prologue_button_2.png in Resources */,
 				DD2B78FE12F28C570038901C /* pageEdge_left.png in Resources */,
 				DD2B78FF12F28C570038901C /* pageEdge_right.png in Resources */,
+				DD19CB52136DF4DD0073A0FD /* CoverFinalSmall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1008,6 +1012,7 @@
 				DD7CB5E613690CA800FF527D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
