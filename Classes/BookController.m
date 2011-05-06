@@ -67,6 +67,7 @@
 
 - (void)didTransitionToView: (UIView *)aView {
 	self.currentBookSectionID = [[_bookParts allKeysForObject: aView] lastObject];
+	
 	NSAssert(self.currentBookSectionID != nil, @"currentBookSectionID is nil");
 }
 

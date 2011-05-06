@@ -269,11 +269,13 @@ CGFloat distance(CGPoint a, CGPoint b);
 #pragma mark Layout
 
 - (void) setLayerFrames {
-    rightPageBoundsRect = self.layer.bounds;
+//    rightPageBoundsRect = self.layer.bounds;
+	CGRect twoPageSpreadRect = self.layer.bounds;
+
 //rightPageBoundsRect = self.contentViewFrame;
 
 		//    CGRect leftHalf, rightHalf;
-    CGRectDivide(rightPageBoundsRect, &leftHalf, &rightHalf, CGRectGetWidth(rightPageBoundsRect) / 2.0f, CGRectMinXEdge);
+    CGRectDivide(twoPageSpreadRect, &leftHalf, &rightHalf, CGRectGetWidth(twoPageSpreadRect) / 2.0f, CGRectMinXEdge);
     if (self.mode == LeavesViewModeFacingPages) {
         rightPageBoundsRect = rightHalf;
     }
@@ -683,14 +685,16 @@ CGFloat distance(CGPoint a, CGPoint b);
 //		CGFloat touchRectsWidth = self.bounds.size.width / 7;
 		CGFloat touchRectsWidth = self.bounds.size.width / 4;
 
-		nextPageRect = CGRectMake(self.bounds.size.width - touchRectsWidth,
-								  0,
-								  touchRectsWidth,
-								  self.bounds.size.height);
-		prevPageRect = CGRectMake(0,
-								  0,
-								  touchRectsWidth,
-								  self.bounds.size.height);
+//		nextPageRect = CGRectMake(self.bounds.size.width - touchRectsWidth,
+//								  0,
+//								  touchRectsWidth,
+//								  self.bounds.size.height);
+		nextPageRect = rightHalf;
+//		prevPageRect = CGRectMake(0,
+//								  0,
+//								  touchRectsWidth,
+//								  self.bounds.size.height);
+		prevPageRect = leftHalf;
 		pageEdgeLeftFrame = CGRectMake(0, -3, 12, self.bounds.size.height + 5);
 		pageEdgeRightFrame = CGRectMake(self.bounds.size.width - 12, -2, 12, self.bounds.size.height + 5);
 		contentViewFrame = CGRectMake(pageEdgeLeftFrame.size.width, 0, pageEdgeRightFrame.origin.x, self.bounds.size.height);

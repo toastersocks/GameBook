@@ -51,7 +51,7 @@
 	} else {
 		LogMessage(@"ERROR", 0, @"View Index \"%@\" is invalid", index);
 	}
-	CGRect imageRect = CGRectMake(0, 0, 1004, 768);
+	CGRect imageRect = CGRectMake(0, 0, 1024, 768);
 	CGContextDrawImage(ctx, imageRect, image);
 	
 }
@@ -76,12 +76,16 @@
 	if ([pageIndex isEqualToString: @"nextView"]) {
 		self.currentView = self.nextView;
 		[self.transitionInitiator didTransitionToView: self.nextView];
+		[self.contentView layoutIfNeeded];
+		[self.leavesView setupDecorations];
 	}
 	[self.leavesView.pageCache flush];
 }
 
 - (CGImageRef) renderImageForView: (UIView *)viewToRender {
-	UIGraphicsBeginImageContext(viewToRender.frame.size);
+//	UIGraphicsBeginImageContext(viewToRender.frame.size);
+	UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
+
 	
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	[viewToRender.layer renderInContext: context];

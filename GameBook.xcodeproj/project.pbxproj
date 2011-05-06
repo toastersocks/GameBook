@@ -74,6 +74,7 @@
 		DD8A99551259829700C2F04F /* motherSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8A99501259829700C2F04F /* motherSmall.png */; };
 		DD8A99561259829700C2F04F /* passageSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8A99511259829700C2F04F /* passageSmall.png */; };
 		DD8AD83512ECA99B00083F77 /* PassTouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8AD83412ECA99B00083F77 /* PassTouchButton.m */; };
+		DDA54E8213736C450001E600 /* PageFlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA54E8113736C450001E600 /* PageFlipView.m */; };
 		DDAC812112E8BB5700E2B011 /* LeavesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC811C12E8BB5600E2B011 /* LeavesCache.m */; };
 		DDAC812212E8BB5700E2B011 /* LeavesView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC811E12E8BB5600E2B011 /* LeavesView.m */; };
 		DDAC812312E8BB5700E2B011 /* LeavesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC812012E8BB5600E2B011 /* LeavesViewController.m */; };
@@ -202,6 +203,8 @@
 		DD8AD83412ECA99B00083F77 /* PassTouchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassTouchButton.m; sourceTree = "<group>"; };
 		DD8E7C8012FCF73E0085A8F6 /* OrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedDictionary.h; sourceTree = "<group>"; };
 		DD8E7C8112FCF73E0085A8F6 /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedDictionary.m; sourceTree = "<group>"; };
+		DDA54E8013736C450001E600 /* PageFlipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageFlipView.h; sourceTree = "<group>"; };
+		DDA54E8113736C450001E600 /* PageFlipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageFlipView.m; sourceTree = "<group>"; };
 		DDAC811B12E8BB5600E2B011 /* LeavesCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesCache.h; sourceTree = "<group>"; };
 		DDAC811C12E8BB5600E2B011 /* LeavesCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesCache.m; sourceTree = "<group>"; };
 		DDAC811D12E8BB5600E2B011 /* LeavesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesView.h; sourceTree = "<group>"; };
@@ -535,6 +538,8 @@
 				DDAC811C12E8BB5600E2B011 /* LeavesCache.m */,
 				DDAC811D12E8BB5600E2B011 /* LeavesView.h */,
 				DDAC811E12E8BB5600E2B011 /* LeavesView.m */,
+				DDA54E8013736C450001E600 /* PageFlipView.h */,
+				DDA54E8113736C450001E600 /* PageFlipView.m */,
 				DDAC811F12E8BB5600E2B011 /* LeavesViewController.h */,
 				DDAC812012E8BB5600E2B011 /* LeavesViewController.m */,
 			);
@@ -828,6 +833,7 @@
 				DD620CE0133C2EDB00456371 /* SectionViewController.m in Sources */,
 				DD888FA613440A43005EB847 /* InsidePagesTransitionComponent.m in Sources */,
 				DDD24CC713456C690064780F /* BookController.m in Sources */,
+				DDA54E8213736C450001E600 /* PageFlipView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -917,6 +923,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Goins (ZEK53QB55F)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
@@ -928,6 +935,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
+				PROVISIONING_PROFILE = "6DAAA159-78DA-4572-9A0F-89C45DC7A03D";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -984,6 +992,72 @@
 			};
 			name = Release;
 		};
+		DDC0129F136FA51900CCC2DB /* Ad-Hoc-Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Goins (ZEK53QB55F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				PROVISIONING_PROFILE = "6DAAA159-78DA-4572-9A0F-89C45DC7A03D";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad-Hoc-Release";
+		};
+		DDC012A0136FA51900CCC2DB /* Ad-Hoc-Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = GameBook_Prefix.pch;
+				INFOPLIST_FILE = "GameBook-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_NAME = GameBook;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad-Hoc-Release";
+		};
+		DDC012A1136FA51900CCC2DB /* Ad-Hoc-Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad-Hoc-Release";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -992,6 +1066,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				DDC012A0136FA51900CCC2DB /* Ad-Hoc-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1001,6 +1076,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				DDC0129F136FA51900CCC2DB /* Ad-Hoc-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1010,6 +1086,7 @@
 			buildConfigurations = (
 				DD7CB5E513690CA800FF527D /* Debug */,
 				DD7CB5E613690CA800FF527D /* Release */,
+				DDC012A1136FA51900CCC2DB /* Ad-Hoc-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
