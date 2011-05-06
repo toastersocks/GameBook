@@ -15,6 +15,7 @@
 #import "PrologueViewController.h"
 #import "SectionViewController.h"
 #import "InsidePagesTransitionComponent.h"
+#import "CoverAnimationComponent.h"
 #import "GamebookLog.h"
 
 	//!!!!: Replacement class for BookViewController
@@ -27,10 +28,12 @@
 
 //@synthesize coverViewController;
 @synthesize coverView;
+@synthesize cover;
 @synthesize mainTitleMenu;
 @synthesize prologueViewController;
 @synthesize sectionViewController;
 @synthesize insideTransitionDelegate;
+@synthesize coverAnimationDelegate;
 @synthesize insideBookView;
 @synthesize currentView;
 @synthesize gamebookLog;
@@ -38,17 +41,28 @@
 @synthesize currentBookSectionID;
 
 
-- (IBAction) openCover: (id)sender {
+- (IBAction) coverDidOpen {
 	[self.coverView removeFromSuperview];
 	self.insideTransitionDelegate.currentView = self.mainTitleMenu;
+//	self.currentBookSectionID = @"MainMenu";
+//		//	[self.insideBookView addSubview: self.mainTitleMenu.view];
+//	self.insideBookView.frame = self.insideTransitionDelegate.leavesView.contentViewFrame;
+//	self.insideTransitionDelegate.contentView = self.insideBookView;
+//	self.insideTransitionDelegate.view.frame = CGRectMake(0, 0, 1024, 768);
+	[self.view addSubview: self.insideTransitionDelegate.view];
+	
+}
+
+
+- (IBAction) openCover: (id)sender {
 	self.currentBookSectionID = @"MainMenu";
 		//	[self.insideBookView addSubview: self.mainTitleMenu.view];
 	self.insideBookView.frame = self.insideTransitionDelegate.leavesView.contentViewFrame;
 	self.insideTransitionDelegate.contentView = self.insideBookView;
 	self.insideTransitionDelegate.view.frame = CGRectMake(0, 0, 1024, 768);
-	[self.view addSubview: self.insideTransitionDelegate.view];
-	
+	[self.coverAnimationDelegate beginAnimationOfView: self.cover toView: self.insideTransitionDelegate.view duration: 2.0f sender: self];
 }
+
 
 - (IBAction) showPrologue {
 	LogMessage(@"BookController", 0, @"In the showPrologue method");
@@ -128,6 +142,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	self.coverAnimationDelegate = [[CoverAnimationComponent alloc] init];
+
 	
 	self.gamebookLog = [GamebookLog sharedGamebookLog];
 		//		self.coverViewController.delegate = self;

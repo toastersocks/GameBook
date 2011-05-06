@@ -37,10 +37,22 @@
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">274</int>
 						<array class="NSMutableArray" key="NSSubviews">
+							<object class="IBUIView" id="822408963">
+								<reference key="NSNextResponder" ref="1046342988"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{320, 133}, {384, 502}}</string>
+								<reference key="NSSuperview" ref="1046342988"/>
+								<reference key="NSWindow"/>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MSAwLjAzNTc3MTY0NDk1IDAuNjc1NDY1OTgzOQA</bytes>
+								</object>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+							</object>
 							<object class="IBUIButton" id="161594583">
 								<reference key="NSNextResponder" ref="1046342988"/>
 								<int key="NSvFlags">301</int>
-								<string key="NSFrame">{{260, 20}, {519, 728}}</string>
+								<string key="NSFrame">{{256, 0}, {512, 768}}</string>
 								<reference key="NSSuperview" ref="1046342988"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -287,19 +299,27 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">coverView</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="1046342988"/>
-					</object>
-					<int key="connectionID">47</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">insideBookView</string>
 						<reference key="source" ref="841351856"/>
 						<reference key="destination" ref="172332293"/>
 					</object>
 					<int key="connectionID">49</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">cover</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="161594583"/>
+					</object>
+					<int key="connectionID">50</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">coverView</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="1046342988"/>
+					</object>
+					<int key="connectionID">51</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -349,6 +369,7 @@
 						<reference key="object" ref="1046342988"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="161594583"/>
+							<reference ref="822408963"/>
 						</array>
 						<reference key="parent" ref="766721923"/>
 						<string key="objectName">Cover View</string>
@@ -387,6 +408,11 @@
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Inside Book View</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">52</int>
+						<reference key="object" ref="822408963"/>
+						<reference key="parent" ref="1046342988"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -416,6 +442,7 @@
 				<string key="5.CustomClassName">PrologueViewController</string>
 				<string key="5.IBEditorWindowLastContentRect">{{241, 4}, {1039, 752}}</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="52.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.CustomClassName">MainTitleMenu</string>
 				<string key="9.IBEditorWindowLastContentRect">{{241, 4}, {1039, 752}}</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -424,7 +451,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">49</int>
+			<int key="maxID">52</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -432,6 +459,8 @@
 					<string key="className">BookController</string>
 					<string key="superclassName">GameBookViewWithDelegate</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="cover">UIButton</string>
+						<string key="coverAnimationDelegate">CoverAnimationComponent</string>
 						<string key="coverView">UIView</string>
 						<string key="insideBookView">UIView</string>
 						<string key="insideTransitionDelegate">InsidePagesTransitionComponent</string>
@@ -440,6 +469,14 @@
 						<string key="sectionViewController">SectionViewController</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="cover">
+							<string key="name">cover</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="coverAnimationDelegate">
+							<string key="name">coverAnimationDelegate</string>
+							<string key="candidateClassName">CoverAnimationComponent</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="coverView">
 							<string key="name">coverView</string>
 							<string key="candidateClassName">UIView</string>
@@ -468,6 +505,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/BookController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">CoverAnimationComponent</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CoverAnimationComponent.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

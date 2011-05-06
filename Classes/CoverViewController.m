@@ -19,8 +19,13 @@
 
 - (IBAction) openCover: sender {
 	if (self.delegate != NULL && [self.delegate respondsToSelector:@selector(openCover:)]) {
+//		[self openAnimation];
 		[self.delegate openCover: sender];
 	} 	
+	
+}
+
+- (void)openAnimation {
 	
 }
 

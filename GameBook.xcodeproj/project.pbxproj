@@ -75,6 +75,7 @@
 		DD8A99561259829700C2F04F /* passageSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8A99511259829700C2F04F /* passageSmall.png */; };
 		DD8AD83512ECA99B00083F77 /* PassTouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8AD83412ECA99B00083F77 /* PassTouchButton.m */; };
 		DDA54E8213736C450001E600 /* PageFlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA54E8113736C450001E600 /* PageFlipView.m */; };
+		DDA54E8D137391910001E600 /* CoverAnimationComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA54E8C137391900001E600 /* CoverAnimationComponent.m */; };
 		DDAC812112E8BB5700E2B011 /* LeavesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC811C12E8BB5600E2B011 /* LeavesCache.m */; };
 		DDAC812212E8BB5700E2B011 /* LeavesView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC811E12E8BB5600E2B011 /* LeavesView.m */; };
 		DDAC812312E8BB5700E2B011 /* LeavesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC812012E8BB5600E2B011 /* LeavesViewController.m */; };
@@ -205,6 +206,8 @@
 		DD8E7C8112FCF73E0085A8F6 /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedDictionary.m; sourceTree = "<group>"; };
 		DDA54E8013736C450001E600 /* PageFlipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageFlipView.h; sourceTree = "<group>"; };
 		DDA54E8113736C450001E600 /* PageFlipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageFlipView.m; sourceTree = "<group>"; };
+		DDA54E8B137391900001E600 /* CoverAnimationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverAnimationComponent.h; sourceTree = "<group>"; };
+		DDA54E8C137391900001E600 /* CoverAnimationComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverAnimationComponent.m; sourceTree = "<group>"; };
 		DDAC811B12E8BB5600E2B011 /* LeavesCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesCache.h; sourceTree = "<group>"; };
 		DDAC811C12E8BB5600E2B011 /* LeavesCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesCache.m; sourceTree = "<group>"; };
 		DDAC811D12E8BB5600E2B011 /* LeavesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesView.h; sourceTree = "<group>"; };
@@ -564,6 +567,8 @@
 			children = (
 				DDCC9EC112738E9E005C5745 /* CoverViewController.h */,
 				DDCC9EC212738E9E005C5745 /* CoverViewController.m */,
+				DDA54E8B137391900001E600 /* CoverAnimationComponent.h */,
+				DDA54E8C137391900001E600 /* CoverAnimationComponent.m */,
 			);
 			name = Cover;
 			sourceTree = "<group>";
@@ -834,6 +839,7 @@
 				DD888FA613440A43005EB847 /* InsidePagesTransitionComponent.m in Sources */,
 				DDD24CC713456C690064780F /* BookController.m in Sources */,
 				DDA54E8213736C450001E600 /* PageFlipView.m in Sources */,
+				DDA54E8D137391910001E600 /* CoverAnimationComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
