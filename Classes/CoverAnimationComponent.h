@@ -22,6 +22,8 @@ typedef struct {
 	UIView *_viewToOpen;
 	UIView *_toView;
 	
+	PageImageRefs pageImages;
+	
 }
 
 @property (assign, nonatomic) UIViewController *animationInitiator;

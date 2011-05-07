@@ -36,6 +36,7 @@
 
 
 - (void) beginAnimationOfView:(UIView *)viewToOpen toView: (UIView *)toView duration:(NSTimeInterval)duration sender: (id)sender {
+	pageImages = [self pageImagesForView: toView];
 
 	self.animationInitiator = sender;
 	self.toView = toView;
@@ -45,6 +46,7 @@
 	// Remove existing animations before stating new animation
 //    [_viewToOpen.layer removeAllAnimations];
 	[self setupInsidePages];
+	
 
     
 		// Make sure view is visible
@@ -111,7 +113,7 @@
 	CALayer *rightInsidePage = [CALayer layer];
 	CALayer *leftInsidePage = [CALayer layer];
 	
-	PageImageRefs pageImages = [self pageImagesForView: self.toView];
+//	pageImages = [self pageImagesForView: self.toView];
 	
 	rightInsidePage.frame = openViewFrame;
 	rightInsidePage.contents = (id)pageImages.rightHalf;
