@@ -153,6 +153,15 @@
 	[_bookParts setObject: self.sectionViewController.view forKey:@"StorySections"];
 //	self.insideTransitionDelegate.leavesView.contentView = self.insideBookView;
 	self.sectionViewController.transitionDelegate = self.insideTransitionDelegate;
+
+//	UIImage *menuImage = [UIImage imageWithContentsOfFile: @"SpreadSmall2.jpg"];
+	UIImage *menuImage = [UIImage imageWithContentsOfFile: @"InsideMenuSpread.png"];
+	
+//	LogImageData(@"mainMenu", 2, 1024, 768, UIImageJPEGRepresentation(menuImage, 0.8));
+	LogImageData(@"mainMenu", 2, 1024, 768, UIImagePNGRepresentation(menuImage));
+
+	self.mainTitleMenu.view.layer.contents = (id)menuImage.CGImage;
+
 }
 
 

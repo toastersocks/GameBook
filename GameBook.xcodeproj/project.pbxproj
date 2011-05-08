@@ -79,6 +79,8 @@
 		DDAC812112E8BB5700E2B011 /* LeavesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC811C12E8BB5600E2B011 /* LeavesCache.m */; };
 		DDAC812212E8BB5700E2B011 /* LeavesView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC811E12E8BB5600E2B011 /* LeavesView.m */; };
 		DDAC812312E8BB5700E2B011 /* LeavesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC812012E8BB5600E2B011 /* LeavesViewController.m */; };
+		DDAFC9F0137609DA00A54BCE /* SpreadSmall2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DDAFC9EF137609DA00A54BCE /* SpreadSmall2.jpg */; };
+		DDAFC9F61376193700A54BCE /* InsideMenuSpread.png in Resources */ = {isa = PBXBuildFile; fileRef = DDAFC9F51376193700A54BCE /* InsideMenuSpread.png */; };
 		DDBB8BF712AAEE2300C1F885 /* GamebookLog.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB8BF612AAEE2300C1F885 /* GamebookLog.m */; };
 		DDBC76AE12AA120000654D42 /* Index.txt in Resources */ = {isa = PBXBuildFile; fileRef = DDBC76AB12AA120000654D42 /* Index.txt */; };
 		DDBC76AF12AA120000654D42 /* factoryExplore_assembly.txt in Resources */ = {isa = PBXBuildFile; fileRef = DDBC76AC12AA120000654D42 /* factoryExplore_assembly.txt */; };
@@ -214,6 +216,8 @@
 		DDAC811E12E8BB5600E2B011 /* LeavesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesView.m; sourceTree = "<group>"; };
 		DDAC811F12E8BB5600E2B011 /* LeavesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesViewController.h; sourceTree = "<group>"; };
 		DDAC812012E8BB5600E2B011 /* LeavesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesViewController.m; sourceTree = "<group>"; };
+		DDAFC9EF137609DA00A54BCE /* SpreadSmall2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SpreadSmall2.jpg; sourceTree = "<group>"; };
+		DDAFC9F51376193700A54BCE /* InsideMenuSpread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InsideMenuSpread.png; sourceTree = "<group>"; };
 		DDBB8BF512AAEE2300C1F885 /* GamebookLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamebookLog.h; sourceTree = "<group>"; };
 		DDBB8BF612AAEE2300C1F885 /* GamebookLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamebookLog.m; sourceTree = "<group>"; wrapsLines = 1; };
 		DDBC76AB12AA120000654D42 /* Index.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Index.txt; sourceTree = "<group>"; wrapsLines = 1; };
@@ -423,6 +427,8 @@
 				DD2B78FC12F28C570038901C /* pageEdge_left.png */,
 				DD2B78FD12F28C570038901C /* pageEdge_right.png */,
 				DD89688D12D7CE4300021330 /* prologue_button.png */,
+				DDAFC9EF137609DA00A54BCE /* SpreadSmall2.jpg */,
+				DDAFC9F51376193700A54BCE /* InsideMenuSpread.png */,
 				DDDF51B212CBC48800B62509 /* robotSmall.png */,
 				DD1634271276098100456EE0 /* fancy cover.png */,
 				DD19CB51136DF4DD0073A0FD /* CoverFinalSmall.png */,
@@ -763,6 +769,8 @@
 				DD2B78FE12F28C570038901C /* pageEdge_left.png in Resources */,
 				DD2B78FF12F28C570038901C /* pageEdge_right.png in Resources */,
 				DD19CB52136DF4DD0073A0FD /* CoverFinalSmall.png in Resources */,
+				DDAFC9F0137609DA00A54BCE /* SpreadSmall2.jpg in Resources */,
+				DDAFC9F61376193700A54BCE /* InsideMenuSpread.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

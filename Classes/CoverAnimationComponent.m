@@ -14,6 +14,9 @@
 @interface CoverAnimationComponent ()
 
 - (void)setupInsidePages;
+- (CGImageRef)renderImageForView: (UIView *)viewToRender;
+- (CGImageRef)mirrorXAxisOfCGImage: (CGImageRef)image;
+
 
 @end
 
@@ -36,50 +39,52 @@
 
 
 - (void) beginAnimationOfView:(UIView *)viewToOpen toView: (UIView *)toView duration:(NSTimeInterval)duration sender: (id)sender {
-	pageImages = [self pageImagesForView: toView];
+//	CALayer *coverLayer = [CALayer layer];
+//	coverLayer.contents =
 
 	self.animationInitiator = sender;
 	self.toView = toView;
 	self.viewToOpen = viewToOpen;
-	self.viewToOpen.clipsToBounds = YES;
 	openViewFrame = _viewToOpen.frame;
 	// Remove existing animations before stating new animation
 //    [_viewToOpen.layer removeAllAnimations];
-	[self setupInsidePages];
+	pageImages = [self pageImagesForView: toView];
+
+	CGImageRef viewToOpenImage = [self renderImageForView: viewToOpen];
+	LogImageData(@"Cover", 2, 512, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: viewToOpenImage]));
 	
+	pageImages.leftHalf = [self mirrorXAxisOfCGImage: pageImages.leftHalf];
 
-    
-		// Make sure view is visible
-    _viewToOpen.hidden = NO;
-    
-		// disable the view so it’s not doing anythign while animating
-    _viewToOpen.userInteractionEnabled = NO;
-		// Set the CALayer anchorPoint to the left edge and
-		// translate the button to account for the new
-		// anchorPoint. In case you want to reuse the animation
-		// for this button, we only do the translation and
-		// anchor point setting once.
-//    if (viewToOpen.layer.anchorPoint.x != 0.0f) {
-//        viewToOpen.layer.anchorPoint = CGPointMake(0.0f, 0.5f);
-	_viewToOpen.layer.anchorPoint = CGPointMake(0.25f, 0.5f);
+	CALayer *viewToOpenOverlay = [CALayer layer];
+	viewToOpenOverlay.contents = (id)viewToOpenImage;
+	CALayer *rightInsideLayer = [CALayer layer];
+	rightInsideLayer.frame = viewToOpen.frame;
 
-   _viewToOpen.center = CGPointMake(_viewToOpen.center.x - _viewToOpen.bounds.size.width/4.0f, _viewToOpen.center.y);
-//    }
+//	rightInsideLayer.frame = CGRectMake(512, 0, 512, 768);
+	
+	[self.animationInitiator.view.layer addSublayer: rightInsideLayer];
+	viewToOpen.hidden = YES;
+	
+		//	viewToOpenOverlay.backgroundColor = [UIColor greenColor].CGColor;
+	viewToOpenOverlay.bounds = rightInsideLayer.bounds;
+	LogImageData(@"cover", 2, 512, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: pageImages.rightHalf]));
+	rightInsideLayer.contents = (id)pageImages.rightHalf;
+
+	[rightInsideLayer addSublayer: viewToOpenOverlay];
+	viewToOpenOverlay.anchorPoint = CGPointMake(0.0f, 0.0f);
+
 		// create an animation to hold the page turning
-		//    CABasicAnimation *transformAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
 	CAKeyframeAnimation *transformAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
 	transformAnimation.delegate = self;
 	transformAnimation.removedOnCompletion = NO;
 	CATransform3D startingTransform = CATransform3DIdentity;
-		//	CATransform3D halfwayTransform = startingTransform;
 	CATransform3D halfwayTransform = CATransform3DMakeRotation(3.141f/2, 
 															   0.0f, 
 															   -1.0f, 
 															   0.0f);
 	halfwayTransform.m14 = -0.001f;
-	halfwayTransform.m34 = 0.0015f;
+	halfwayTransform.m34 = 0.0005f;
 	
-		//	CATransform3D endingTransform = halfwayTransform;
 	CATransform3D endingTransform = CATransform3DMakeRotation(3.141f, 
 															  0.0f, 
 															  -1.0f, 
@@ -98,16 +103,79 @@
 						 [NSNumber numberWithFloat: 1.0], nil];
 	
     transformAnimation.removedOnCompletion = NO;
+	transformAnimation.fillMode = kCAFillModeForwards;
     transformAnimation.duration = duration;
 	transformAnimation.keyTimes = keyTimes;
 	transformAnimation.values = transforms;
-	[_viewToOpen.layer addAnimation: transformAnimation forKey:@"transform"];
+	transformAnimation.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseInEaseOut];
+	
+	
+	CABasicAnimation *changeImage = [CABasicAnimation animationWithKeyPath: @"contents"];
+	changeImage.duration = 0.001f;
+	changeImage.toValue = (id)pageImages.leftHalf;
+	changeImage.removedOnCompletion = NO;
+	changeImage.fillMode = kCAFillModeForwards;
+	changeImage.beginTime = CACurrentMediaTime() + duration/2;
+	
+		/////////MoveToRightAnimation///////////
+	CABasicAnimation *moveToRight = [CABasicAnimation animationWithKeyPath: @"position.x"];
+	moveToRight.removedOnCompletion = NO;
+	moveToRight.fillMode = kCAFillModeForwards;
+	moveToRight.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseInEaseOut];
+	moveToRight.duration = 1.5f;
+//	moveToRight.duration = 2.0f;
+
+	moveToRight.toValue = [NSNumber numberWithInt: 512+256];
+	
+//	rightInsideLayer.delegate = self;
+	
+
+	
+	[rightInsideLayer addAnimation: moveToRight forKey: @"position.x"];
+	
+//	CAAnimationGroup *overlayAnimations = [CAAnimationGroup animation];
+//	overlayAnimations.animations = [NSArray arrayWithObjects: transformAnimation, changeImage, nil];
+	
+	[viewToOpenOverlay addAnimation: changeImage forKey:@"contents"];
+	[viewToOpenOverlay addAnimation: transformAnimation forKey:@"transform"];
 	
 //	PageImageRefs pageImages = [self pageImagesForView: toView];
 	
 
 }
 
+- (CGImageRef)mirrorXAxisOfCGImage: (CGImageRef)imageToFlip {
+	NSInteger imageWidth = CGImageGetWidth(imageToFlip);
+	NSInteger imageHeight = CGImageGetHeight(imageToFlip);
+	LogMessage(@"cover", 3, @"image width: %i, height: %i", imageWidth, imageHeight);
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	CGContextRef context = CGBitmapContextCreate(NULL, imageWidth, imageHeight, 8, imageWidth * 4, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+	
+	CGColorSpaceRelease(colorSpace);
+	
+	CGRect rect = CGRectMake(0, 0, -imageWidth, imageHeight);
+	
+//	CGContextClipToRect(context, rect);
+	
+	
+	
+//	CGContextScaleCTM(context, -1.0, 1.0);
+//	CGContextSaveGState(context);
+	CGContextScaleCTM(context, -1.0, 1.0);
+
+	
+	CGContextDrawImage(context, rect, imageToFlip);
+	
+//	CGContextRestoreGState(context);
+	CGImageRef transformedImage = CGBitmapContextCreateImage(context);
+	
+	CGContextRelease(context);
+
+	LogImageData(@"Cover", 2, 512, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: transformedImage]));
+	
+	return transformedImage;
+	
+}
 
 - (void)setupInsidePages {
 	CALayer *rightInsidePage = [CALayer layer];
@@ -115,13 +183,15 @@
 	
 //	pageImages = [self pageImagesForView: self.toView];
 	
-	rightInsidePage.frame = openViewFrame;
+//	rightInsidePage.frame = openViewFrame;
+	rightInsidePage = self.viewToOpen.layer;
 	rightInsidePage.contents = (id)pageImages.rightHalf;
 //	[self.viewToOpen.layer insertSublayer: rightInsidePage below: self.viewToOpen.layer];
 //	rightInsidePage.anchorPoint = CGPointMake(0.5, 0);
 //	rightInsidePage.position = CGPointMake(256*3, 0);
 	
-	[self.animationInitiator.view.layer insertSublayer: rightInsidePage below: self.viewToOpen.layer];
+//	[self.animationInitiator.view.layer insertSublayer: rightInsidePage below: self.viewToOpen.layer];
+	
 //	rightInsidePage.position = CGPointMake([[self.viewToOpen.layer presentationLayer] position].x, 0);
 	rightInsidePage.position = CGPointMake(self.viewToOpen.layer.position.x, 0);
 	
@@ -166,7 +236,8 @@
 
 - (CGImageRef)renderImageForView: (UIView *)viewToRender {
 		//	UIGraphicsBeginImageContext(viewToRender.frame.size);
-	UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
+	CGSize viewSize = viewToRender.bounds.size;
+	UIGraphicsBeginImageContext(viewSize);
 	
 	
 	CGContextRef context = UIGraphicsGetCurrentContext();
@@ -176,7 +247,7 @@
 	CGImageRef renderedImage = [UIGraphicsGetImageFromCurrentImageContext() CGImage];
 	
 	UIGraphicsEndImageContext();
-	LogImageData(@"Cover", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: renderedImage]));
+	LogImageData(@"Cover", 2, viewSize.width, viewSize.height, UIImagePNGRepresentation([UIImage imageWithCGImage: renderedImage]));
 	
 	return renderedImage;
 }

@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
 		<string key="IBDocument.SystemVersion">10J869</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1294</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">294</string>
+			<string key="NS.object.0">301</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -61,7 +61,7 @@
 							<double key="NSSize">24</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<object class="NSColor" key="IBUITextColor">
+						<object class="NSColor" key="IBUITextColor" id="950666672">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
@@ -128,6 +128,7 @@
 						<string key="NSFrame">{{717, 383}, {102, 37}}</string>
 						<reference key="NSSuperview" ref="933563662"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="954355875"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -142,8 +143,31 @@
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="862822556"/>
 					</object>
+					<object class="IBUILabel" id="954355875">
+						<reference key="NSNextResponder" ref="933563662"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{43, 703}, {155, 21}}</string>
+						<reference key="NSSuperview" ref="933563662"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">7</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<string key="IBUIText">Version:</string>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica</string>
+							<double key="NSSize">17</double>
+							<int key="NSfFlags">16</int>
+						</object>
+						<reference key="IBUITextColor" ref="950666672"/>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<float key="IBUIMinimumFontSize">10</float>
+					</object>
 				</object>
-				<string key="NSFrameSize">{1024, 768}</string>
+				<string key="NSFrame">{{0, 20}, {1024, 748}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="361905076"/>
@@ -155,6 +179,9 @@
 					</object>
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
+					<int key="IBUIStatusBarStyle">2</int>
+				</object>
 				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 					<int key="IBUIInterfaceOrientation">3</int>
 					<int key="interfaceOrientation">3</int>
@@ -221,6 +248,7 @@
 							<reference ref="679178188"/>
 							<reference ref="388363219"/>
 							<reference ref="945755168"/>
+							<reference ref="954355875"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Main Menu</string>
@@ -248,6 +276,11 @@
 						<reference key="parent" ref="933563662"/>
 						<string key="objectName">Options Button</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">27</int>
+						<reference key="object" ref="954355875"/>
+						<reference key="parent" ref="933563662"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -262,6 +295,7 @@
 					<string>11.IBViewBoundsToFrameTransform</string>
 					<string>12.IBPluginDependency</string>
 					<string>12.IBViewBoundsToFrameTransform</string>
+					<string>27.IBPluginDependency</string>
 					<string>6.IBEditorWindowLastContentRect</string>
 					<string>6.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
@@ -283,6 +317,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABEMQAAw9EAAA</bytes>
 					</object>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{-133, -48}, {1039, 752}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -303,7 +338,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">26</int>
+			<int key="maxID">27</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -402,6 +437,6 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<string key="IBCocoaTouchPluginVersion">294</string>
+		<string key="IBCocoaTouchPluginVersion">301</string>
 	</data>
 </archive>

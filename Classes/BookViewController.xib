@@ -37,18 +37,6 @@
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">274</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIView" id="822408963">
-								<reference key="NSNextResponder" ref="1046342988"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{320, 133}, {384, 502}}</string>
-								<reference key="NSSuperview" ref="1046342988"/>
-								<reference key="NSWindow"/>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAwLjAzNTc3MTY0NDk1IDAuNjc1NDY1OTgzOQA</bytes>
-								</object>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-							</object>
 							<object class="IBUIButton" id="161594583">
 								<reference key="NSNextResponder" ref="1046342988"/>
 								<int key="NSvFlags">301</int>
@@ -369,7 +357,6 @@
 						<reference key="object" ref="1046342988"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="161594583"/>
-							<reference ref="822408963"/>
 						</array>
 						<reference key="parent" ref="766721923"/>
 						<string key="objectName">Cover View</string>
@@ -408,11 +395,6 @@
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Inside Book View</string>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">52</int>
-						<reference key="object" ref="822408963"/>
-						<reference key="parent" ref="1046342988"/>
-					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -442,7 +424,6 @@
 				<string key="5.CustomClassName">PrologueViewController</string>
 				<string key="5.IBEditorWindowLastContentRect">{{241, 4}, {1039, 752}}</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="52.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.CustomClassName">MainTitleMenu</string>
 				<string key="9.IBEditorWindowLastContentRect">{{241, 4}, {1039, 752}}</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
