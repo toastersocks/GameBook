@@ -18,6 +18,7 @@ typedef enum {
 
 
 @class LeavesCache;
+@class PassTouchButton;
 
 @protocol LeavesViewDataSource;
 @protocol LeavesViewDelegate;
@@ -54,6 +55,7 @@ typedef enum {
 		//	NSUInteger numberOfPages;
 		//  NSUInteger numberOfVisiblePages;
 	id<LeavesViewDelegate> delegate;
+	id<LeavesViewDataSource> dataSource;
 	
 	CGSize pageSize;
 	LeavesCache *pageCache;
@@ -77,11 +79,18 @@ typedef enum {
 	CGRect pageEdgeRightFrame;
 	CGRect contentViewFrame;
 	
-	CALayer *pageEdgeLeft;
-	CALayer *pageEdgeRight;
+//	CALayer *pageEdgeLeft;
+//	CALayer *pageEdgeRight;
+	PassTouchButton *pageEdgeLeft;
+	PassTouchButton *pageEdgeRight;
+
 	
-  CAGradientLayer *leftPageShadow;
-  CAGradientLayer *rightPageShadow;
+	CAGradientLayer *leftPageShadow;
+	CAGradientLayer *rightPageShadow;
+	
+	CAGradientLayer *leftUnderPageShadow;
+	CAGradientLayer *rightUnderPageShadow;
+	
 }
 	
 @property (assign) IBOutlet id<LeavesViewDataSource> dataSource;
@@ -105,6 +114,7 @@ typedef enum {
 - (void) setupDecorations;
 - (void) flipForwardToPageIndex: (NSString *)pageIndexToFlipTo;
 - (void) flipBackwardToPageIndex: (NSString *)pageIndexToFlipTo;
+- (void)resetShadows;
 @end
 
 

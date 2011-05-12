@@ -36,6 +36,7 @@
 
 
 - (CGImageRef) imageForPageIndex:(NSString *)pageIndex {
+	pageSize = CGSizeMake(1004, 748);
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 	CGContextRef context = CGBitmapContextCreate(NULL, 
 												 pageSize.width, 

@@ -35,7 +35,7 @@
 											   green: (250.0 / 255.0) 
 												blue: (235.0 / 255.0) 
 											   alpha: 1];
-		fullSpreadRect = CGRectMake(self.bounds.origin.x, 0, self.bounds.size.width, self.bounds.size.height);
+		fullSpreadRect = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width, self.bounds.size.height);
 			//		leftHalfRect = fullSpreadRect;
 
 		CGRectDivide(fullSpreadRect, &leftHalfRect, &rightHalfRect, CGRectGetWidth(fullSpreadRect) / 2.0f, CGRectMinXEdge);
@@ -158,6 +158,15 @@
 	return renderedImage;
 	
 }
+
+
+- (void)layoutSubviews {
+	fullSpreadRect = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width, self.bounds.size.height);
+	CGRectDivide(fullSpreadRect, &leftHalfRect, &rightHalfRect, CGRectGetWidth(fullSpreadRect) / 2.0f, CGRectMinXEdge);
+	self.leftPageView.frame = leftHalfRect;
+	self.rightPageView.frame = rightHalfRect;
+}
+
 
 -(void)setCgImage: (CGImageRef)newCGImageRef {
 	if (!(newCGImageRef == cgImage)) {

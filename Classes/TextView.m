@@ -40,8 +40,8 @@
 		self.layer.opaque = YES;
 		self.optionsContainer.layer.opaque = YES;
 		self.mainTextView.layer.opaque = YES;
-																						  //	mainTextView.backgroundColor = [UIColor redColor]; //debug
-																						  //	  optionsContainer.backgroundColor = [UIColor greenColor]; //debug
+		  //	mainTextView.backgroundColor = [UIColor redColor]; //debug
+		  //	  optionsContainer.backgroundColor = [UIColor greenColor]; //debug
 
 			//optionsContainer.backgroundColor = [UIColor whiteColor];
 		

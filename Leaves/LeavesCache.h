@@ -24,6 +24,7 @@
 - (id) initWithPageSize:(CGSize)aPageSize;
 - (CGImageRef) cachedImageForPageIndex:(NSString *)pageIndex;
 - (void) precacheImageForPageIndex:(NSString *)pageIndex;
+- (CGImageRef) imageForPageIndex:(NSString *)pageIndex;
 - (void) minimizeToPageIndex:(NSString *)pageIndex viewMode:(LeavesViewMode)viewMode;
 - (void) flush;
 

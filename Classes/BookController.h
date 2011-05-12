@@ -34,6 +34,7 @@
 @property (retain, nonatomic) IBOutlet MainTitleMenu *mainTitleMenu;
 @property (retain, nonatomic) IBOutlet PrologueViewController *prologueViewController;
 @property (retain, nonatomic) IBOutlet SectionViewController *sectionViewController;
+@property (retain, nonatomic) IBOutlet UIView *characterSheetView;
 @property (retain, nonatomic) IBOutlet InsidePagesTransitionComponent *insideTransitionDelegate;
 @property (retain, nonatomic) IBOutlet CoverAnimationComponent *coverAnimationDelegate;
 @property (retain, nonatomic) IBOutlet UIView *insideBookView;
@@ -43,8 +44,13 @@
 	//@property (retain, nonatomic) UIView *insideContentView;
 
 @property (copy, nonatomic) NSString *currentBookSectionID;
+@property (assign, nonatomic) NSUInteger currentBookSectionIndex;
 
 - (void)saveLogs;
 - (void)loadLogs;
+
+- (IBAction)pageEdgeLeftAction: (id)sender;
+- (IBAction)pageEdgeRightAction: (id)sender;
+
 
 @end

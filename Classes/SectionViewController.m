@@ -63,7 +63,7 @@
 
 - (void)didTransitionToView: (UIView *)newSectionView {
 	[self.gamebookLog logOptions: self.touchedObject];
-	self.sectionView = newSectionView;
+	self.sectionView = (SectionView *)newSectionView;
 }
 
 - (void)setSectionView:(SectionView *)newSectionView {
@@ -71,9 +71,11 @@
 //	[sectionView release];
 	sectionView = newSectionView;
 		//sectionView.frame = self.view.frame;
-//	self.view.bounds = CGRectMake(0, 0, 1004, 768);
-//	sectionView.frame = CGRectMake(10, 0, 1004, 768);
+	self.view.bounds = CGRectMake(0, 0, 1004, 748);
+	sectionView.frame = CGRectMake(0, 0, 1004, 748);
 	[self.view addSubview: sectionView];
+//	[self.sectionView setNeedsLayout];
+	[self.sectionView layoutIfNeeded];
 }
 
 	//Code below commented out for now to focus on getting section loading working

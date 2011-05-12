@@ -30,6 +30,7 @@
 @synthesize coverView;
 @synthesize cover;
 @synthesize mainTitleMenu;
+@synthesize characterSheetView;
 @synthesize prologueViewController;
 @synthesize sectionViewController;
 @synthesize insideTransitionDelegate;
@@ -39,6 +40,7 @@
 @synthesize gamebookLog;
 
 @synthesize currentBookSectionID;
+@synthesize currentBookSectionIndex;
 
 
 - (IBAction) coverDidOpen {
@@ -56,10 +58,11 @@
 
 - (IBAction) openCover: (id)sender {
 	self.currentBookSectionID = @"MainMenu";
+	[[_bookParts objectForKey: @"MainMenu"] setFrame: CGRectMake(0, 0, 1024, 748)];
 		//	[self.insideBookView addSubview: self.mainTitleMenu.view];
-	self.insideBookView.frame = self.insideTransitionDelegate.leavesView.contentViewFrame;
+//	self.insideBookView.frame = self.insideTransitionDelegate.leavesView.contentViewFrame;
 	self.insideTransitionDelegate.contentView = self.insideBookView;
-	self.insideTransitionDelegate.view.frame = CGRectMake(0, 0, 1024, 768);
+	self.insideTransitionDelegate.view.frame = CGRectMake(0, 0, 1024, 748);
 	[self.coverAnimationDelegate beginAnimationOfView: self.cover toView: self.insideTransitionDelegate.view duration: 2.0f sender: self];
 }
 
@@ -72,8 +75,10 @@
 - (IBAction)newGame:(id)sender {
 	LogMessage(@"BookController", 0, @"In the newGame method");
 	self.sectionViewController.sectionView = [self.sectionViewController viewForSection: @"IndexTest"];
-	[self.insideTransitionDelegate beginCutToView: [_bookParts objectForKey: @"StorySections"] sender: self];
-//	self.currentBookSectionID = @"StorySections";
+//	[self.insideTransitionDelegate beginCutToView: [_bookParts objectForKey: @"StorySections"] sender: self];
+	[self.insideTransitionDelegate beginFlipForwardToView: [_bookParts objectForKey: @"StorySections"] sender: self];
+
+		//	self.currentBookSectionID = @"StorySections";
 //	self.sectionViewController.sectionView = [self.sectionViewController viewForSection: @"IndexTest"];
 	
 //	self.insideTransitionDelegate.leavesView.contentView = 
@@ -102,6 +107,7 @@
 		_bookParts = [[OrderedDictionary alloc] initWithCapacity: 4 ];
 		[_bookParts setObject: self.mainTitleMenu.view forKey:@"MainMenu"];
 		[_bookParts setObject: self.sectionViewController.view forKey:@"StorySections"];
+		[_bookParts setObject: self.characterSheetView forKey: @"CharacterSheet"];
 //		self.insideTransitionDelegate.leavesView.contentView = self.insideBookView;
         // Custom initialization
     }
@@ -111,8 +117,31 @@
 - (void)setCurrentBookSectionID:(NSString *)newCurrentBookSectionID {
 	[[_bookParts valueForKey: currentBookSectionID] removeFromSuperview];
 	currentBookSectionID = [newCurrentBookSectionID copy];
-	[[_bookParts valueForKey: currentBookSectionID] setFrame: CGRectMake(0, 0, 1004, 768)];
+	[[_bookParts valueForKey: currentBookSectionID] setFrame: CGRectMake(0, 0, 1004, 748)];
 	[self.insideBookView addSubview: [_bookParts valueForKey: currentBookSectionID]];
+}
+
+- (void)setCurrentBookSectionIndex: (NSUInteger) index  {
+	self.currentBookSectionID = [_bookParts keyAtIndex: index];
+}
+
+- (NSUInteger)currentBookSectionIndex {
+	return [_bookParts indexForKey: self.currentBookSectionID];
+}
+
+
+- (IBAction)pageEdgeLeftAction: (id)sender {
+	if (self.currentBookSectionIndex > 0) {
+		[self.insideTransitionDelegate beginTransitionToView: [_bookParts objectAtIndex: self.currentBookSectionIndex - 1] sender: self];
+
+	}
+	 
+}
+
+- (IBAction)pageEdgeRightAction: (id)sender {
+	if (self.currentBookSectionIndex < [_bookParts count]) {
+		[self.insideTransitionDelegate beginTransitionToView: [_bookParts objectAtIndex: self.currentBookSectionIndex + 1] sender: self];
+	}	
 }
 
 - (void)dealloc
@@ -151,6 +180,7 @@
 	_bookParts = [[OrderedDictionary alloc] initWithCapacity: 4 ];
 	[_bookParts setObject: self.mainTitleMenu.view forKey:@"MainMenu"];
 	[_bookParts setObject: self.sectionViewController.view forKey:@"StorySections"];
+	[_bookParts setObject: self.characterSheetView forKey: @"CharacterSheet"];
 //	self.insideTransitionDelegate.leavesView.contentView = self.insideBookView;
 	self.sectionViewController.transitionDelegate = self.insideTransitionDelegate;
 
@@ -158,7 +188,7 @@
 	UIImage *menuImage = [UIImage imageWithContentsOfFile: @"InsideMenuSpread.png"];
 	
 //	LogImageData(@"mainMenu", 2, 1024, 768, UIImageJPEGRepresentation(menuImage, 0.8));
-	LogImageData(@"mainMenu", 2, 1024, 768, UIImagePNGRepresentation(menuImage));
+	LogImageData(@"mainMenu", 2, 1024, 748, UIImagePNGRepresentation(menuImage));
 
 	self.mainTitleMenu.view.layer.contents = (id)menuImage.CGImage;
 
@@ -175,12 +205,13 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-			//NSLog(@"interface is landscape");
-		return YES;
-	} else {
-		return NO;
-	}	
+//    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+//			//NSLog(@"interface is landscape");
+//		return YES;
+//	} else {
+//		return NO;
+//	}	
+	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 @end

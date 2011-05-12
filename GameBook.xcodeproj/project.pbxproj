@@ -26,6 +26,10 @@
 		DD22F422134AA35C00BD2C00 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8E7C8112FCF73E0085A8F6 /* OrderedDictionary.m */; };
 		DD2B78FE12F28C570038901C /* pageEdge_left.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2B78FC12F28C570038901C /* pageEdge_left.png */; };
 		DD2B78FF12F28C570038901C /* pageEdge_right.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2B78FD12F28C570038901C /* pageEdge_right.png */; };
+		DD427EF41378B5F000B12AC1 /* CALayer+DetailedDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = DD427EF31378B5F000B12AC1 /* CALayer+DetailedDescription.m */; };
+		DD427EF61379A89800B12AC1 /* wax.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD427EF51379A89800B12AC1 /* wax.framework */; };
+		DD427EF71379A89800B12AC1 /* wax.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD427EF51379A89800B12AC1 /* wax.framework */; };
+		DD427EF9137A1A7900B12AC1 /* robotSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD427EF8137A1A7900B12AC1 /* robotSmall.png */; };
 		DD53BB3312A02F2E005093BA /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = DD53BB2112A02F2D005093BA /* bird.png */; };
 		DD53BB3412A02F2E005093BA /* branch.png in Resources */ = {isa = PBXBuildFile; fileRef = DD53BB2212A02F2D005093BA /* branch.png */; };
 		DD53BB3512A02F2E005093BA /* deer.png in Resources */ = {isa = PBXBuildFile; fileRef = DD53BB2312A02F2D005093BA /* deer.png */; };
@@ -55,7 +59,6 @@
 		DD55F7C112A6C18000A578B4 /* gameObjectList.lua in Resources */ = {isa = PBXBuildFile; fileRef = DD55F79312A6B9C500A578B4 /* gameObjectList.lua */; };
 		DD55F7C212A6C18000A578B4 /* ParseHelper.lua in Resources */ = {isa = PBXBuildFile; fileRef = DD53BC9D12A2B9FA005093BA /* ParseHelper.lua */; };
 		DD620CE0133C2EDB00456371 /* SectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD620CDF133C2EDB00456371 /* SectionViewController.m */; };
-		DD69F64B12BF0C6200C9CA60 /* wax.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD69F64A12BF0C6200C9CA60 /* wax.framework */; };
 		DD7CB5D713690CA800FF527D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		DD7CB5D813690CA800FF527D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		DD7CB5D913690CA800FF527D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -149,6 +152,10 @@
 		DD2B783412D42A6A002DABB0 /* prologueHelper.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = prologueHelper.lua; sourceTree = "<group>"; };
 		DD2B78FC12F28C570038901C /* pageEdge_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pageEdge_left.png; sourceTree = "<group>"; };
 		DD2B78FD12F28C570038901C /* pageEdge_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pageEdge_right.png; sourceTree = "<group>"; };
+		DD427EF21378B5F000B12AC1 /* CALayer+DetailedDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+DetailedDescription.h"; sourceTree = "<group>"; };
+		DD427EF31378B5F000B12AC1 /* CALayer+DetailedDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+DetailedDescription.m"; sourceTree = "<group>"; };
+		DD427EF51379A89800B12AC1 /* wax.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = wax.framework; sourceTree = "<group>"; };
+		DD427EF8137A1A7900B12AC1 /* robotSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = robotSmall.png; sourceTree = "<group>"; };
 		DD53BA38129C4E5E005093BA /* SceneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneView.h; sourceTree = "<group>"; };
 		DD53BA39129C4E5E005093BA /* SceneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneView.m; sourceTree = "<group>"; wrapsLines = 1; };
 		DD53BB2112A02F2D005093BA /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
@@ -183,7 +190,6 @@
 		DD55F79C12A6BBFE00A578B4 /* printT.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = printT.lua; sourceTree = "<group>"; };
 		DD620CDE133C2EDB00456371 /* SectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionViewController.h; sourceTree = "<group>"; };
 		DD620CDF133C2EDB00456371 /* SectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SectionViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		DD69F64A12BF0C6200C9CA60 /* wax.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = wax.framework; sourceTree = "<group>"; };
 		DD7CB5D613690CA800FF527D /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD7CB5DC13690CA800FF527D /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		DD7CB5DE13690CA800FF527D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -262,10 +268,10 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
-				DD69F64B12BF0C6200C9CA60 /* wax.framework in Frameworks */,
 				DDE5EFD812D69937000B7315 /* CFNetwork.framework in Frameworks */,
 				DDE5EFDC12D69953000B7315 /* SystemConfiguration.framework in Frameworks */,
 				DD896A2512D94E0300021330 /* QuartzCore.framework in Frameworks */,
+				DD427EF61379A89800B12AC1 /* wax.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +282,7 @@
 				DD7CB5D713690CA800FF527D /* UIKit.framework in Frameworks */,
 				DD7CB5D813690CA800FF527D /* Foundation.framework in Frameworks */,
 				DD7CB5D913690CA800FF527D /* CoreGraphics.framework in Frameworks */,
+				DD427EF71379A89800B12AC1 /* wax.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +316,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				DD427EF8137A1A7900B12AC1 /* robotSmall.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -329,6 +337,8 @@
 				DD53BC3B12A21E65005093BA /* Constants.h */,
 				DD53BC3C12A21E65005093BA /* Constants.m */,
 				DDE5EFB312D6944F000B7315 /* Third Party */,
+				DD427EF21378B5F000B12AC1 /* CALayer+DetailedDescription.h */,
+				DD427EF31378B5F000B12AC1 /* CALayer+DetailedDescription.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -349,7 +359,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DD69F64A12BF0C6200C9CA60 /* wax.framework */,
+				DD427EF51379A89800B12AC1 /* wax.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
@@ -771,6 +781,7 @@
 				DD19CB52136DF4DD0073A0FD /* CoverFinalSmall.png in Resources */,
 				DDAFC9F0137609DA00A54BCE /* SpreadSmall2.jpg in Resources */,
 				DDAFC9F61376193700A54BCE /* InsideMenuSpread.png in Resources */,
+				DD427EF9137A1A7900B12AC1 /* robotSmall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -848,6 +859,7 @@
 				DDD24CC713456C690064780F /* BookController.m in Sources */,
 				DDA54E8213736C450001E600 /* PageFlipView.m in Sources */,
 				DDA54E8D137391910001E600 /* CoverAnimationComponent.m in Sources */,
+				DD427EF41378B5F000B12AC1 /* CALayer+DetailedDescription.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -966,6 +978,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -992,6 +1005,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1059,6 +1073,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

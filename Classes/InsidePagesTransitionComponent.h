@@ -26,10 +26,12 @@
 @property (nonatomic, retain) IBOutlet UIView *currentView;
 @property (assign, nonatomic) UIViewController *transitionInitiator;
 @property (assign, nonatomic) UIView *contentView;
+@property (assign, nonatomic) id IBOutlet delegate;
 
 - (CGImageRef) renderImageForView: (UIView *)viewToRender;
 - (void)beginTransitionToView: (UIView *)newNextView sender: (UIViewController *)sender;
 - (void)beginCutToView: (UIView *)newNextView sender: (UIViewController *)sender;
+- (void)beginFlipForwardToView: (UIView *)newNextView sender: (id)sender;
 
 
 @end

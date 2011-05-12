@@ -8,6 +8,7 @@
 
 #import "LeavesView.h"
 #import "LeavesCache.h"
+#import "PassTouchButton.h"
 
 
 #pragma mark -
@@ -46,21 +47,37 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 
 
+- (void) setPageEdgeAndContentFrames {
+		/////////////////////// 
+//	  prevPageRect = leftHalf;
+	pageEdgeLeftFrame = CGRectMake(0, 0, 10, self.bounds.size.height);
+	pageEdgeRightFrame = CGRectMake(self.bounds.size.width - 10, 0, 10, self.bounds.size.height);
+	contentViewFrame = CGRectMake(pageEdgeLeftFrame.size.width, 0, pageEdgeRightFrame.origin.x - pageEdgeRightFrame.size.width, self.bounds.size.height - 20);
+	
+	pageEdgeLeft.frame = pageEdgeLeftFrame;
+	pageEdgeRight.frame = pageEdgeRightFrame;
+	self.contentView.frame = contentViewFrame;
+
+}
+
 - (void) setUpLayers {
 	self.clipsToBounds = YES;
-    
+[self setPageEdgeAndContentFrames];
+
+		///////////////////////
+	
 	topPage = [[CALayer alloc] init];
 	topPage.masksToBounds = YES;
 	topPage.contentsGravity = kCAGravityLeft;
-	topPage.backgroundColor = [[UIColor whiteColor] CGColor];
+	topPage.backgroundColor = [[UIColor yellowColor] CGColor];
 	
 	topPageOverlay = [[CALayer alloc] init];
 	topPageOverlay.backgroundColor = [[[UIColor blackColor] colorWithAlphaComponent:0.2] CGColor];
 	
 	topPageShadow = [[CAGradientLayer alloc] init];
 	topPageShadow.colors = [NSArray arrayWithObjects:
-							(id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
-							(id)[[UIColor clearColor] CGColor],
+							(id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6] CGColor],
+							(id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0] CGColor],
 							nil];
 	topPageShadow.startPoint = CGPointMake(1,0.5);
 	topPageShadow.endPoint = CGPointMake(0,0.5);
@@ -76,8 +93,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 	
 	topPageReverseShading = [[CAGradientLayer alloc] init];
 	topPageReverseShading.colors = [NSArray arrayWithObjects:
-									(id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
-									(id)[[UIColor clearColor] CGColor],
+									(id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6] CGColor],
+									(id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0] CGColor],
 									nil];
 	topPageReverseShading.startPoint = CGPointMake(1,0.5);
 	topPageReverseShading.endPoint = CGPointMake(0,0.5);
@@ -88,8 +105,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 	
 	bottomPageShadow = [[CAGradientLayer alloc] init];
 	bottomPageShadow.colors = [NSArray arrayWithObjects:
-							   (id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
-							   (id)[[UIColor clearColor] CGColor],
+							   (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6] CGColor],
+							   (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0] CGColor],
 							   nil];
 	bottomPageShadow.startPoint = CGPointMake(0,0.5);
 	bottomPageShadow.endPoint = CGPointMake(1,0.5);
@@ -120,6 +137,8 @@ CGFloat distance(CGPoint a, CGPoint b);
     [self setUpLayersForViewingMode];
 	
 	self.leafEdge = 1.0;
+	
+	[self setupDecorations];
 }
 
 
@@ -182,7 +201,7 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
-	if (self = [super initWithCoder:aDecoder]) {
+	if ((self = [super initWithCoder:aDecoder])) {
 		[self setUpLayers];
 		[self initialize];
 	}
@@ -238,15 +257,31 @@ CGFloat distance(CGPoint a, CGPoint b);
 	}
 	*/
 	
-	CGImageRef fullTopPageImage = [pageCache cachedImageForPageIndex: topPageIndex];
-	CGImageRef fullBottomPageImage = [pageCache cachedImageForPageIndex: bottomPageIndex];
-	LogImageData(@"leavesView", 2, 1024, 786, UIImagePNGRepresentation([UIImage imageWithCGImage: fullBottomPageImage]));
+//	CGImageRef fullTopPageImage = [pageCache cachedImageForPageIndex: topPageIndex];
+//	CGImageRef fullBottomPageImage = [pageCache cachedImageForPageIndex: bottomPageIndex];
+	CGImageRef fullTopPageImage = [pageCache imageForPageIndex: topPageIndex];
+	CGImageRef fullBottomPageImage = [pageCache imageForPageIndex: bottomPageIndex];
+
+	LogImageData(@"leavesView", 2, 1004, 748, UIImagePNGRepresentation([UIImage imageWithCGImage: fullBottomPageImage]));
 
 
 	if (currentPageIndex) {
-		topPage.contents = (id)CGImageCreateWithImageInRect(fullTopPageImage, rightHalf);
-		leftPage.contents = (id)CGImageCreateWithImageInRect(fullTopPageImage, leftHalf);
-//		topPage.backgroundColor = [UIColor blueColor].CGColor;
+//		topPage.contents = (id)CGImageCreateWithImageInRect(fullTopPageImage, rightHalf);
+		
+		[CATransaction begin];
+		[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+		topPage.contents = (id)CGImageCreateWithImageInRect(fullTopPageImage, CGRectMake(502, 0, 502, 748));
+		//change background colour
+		[CATransaction commit];
+
+		[CATransaction begin];
+		[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+					//		leftPage.contents = (id)CGImageCreateWithImageInRect(fullTopPageImage, leftHalf);
+		leftPage.contents = (id)CGImageCreateWithImageInRect(fullTopPageImage, CGRectMake(0, 0, 502, 748));
+	//change background colour
+		[CATransaction commit];
+
+			//		topPage.backgroundColor = [UIColor blueColor].CGColor;
 //		leftPage.backgroundColor = [UIColor greenColor].CGColor;
 	} else {
 		LogMessage(@"error", 0, @"currentPageIndex is NULL");
@@ -254,10 +289,25 @@ CGFloat distance(CGPoint a, CGPoint b);
 	if (nextPageIndex) {
 //		bottomPage.backgroundColor = [UIColor orangeColor].CGColor;
 //		topPageReverseImage.backgroundColor = [UIColor redColor].CGColor;
-		CGImageRef bottomRightPageImage = CGImageCreateWithImageInRect(fullBottomPageImage, rightHalf);
+//		CGImageRef bottomRightPageImage = CGImageCreateWithImageInRect(fullBottomPageImage, rightHalf);
+		CGImageRef bottomRightPageImage = CGImageCreateWithImageInRect(fullBottomPageImage, CGRectMake(502, 0, 502, 748));
+
 		LogImageData(@"leavesView", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage: bottomRightPageImage]));
-		topPageReverseImage.contents = (id)CGImageCreateWithImageInRect(fullBottomPageImage, leftHalf);
-		bottomPage.contents = (id)CGImageCreateWithImageInRect(fullBottomPageImage, rightHalf);
+//		topPageReverseImage.contents = (id)CGImageCreateWithImageInRect(fullBottomPageImage, leftHalf);
+		
+		[CATransaction begin];
+		[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+		topPageReverseImage.contents = (id)CGImageCreateWithImageInRect(fullBottomPageImage, CGRectMake(0, 0, 502, 748));
+		[CATransaction commit];
+
+//		bottomPage.contents = (id)CGImageCreateWithImageInRect(fullBottomPageImage, rightHalf);
+		[CATransaction begin];
+		[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+			//change background colour
+		bottomPage.contents = (id)bottomRightPageImage;
+
+		[CATransaction commit];
+		
 	}
 
 		//           [pageCache minimizeToPageIndex:currentPageIndex viewMode:self.mode]; //TODO: implement this later to flush old images from the cache
@@ -265,12 +315,47 @@ CGFloat distance(CGPoint a, CGPoint b);
 }
 
 
+- (CGImageRef) imageForPageIndex:(NSString *)pageIndex {
+	pageSize = CGSizeMake(1004, 748);
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	CGContextRef context = CGBitmapContextCreate(NULL, 
+												 pageSize.width, 
+												 pageSize.height, 
+												 8,						/* bits per component*/
+												 pageSize.width * 4, 	/* bytes per row */
+												 colorSpace, 
+												 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+	CGColorSpaceRelease(colorSpace);
+	CGContextClipToRect(context, CGRectMake(0, 0, pageSize.width, pageSize.height));
+	
+	[dataSource renderPageAtIndex: pageIndex inContext:context];
+	
+	CGImageRef image = CGBitmapContextCreateImage(context);
+	CGContextRelease(context);
+	
+		//LogImageData(@"leaves Cache", 2, 1024, 768, UIImagePNGRepresentation([UIImage imageWithCGImage:image]));
+	
+		//!!!: DONT FORGET TO UNCOMMENT THIS LINE! should need it, but the cgimageref is being overreleased somewhere...
+		//CGImageRelease(image);
+	
+	return image;
+}
+
+
+
 #pragma mark -
 #pragma mark Layout
 
 - (void) setLayerFrames {
 //    rightPageBoundsRect = self.layer.bounds;
-	CGRect twoPageSpreadRect = self.layer.bounds;
+
+	
+		/////////////////////// 
+[self setPageEdgeAndContentFrames];
+		///////////////////////
+
+//	CGRect twoPageSpreadRect = self.layer.bounds;
+	CGRect twoPageSpreadRect = self.contentViewFrame;
 
 //rightPageBoundsRect = self.contentViewFrame;
 
@@ -353,7 +438,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 }
 
 - (void) didTurnToPageAtIndex:(NSString *)index {
-	[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)NO];
+//	[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)NO];
+	self.contentView.hidden = NO;
 	if ([delegate respondsToSelector:@selector(leavesView:didTurnToPageAtIndex:)]) {
 		[delegate leavesView:self didTurnToPageAtIndex:index];
 	}
@@ -400,11 +486,23 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 
 - (void) setupDecorations {
+	
 	leftPageShadow = [[CAGradientLayer alloc] init];
+//	leftPageShadow.colors = [NSArray arrayWithObjects:
+//							 (id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
+//							 (id)[[UIColor clearColor] CGColor],
+//							 nil];
+
+//	leftPageShadow.colors = [NSArray arrayWithObjects:
+//							 (id)[[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0] colorWithAlphaComponent:0.6] CGColor],
+//							 (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0] CGColor],
+//							 nil];
+
 	leftPageShadow.colors = [NSArray arrayWithObjects:
-							 (id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
-							 (id)[[UIColor clearColor] CGColor],
+							 (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6] CGColor],
+							 (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0] CGColor],
 							 nil];
+	
 	leftPageShadow.startPoint = CGPointMake(0,0.5);
 	leftPageShadow.endPoint = CGPointMake(1,0.5);
 	leftPageShadow.frame = CGRectMake(contentViewFrame.size.width / 2, 
@@ -413,8 +511,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 									  contentViewFrame.size.height);
 	rightPageShadow = [[CAGradientLayer alloc] init];
 	rightPageShadow.colors = [NSArray arrayWithObjects:
-							  (id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
-							  (id)[[UIColor clearColor] CGColor],
+							  (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6] CGColor],
+							  (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0] CGColor],
 							  nil];
 	rightPageShadow.startPoint = CGPointMake(1,0.5);
 	rightPageShadow.endPoint = CGPointMake(0,0.5);
@@ -422,18 +520,83 @@ CGFloat distance(CGPoint a, CGPoint b);
 									   contentViewFrame.origin.y, 
 									   -40, 
 									   contentViewFrame.size.height);
+
+	
+	leftUnderPageShadow = [[CAGradientLayer alloc] init];
+	[NSArray arrayWithObjects:
+	 (id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
+	 (id)[[UIColor clearColor] CGColor],
+	 nil];
+//	leftUnderPageShadow.colors = [NSArray arrayWithObjects:
+//							  (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6] CGColor],
+//							  (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0] CGColor],
+//							  nil];
+	leftUnderPageShadow.colors = [NSArray arrayWithObjects:
+								  (id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
+								  (id)[[UIColor clearColor] CGColor],
+								  nil];
+	leftUnderPageShadow.startPoint = CGPointMake(1,0.5);
+	leftUnderPageShadow.endPoint = CGPointMake(0,0.5);
+	leftUnderPageShadow.frame = CGRectMake(contentViewFrame.size.width / 2, 
+									   contentViewFrame.origin.y, 
+									   -40, 
+									   contentViewFrame.size.height);
+
+	
+	
+	rightUnderPageShadow = [[CAGradientLayer alloc] init];
+//	rightUnderPageShadow.colors = [NSArray arrayWithObjects:
+//								  (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6] CGColor],
+//								  (id)[[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0] CGColor],
+//								  nil];
+	rightUnderPageShadow.colors = [NSArray arrayWithObjects:
+								   (id)[[[UIColor blackColor] colorWithAlphaComponent:0.6] CGColor],
+								   (id)[[UIColor clearColor] CGColor],
+								   nil];
+
+	rightUnderPageShadow.startPoint = CGPointMake(0,0.5);
+	rightUnderPageShadow.endPoint = CGPointMake(1.0,0.5);
+	rightUnderPageShadow.frame = CGRectMake(0, 
+										   contentViewFrame.origin.y, 
+										   40, 
+										   contentViewFrame.size.height);
+	
+	
+	
+	
+	
+	[leftPage addSublayer: leftUnderPageShadow];
+	[topPage addSublayer: rightUnderPageShadow];
+	
+	
 	[self.contentView.layer insertSublayer:rightPageShadow below: topPageReverse];
 	[self.contentView.layer insertSublayer:leftPageShadow below: topPageReverse];
 	
-	pageEdgeRight = [CALayer layer];
-	pageEdgeLeft = [CALayer layer];
+//	pageEdgeRight = [CALayer layer];
+//	pageEdgeLeft = [CALayer layer];
+	pageEdgeRight = [PassTouchButton buttonWithType: UIButtonTypeCustom];
+	pageEdgeLeft = [PassTouchButton buttonWithType: UIButtonTypeCustom];
+
 	pageEdgeLeft.frame = pageEdgeLeftFrame;
 	pageEdgeRight.frame = pageEdgeRightFrame;
-	pageEdgeLeft.contents = (id)[UIImage imageNamed: @"pageEdge_left.png"].CGImage;
-	pageEdgeRight.contents = (id)[UIImage imageNamed: @"pageEdge_right.png"].CGImage;
-	[self.layer addSublayer: pageEdgeLeft];
-	[self.layer addSublayer: pageEdgeRight];
+//	pageEdgeLeft.contents = (id)[UIImage imageNamed: @"pageEdge_left.png"].CGImage;
+//	pageEdgeRight.contents = (id)[UIImage imageNamed: @"pageEdge_right.png"].CGImage;
+	[pageEdgeLeft setImage: [UIImage imageNamed: @"pageEdge_left.png"] forState: UIControlStateNormal];
+	[pageEdgeRight setImage: [UIImage imageNamed: @"pageEdge_right.png"] forState: UIControlStateNormal];
+	[pageEdgeLeft addTarget: self.delegate action: @selector(pageEdgeLeftAction:) forControlEvents: UIControlEventTouchDown];
+	[pageEdgeRight addTarget: self.delegate action: @selector(pageEdgeRightAction:) forControlEvents: UIControlEventTouchDown];
+//	[self.layer addSublayer: pageEdgeLeft];
+//	[self.layer addSublayer: pageEdgeRight];
+	[self addSubview: pageEdgeLeft];
+	[self addSubview: pageEdgeRight];
+
 }
+
+- (void)resetShadows {
+	[self.contentView.layer insertSublayer:rightPageShadow below: topPageReverse];
+	[self.contentView.layer insertSublayer:leftPageShadow below: topPageReverse];
+}
+
 
 #pragma mark -
 #pragma mark accessors
@@ -444,7 +607,15 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 - (void) setDataSource:(id<LeavesViewDataSource>)value {
 	pageCache.dataSource = value;
+//	dataSource = value;
 }
+
+- (void) setDelegate:(id<LeavesViewDelegate>)aDelegate {
+	delegate = aDelegate;
+	[pageEdgeLeft addTarget: self.delegate action: @selector(pageEdgeLeftAction:) forControlEvents: UIControlEventTouchDown];
+	[pageEdgeRight addTarget: self.delegate action: @selector(pageEdgeRightAction:) forControlEvents: UIControlEventTouchDown];
+}
+
 
 - (void) setLeafEdge:(CGFloat)aLeafEdge {
 	leafEdge = aLeafEdge;
@@ -467,7 +638,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 	contentView = newContentView;
 	contentView.frame = contentViewFrame;
 	[self addSubview: contentView];
-	[self setupDecorations];
+//	[self setupDecorations];
+	[self resetShadows];
 }
 
 
@@ -514,8 +686,9 @@ CGFloat distance(CGPoint a, CGPoint b);
 	float duration;
 	self.leafEdge = 0.0;
 	[self setImagesForTopPage: nextPageIndex BottomPage: currentPageIndex];
-	[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
-
+//	[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+	self.contentView.hidden = NO;
+	
 	[CATransaction begin];
 
 	self.leafEdge = 1;
@@ -526,23 +699,40 @@ CGFloat distance(CGPoint a, CGPoint b);
 	[CATransaction commit];
 	
 	
+	
+	
 }
 
 
 - (void) flipForwardToPageIndex: (NSString *) pageIndexToFlipTo {
 	float duration;
+//	pageSubviews = self.contentView.subviews;
+	pageSubviews = [NSArray arrayWithObject: self.contentView];
+
+	[CATransaction begin];
+	[CATransaction setValue:(id)kCFBooleanTrue
+					 forKey:kCATransactionDisableActions];
 	self.leafEdge = 1.0;
 	[self setImagesForTopPage: currentPageIndex BottomPage: nextPageIndex];
-	[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+//	[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+	self.contentView.hidden = YES;
+	[CATransaction commit];
+	
+	duration = leafEdge;
+	
 	
 	[CATransaction begin];
 	
 	self.leafEdge = 0.0;
-	duration = leafEdge;
+//	duration = leafEdge;
 	interactionLocked = YES;
 	[CATransaction setValue:[NSNumber numberWithFloat:duration]
 					 forKey:kCATransactionAnimationDuration];
 	[CATransaction commit];
+	
+	[self performSelector:@selector(didTurnPageForwardToIndex:)
+			   withObject: nextPageIndex
+			   afterDelay:duration + 0.25];
 	
 }
 
@@ -566,7 +756,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 	touchBeganPoint = [touch locationInView: self];
 
 	LogMessage(@"leavesview", 0, @"touchedNextPage is %@, hasNextPage is %@", [self touchedNextPage]? @"TRUE":@"FALSE", [self hasNextPage]? @"TRUE":@"FALSE");
-		pageSubviews = self.subviews;
+//	pageSubviews = self.subviews;
+//	pageSubviews = self.contentView;
 	
 	if ([self touchedPrevPage] && [self hasNextPage]) {
 		[CATransaction begin];
@@ -575,7 +766,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 		
 		[self setImagesForTopPage: nextPageIndex BottomPage: currentPageIndex];
 		//[self.subviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
-		[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+//		[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+		self.contentView.hidden = YES;
 		
         self.leafEdge = 0.0;
 		[CATransaction commit];
@@ -583,10 +775,15 @@ CGFloat distance(CGPoint a, CGPoint b);
 	} 
 	else if ([self touchedNextPage] && [self hasNextPage]) {
 		touchIsActive = YES;
-		
+		[CATransaction begin];
+		[CATransaction setValue:(id)kCFBooleanTrue
+						 forKey:kCATransactionDisableActions];
 		[self setImagesForTopPage: currentPageIndex BottomPage: nextPageIndex];
 		//[self.subviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
-		[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+		self.leafEdge = 1.0;
+		[CATransaction commit];
+//		[pageSubviews makeObjectsPerformSelector: @selector(setHidden:) withObject: (id)YES];
+		self.contentView.hidden = YES;
 	} else 
 		touchIsActive = NO;
 }
@@ -668,7 +865,8 @@ CGFloat distance(CGPoint a, CGPoint b);
 
 	
     if (self.mode == LeavesViewModeFacingPages) {
-        desiredPageSize = CGSizeMake(self.bounds.size.width, self.bounds.size.height);
+		desiredPageSize = CGSizeMake(self.bounds.size.width, self.bounds.size.height);
+//        desiredPageSize = CGSizeMake(self.bounds.size.width - 20, self.bounds.size.height);
     }
     
 	if (!CGSizeEqualToSize(pageSize, desiredPageSize)) {
@@ -685,23 +883,21 @@ CGFloat distance(CGPoint a, CGPoint b);
 //		CGFloat touchRectsWidth = self.bounds.size.width / 7;
 		CGFloat touchRectsWidth = self.bounds.size.width / 4;
 
-//		nextPageRect = CGRectMake(self.bounds.size.width - touchRectsWidth,
-//								  0,
-//								  touchRectsWidth,
-//								  self.bounds.size.height);
-		nextPageRect = rightHalf;
-//		prevPageRect = CGRectMake(0,
-//								  0,
-//								  touchRectsWidth,
-//								  self.bounds.size.height);
-		prevPageRect = leftHalf;
-		pageEdgeLeftFrame = CGRectMake(0, -3, 12, self.bounds.size.height + 5);
-		pageEdgeRightFrame = CGRectMake(self.bounds.size.width - 12, -2, 12, self.bounds.size.height + 5);
-		contentViewFrame = CGRectMake(pageEdgeLeftFrame.size.width, 0, pageEdgeRightFrame.origin.x, self.bounds.size.height);
+		nextPageRect = CGRectMake(self.bounds.size.width - touchRectsWidth,
+								  0,
+								  touchRectsWidth,
+								  self.bounds.size.height);
+//		nextPageRect = rightHalf;
+		prevPageRect = CGRectMake(0,
+								  0,
+								  touchRectsWidth,
+								  self.bounds.size.height);
+
+			/////////////////////////
+		[self setPageEdgeAndContentFrames];
+			//////////////////////////
 		
-		pageEdgeLeft.frame = pageEdgeLeftFrame;
-		pageEdgeRight.frame = pageEdgeRightFrame;
-		self.contentView.frame = contentViewFrame;
+		
 		leftPageShadow.frame = CGRectMake(contentViewFrame.size.width / 2, 
 										  contentViewFrame.origin.y, 
 										  40, 

@@ -16,15 +16,17 @@
 @synthesize currentView, nextView;
 @synthesize transitionInitiator;
 @synthesize contentView;
-
+@synthesize delegate;
 
 - (void)setContentView:(UIView *)aContentView {
 	if (aContentView != contentView) {
 //		[contentView release];
 //		[self.leavesView.contentView removeFromSuperview];
 		contentView = aContentView;
+		
 	}
-	self.leavesView.contentView = contentView;
+	leavesView.contentView = contentView;
+	self.currentView = contentView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -32,7 +34,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-		self.leavesView = [[LeavesView alloc] initWithFrame: CGRectMake(0, 0, 1024, 768)];
+		self.leavesView = [[LeavesView alloc] initWithFrame: CGRectMake(0, 0, 1024, 748)];
     }
     return self;
 }
@@ -51,7 +53,7 @@
 	} else {
 		LogMessage(@"ERROR", 0, @"View Index \"%@\" is invalid", index);
 	}
-	CGRect imageRect = CGRectMake(0, 0, 1024, 768);
+	CGRect imageRect = CGRectMake(0, 0, 1004, 748);
 	CGContextDrawImage(ctx, imageRect, image);
 	
 }
@@ -67,32 +69,67 @@
 	self.nextView = newNextView;
 	self.transitionInitiator = sender;
 	self.leavesView.currentPageIndex = @"currentView";
+	self.leavesView.nextPageIndex = @"nextView";	
+}
+
+
+- (void)beginFlipForwardToView: (UIView *)newNextView sender: (id)sender {
+	self.nextView = newNextView;
+	self.transitionInitiator = sender;
+	self.leavesView.currentPageIndex = @"currentView";
 	self.leavesView.nextPageIndex = @"nextView";
-	
+	[self.leavesView flipForwardToPageIndex: @"nextView"];
 	
 }
+
 
 - (void) leavesView:(LeavesView *)leavesView didTurnToPageAtIndex:(NSString *)pageIndex {
 	if ([pageIndex isEqualToString: @"nextView"]) {
 		self.currentView = self.nextView;
 		[self.transitionInitiator didTransitionToView: self.nextView];
-		[self.contentView layoutIfNeeded];
-		[self.leavesView setupDecorations];
+//		[self.contentView layoutIfNeeded];
+		[self.leavesView resetShadows];
 	}
+	self.leavesView.nextPageIndex = nil;
 	[self.leavesView.pageCache flush];
 }
 
+- (IBAction)pageEdgeLeftAction: (id)sender {
+	if ([self.delegate respondsToSelector: _cmd]) {
+		[self.delegate pageEdgeLeftAction: self];
+	}
+}
+
+- (IBAction)pageEdgeRightAction: (id)sender {
+	LogMessage(@"insidePagesTransitionComponent", 2, @"in the pageEdgeRightAction");
+	if ([self.delegate respondsToSelector: _cmd]) {
+		[self.delegate pageEdgeRightAction: self];
+	}
+}
+
+
 - (CGImageRef) renderImageForView: (UIView *)viewToRender {
-//	UIGraphicsBeginImageContext(viewToRender.frame.size);
-	UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
+	UIGraphicsBeginImageContext(viewToRender.frame.size);
+//	UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
+//	NSInteger imageWidth = viewToRender.bounds.size.width;
+//	NSInteger imageHeight = viewToRender.bounds.size.height;
+	
 
 	
 	CGContextRef context = UIGraphicsGetCurrentContext();
+	
+//	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+//	CGContextRef context = CGBitmapContextCreate(NULL, imageWidth, imageHeight, 8, imageWidth * 4, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+//	CGColorSpaceRelease(colorSpace);
+	
 	[viewToRender.layer renderInContext: context];
 		//	[viewToRender.layer.presentationLayer renderInContext: context];
 	
 	CGImageRef renderedImage = [UIGraphicsGetImageFromCurrentImageContext() CGImage];
+//	CGImageRef renderedImage = CGBitmapContextCreateImage(context);
 	
+	
+//	CGContextRelease(context);
 	UIGraphicsEndImageContext();
 	
 	return renderedImage;

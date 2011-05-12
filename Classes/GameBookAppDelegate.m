@@ -41,7 +41,7 @@
 	NSLog(@"The app has finished launching");
 	//wax_start();
 //	[bookViewController.view setFrame:[[UIScreen mainScreen] applicationFrame]];
-	[bookController.view setFrame: CGRectMake(0, 0, 1024, 768)];
+	[bookController.view setFrame: CGRectMake(0, 0, 1024, 748)];
 
 	NSLog(@"applicationFrame is: %@", NSStringFromCGRect([[UIScreen mainScreen] applicationFrame]));
     [window addSubview: self.bookController.view];

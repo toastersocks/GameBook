@@ -75,8 +75,8 @@
 
 		// create an animation to hold the page turning
 	CAKeyframeAnimation *transformAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-	transformAnimation.delegate = self;
-	transformAnimation.removedOnCompletion = NO;
+	
+//	transformAnimation.removedOnCompletion = NO;
 	CATransform3D startingTransform = CATransform3DIdentity;
 	CATransform3D halfwayTransform = CATransform3DMakeRotation(3.141f/2, 
 															   0.0f, 
@@ -102,6 +102,7 @@
 						 [NSNumber numberWithFloat: 0.5], 
 						 [NSNumber numberWithFloat: 1.0], nil];
 	
+	transformAnimation.delegate = self;
     transformAnimation.removedOnCompletion = NO;
 	transformAnimation.fillMode = kCAFillModeForwards;
     transformAnimation.duration = duration;
@@ -148,6 +149,7 @@
 	NSInteger imageWidth = CGImageGetWidth(imageToFlip);
 	NSInteger imageHeight = CGImageGetHeight(imageToFlip);
 	LogMessage(@"cover", 3, @"image width: %i, height: %i", imageWidth, imageHeight);
+	
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 	CGContextRef context = CGBitmapContextCreate(NULL, imageWidth, imageHeight, 8, imageWidth * 4, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
 	
@@ -155,18 +157,10 @@
 	
 	CGRect rect = CGRectMake(0, 0, -imageWidth, imageHeight);
 	
-//	CGContextClipToRect(context, rect);
-	
-	
-	
-//	CGContextScaleCTM(context, -1.0, 1.0);
-//	CGContextSaveGState(context);
 	CGContextScaleCTM(context, -1.0, 1.0);
 
-	
 	CGContextDrawImage(context, rect, imageToFlip);
 	
-//	CGContextRestoreGState(context);
 	CGImageRef transformedImage = CGBitmapContextCreateImage(context);
 	
 	CGContextRelease(context);
