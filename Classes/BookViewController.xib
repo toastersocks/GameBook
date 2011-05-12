@@ -212,7 +212,7 @@
 					<object class="IBUILabel" id="386762815">
 						<reference key="NSNextResponder" ref="200718937"/>
 						<int key="NSvFlags">293</int>
-						<string key="NSFrame">{{266, 249}, {356, 138}}</string>
+						<string key="NSFrame">{{431, 249}, {356, 138}}</string>
 						<reference key="NSSuperview" ref="200718937"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -236,13 +236,20 @@
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
 				</array>
-				<string key="NSFrameSize">{768, 1004}</string>
+				<string key="NSFrame">{{0, 20}, {1024, 748}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="386762815"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAwLjU0MjQ0ODI3ODEgMC4xODgzNzEzNjIzAA</bytes>
+				</object>
+				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
+					<int key="IBUIStatusBarStyle">2</int>
+				</object>
+				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
+					<int key="IBUIInterfaceOrientation">3</int>
+					<int key="interfaceOrientation">3</int>
 				</object>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
