@@ -20,7 +20,7 @@
 - (id) init {
 	if ((self = [super init])) {
 		
-		wax_start();
+		wax_start("init.lua", nil);
 		NSLog(@"WaxLua at %@ initted...", self);
 
 	}

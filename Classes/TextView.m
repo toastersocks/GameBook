@@ -9,6 +9,7 @@
 #import "TextView.h"
 #import "Constants.h"
 #import "PassTouchButton.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 	//TODO: create a 'resize' method that resizes the various elements appropriately. OR even better just returns the optimum size of the various elements, and another method that actualy does the resizing. 
@@ -123,9 +124,10 @@
 			//NSInteger index = 0;
 		nextButtonYLocation = 10;
 		for (NSDictionary *option in options) {
+//			PassTouchButton *button = [PassTouchButton buttonWithType: UIButtonTypeCustom];
 			PassTouchButton *button = [PassTouchButton buttonWithType: UIButtonTypeCustom];
 				//UIButton *button = [UIButton buttonWithType: UIButtonTypeCustom ];
-				//PassTouchButton *button = [PassTouchButton buttonWithType: UIButtonTypeRoundedRect ];//debug
+//			PassTouchButton *button = [PassTouchButton buttonWithType: UIButtonTypeRoundedRect ];//debug
 			
 				//Button Looks
 			button.titleLabel.lineBreakMode = UILineBreakModeWordWrap;
@@ -194,7 +196,49 @@
 											nextButtonYLocation);
 	}
 	
+	[self layoutSubviews];
+	
 }
+
+
+- (void)layoutSubviews {
+	CGSize maximumTextViewSize = CGSizeMake(self.bounds.size.width - margins * 2, self.bounds.size.height - margins * 2);
+	CGSize expectedTextViewSize = [self.text sizeWithFont: self.mainTextView.font 
+										constrainedToSize: maximumTextViewSize 
+											lineBreakMode: UILineBreakModeWordWrap]; 
+	
+
+	self.mainTextView.frame = CGRectMake(margins, margins, self.bounds.size.width - margins * 2, expectedTextViewSize.height + 100);
+	
+	
+	if (self.tag == OBJECT_POPUP_TEXT) {
+		CGRect textViewFrame = self.bounds;
+		textViewFrame.size.width = POPUP_WIDTH;
+		self.bounds = textViewFrame;
+//		self.backgroundColor = [UIColor whiteColor];
+	
+	
+		if (!self.options) {
+			self.optionsContainer.hidden = YES;
+				//optionsContainer.bounds = CGRectMake(0, 0, 1, 1);
+			
+		} else {
+			
+			self.optionsContainer.hidden = NO;
+			CGRect optionsFrame = self.optionsContainer.frame;
+			optionsFrame.origin.y = self.mainTextView.frame.size.height + 10;
+			optionsFrame.size.width = self.mainTextView.frame.size.width;
+			self.optionsContainer.frame = optionsFrame;
+			
+			
+		}
+	}	
+}
+
+
+
+/*
+
 
 - (CGSize) sizeThatFits: (CGSize)size {
 		// TODO: Clean up this method. Some of this shit might not even do anything...
@@ -275,6 +319,8 @@
 		//self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, sizeThatFitsPopup.width, sizeThatFitsPopup.height);
 	return sizeThatFitsPopup;
 }
+
+*/
 
 /*
 - (void) sizeToFitPopup {

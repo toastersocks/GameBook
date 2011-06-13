@@ -26,9 +26,8 @@
 		DD22F422134AA35C00BD2C00 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8E7C8112FCF73E0085A8F6 /* OrderedDictionary.m */; };
 		DD2B78FE12F28C570038901C /* pageEdge_left.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2B78FC12F28C570038901C /* pageEdge_left.png */; };
 		DD2B78FF12F28C570038901C /* pageEdge_right.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2B78FD12F28C570038901C /* pageEdge_right.png */; };
+		DD2E4E501381FFDC00ABA5E9 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD2E4E4F1381FFDC00ABA5E9 /* Entitlements.plist */; };
 		DD427EF41378B5F000B12AC1 /* CALayer+DetailedDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = DD427EF31378B5F000B12AC1 /* CALayer+DetailedDescription.m */; };
-		DD427EF61379A89800B12AC1 /* wax.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD427EF51379A89800B12AC1 /* wax.framework */; };
-		DD427EF71379A89800B12AC1 /* wax.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD427EF51379A89800B12AC1 /* wax.framework */; };
 		DD427EF9137A1A7900B12AC1 /* robotSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD427EF8137A1A7900B12AC1 /* robotSmall.png */; };
 		DD53BB3312A02F2E005093BA /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = DD53BB2112A02F2D005093BA /* bird.png */; };
 		DD53BB3412A02F2E005093BA /* branch.png in Resources */ = {isa = PBXBuildFile; fileRef = DD53BB2212A02F2D005093BA /* branch.png */; };
@@ -53,12 +52,13 @@
 		DD53BC3D12A21E65005093BA /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DD53BC3C12A21E65005093BA /* Constants.m */; };
 		DD53BE8B12A36A8A005093BA /* TextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD53BE8A12A36A8A005093BA /* TextView.m */; };
 		DD53BFE912A490B7005093BA /* forestSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = DD53BFE812A490B7005093BA /* forestSmall.png */; };
-		DD55F7BE12A6C18000A578B4 /* parseOption.lua in Resources */ = {isa = PBXBuildFile; fileRef = DD55F79B12A6BBFE00A578B4 /* parseOption.lua */; };
-		DD55F7BF12A6C18000A578B4 /* printT.lua in Resources */ = {isa = PBXBuildFile; fileRef = DD55F79C12A6BBFE00A578B4 /* printT.lua */; };
-		DD55F7C012A6C18000A578B4 /* gameObjectHelper.lua in Resources */ = {isa = PBXBuildFile; fileRef = DD55F79212A6B9C500A578B4 /* gameObjectHelper.lua */; };
-		DD55F7C112A6C18000A578B4 /* gameObjectList.lua in Resources */ = {isa = PBXBuildFile; fileRef = DD55F79312A6B9C500A578B4 /* gameObjectList.lua */; };
-		DD55F7C212A6C18000A578B4 /* ParseHelper.lua in Resources */ = {isa = PBXBuildFile; fileRef = DD53BC9D12A2B9FA005093BA /* ParseHelper.lua */; };
 		DD620CE0133C2EDB00456371 /* SectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD620CDF133C2EDB00456371 /* SectionViewController.m */; };
+		DD6CD17213845BCC00BD2CD9 /* ParseHelper.lua in Resources */ = {isa = PBXBuildFile; fileRef = DDAF20571380A8F700E19A1E /* ParseHelper.lua */; };
+		DD6CD17313845BD500BD2CD9 /* gameObjectHelper.lua in Resources */ = {isa = PBXBuildFile; fileRef = DDAF20541380A8F700E19A1E /* gameObjectHelper.lua */; };
+		DD6CD17413845BD800BD2CD9 /* gameObjectList.lua in Resources */ = {isa = PBXBuildFile; fileRef = DDAF20551380A8F700E19A1E /* gameObjectList.lua */; };
+		DD6CD17513845BDB00BD2CD9 /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = DDAF20561380A8F700E19A1E /* init.lua */; };
+		DD6CD17613845BDF00BD2CD9 /* parseOption.lua in Resources */ = {isa = PBXBuildFile; fileRef = DDAF20581380A8F700E19A1E /* parseOption.lua */; };
+		DD6CD17713845DE100BD2CD9 /* printT.lua in Resources */ = {isa = PBXBuildFile; fileRef = DDAF20591380A8F700E19A1E /* printT.lua */; };
 		DD7CB5D713690CA800FF527D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		DD7CB5D813690CA800FF527D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		DD7CB5D913690CA800FF527D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -82,6 +82,15 @@
 		DDAC812112E8BB5700E2B011 /* LeavesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC811C12E8BB5600E2B011 /* LeavesCache.m */; };
 		DDAC812212E8BB5700E2B011 /* LeavesView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC811E12E8BB5600E2B011 /* LeavesView.m */; };
 		DDAC812312E8BB5700E2B011 /* LeavesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAC812012E8BB5600E2B011 /* LeavesViewController.m */; };
+		DDAF20501380A83D00E19A1E /* wax.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDAF204F1380A83D00E19A1E /* wax.framework */; };
+		DDAF20511380A83D00E19A1E /* wax.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDAF204F1380A83D00E19A1E /* wax.framework */; };
+		DDAF205B1380A8F700E19A1E /* gameObjectHelper.lua in Sources */ = {isa = PBXBuildFile; fileRef = DDAF20541380A8F700E19A1E /* gameObjectHelper.lua */; };
+		DDAF205C1380A8F700E19A1E /* gameObjectList.lua in Sources */ = {isa = PBXBuildFile; fileRef = DDAF20551380A8F700E19A1E /* gameObjectList.lua */; };
+		DDAF205D1380A8F700E19A1E /* init.lua in Sources */ = {isa = PBXBuildFile; fileRef = DDAF20561380A8F700E19A1E /* init.lua */; };
+		DDAF205E1380A8F700E19A1E /* ParseHelper.lua in Sources */ = {isa = PBXBuildFile; fileRef = DDAF20571380A8F700E19A1E /* ParseHelper.lua */; };
+		DDAF205F1380A8F700E19A1E /* parseOption.lua in Sources */ = {isa = PBXBuildFile; fileRef = DDAF20581380A8F700E19A1E /* parseOption.lua */; };
+		DDAF20601380A8F700E19A1E /* printT.lua in Sources */ = {isa = PBXBuildFile; fileRef = DDAF20591380A8F700E19A1E /* printT.lua */; };
+		DDAF20611380A8F700E19A1E /* prologueHelper.lua in Sources */ = {isa = PBXBuildFile; fileRef = DDAF205A1380A8F700E19A1E /* prologueHelper.lua */; };
 		DDAFC9F0137609DA00A54BCE /* SpreadSmall2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DDAFC9EF137609DA00A54BCE /* SpreadSmall2.jpg */; };
 		DDAFC9F61376193700A54BCE /* InsideMenuSpread.png in Resources */ = {isa = PBXBuildFile; fileRef = DDAFC9F51376193700A54BCE /* InsideMenuSpread.png */; };
 		DDBB8BF712AAEE2300C1F885 /* GamebookLog.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB8BF612AAEE2300C1F885 /* GamebookLog.m */; };
@@ -148,13 +157,11 @@
 		DD163490127615DA00456EE0 /* MainTitleMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainTitleMenu.xib; path = Classes/MainTitleMenu.xib; sourceTree = "<group>"; };
 		DD19CB51136DF4DD0073A0FD /* CoverFinalSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CoverFinalSmall.png; sourceTree = "<group>"; };
 		DD22F421134A8A4B00BD2C00 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
-		DD2774DD128D1B31003156B3 /* AppDelegate.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = AppDelegate.lua; sourceTree = "<group>"; };
-		DD2B783412D42A6A002DABB0 /* prologueHelper.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = prologueHelper.lua; sourceTree = "<group>"; };
 		DD2B78FC12F28C570038901C /* pageEdge_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pageEdge_left.png; sourceTree = "<group>"; };
 		DD2B78FD12F28C570038901C /* pageEdge_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pageEdge_right.png; sourceTree = "<group>"; };
+		DD2E4E4F1381FFDC00ABA5E9 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		DD427EF21378B5F000B12AC1 /* CALayer+DetailedDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+DetailedDescription.h"; sourceTree = "<group>"; };
 		DD427EF31378B5F000B12AC1 /* CALayer+DetailedDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+DetailedDescription.m"; sourceTree = "<group>"; };
-		DD427EF51379A89800B12AC1 /* wax.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = wax.framework; sourceTree = "<group>"; };
 		DD427EF8137A1A7900B12AC1 /* robotSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = robotSmall.png; sourceTree = "<group>"; };
 		DD53BA38129C4E5E005093BA /* SceneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneView.h; sourceTree = "<group>"; };
 		DD53BA39129C4E5E005093BA /* SceneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneView.m; sourceTree = "<group>"; wrapsLines = 1; };
@@ -180,14 +187,9 @@
 		DD53BB8112A04B53005093BA /* SectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionView.m; sourceTree = "<group>"; wrapsLines = 1; };
 		DD53BC3B12A21E65005093BA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DD53BC3C12A21E65005093BA /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		DD53BC9D12A2B9FA005093BA /* ParseHelper.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = ParseHelper.lua; sourceTree = "<group>"; };
 		DD53BE8912A36A8A005093BA /* TextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextView.h; sourceTree = "<group>"; };
 		DD53BE8A12A36A8A005093BA /* TextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextView.m; sourceTree = "<group>"; wrapsLines = 1; };
 		DD53BFE812A490B7005093BA /* forestSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forestSmall.png; sourceTree = "<group>"; };
-		DD55F79212A6B9C500A578B4 /* gameObjectHelper.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = gameObjectHelper.lua; sourceTree = "<group>"; wrapsLines = 1; };
-		DD55F79312A6B9C500A578B4 /* gameObjectList.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = gameObjectList.lua; sourceTree = "<group>"; wrapsLines = 1; };
-		DD55F79B12A6BBFE00A578B4 /* parseOption.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = parseOption.lua; sourceTree = "<group>"; };
-		DD55F79C12A6BBFE00A578B4 /* printT.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = printT.lua; sourceTree = "<group>"; };
 		DD620CDE133C2EDB00456371 /* SectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionViewController.h; sourceTree = "<group>"; };
 		DD620CDF133C2EDB00456371 /* SectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SectionViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DD7CB5D613690CA800FF527D /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,6 +224,14 @@
 		DDAC811E12E8BB5600E2B011 /* LeavesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesView.m; sourceTree = "<group>"; };
 		DDAC811F12E8BB5600E2B011 /* LeavesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesViewController.h; sourceTree = "<group>"; };
 		DDAC812012E8BB5600E2B011 /* LeavesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeavesViewController.m; sourceTree = "<group>"; };
+		DDAF204F1380A83D00E19A1E /* wax.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = wax.framework; sourceTree = "<group>"; };
+		DDAF20541380A8F700E19A1E /* gameObjectHelper.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = gameObjectHelper.lua; sourceTree = "<group>"; };
+		DDAF20551380A8F700E19A1E /* gameObjectList.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = gameObjectList.lua; sourceTree = "<group>"; };
+		DDAF20561380A8F700E19A1E /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = init.lua; sourceTree = "<group>"; };
+		DDAF20571380A8F700E19A1E /* ParseHelper.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = ParseHelper.lua; sourceTree = "<group>"; };
+		DDAF20581380A8F700E19A1E /* parseOption.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = parseOption.lua; sourceTree = "<group>"; };
+		DDAF20591380A8F700E19A1E /* printT.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = printT.lua; sourceTree = "<group>"; };
+		DDAF205A1380A8F700E19A1E /* prologueHelper.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = prologueHelper.lua; sourceTree = "<group>"; };
 		DDAFC9EF137609DA00A54BCE /* SpreadSmall2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SpreadSmall2.jpg; sourceTree = "<group>"; };
 		DDAFC9F51376193700A54BCE /* InsideMenuSpread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InsideMenuSpread.png; sourceTree = "<group>"; };
 		DDBB8BF512AAEE2300C1F885 /* GamebookLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamebookLog.h; sourceTree = "<group>"; };
@@ -271,7 +281,7 @@
 				DDE5EFD812D69937000B7315 /* CFNetwork.framework in Frameworks */,
 				DDE5EFDC12D69953000B7315 /* SystemConfiguration.framework in Frameworks */,
 				DD896A2512D94E0300021330 /* QuartzCore.framework in Frameworks */,
-				DD427EF61379A89800B12AC1 /* wax.framework in Frameworks */,
+				DDAF20501380A83D00E19A1E /* wax.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +292,7 @@
 				DD7CB5D713690CA800FF527D /* UIKit.framework in Frameworks */,
 				DD7CB5D813690CA800FF527D /* Foundation.framework in Frameworks */,
 				DD7CB5D913690CA800FF527D /* CoreGraphics.framework in Frameworks */,
-				DD427EF71379A89800B12AC1 /* wax.framework in Frameworks */,
+				DDAF20511380A83D00E19A1E /* wax.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,12 +356,13 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DD2774DC128D1B31003156B3 /* scripts */,
+				DDAF20531380A8F700E19A1E /* scripts */,
 				DD277412128CECEA003156B3 /* Gamebook Sections */,
 				DD8A994C1259829700C2F04F /* images */,
 				DDFBF16F126A482500B21630 /* text */,
 				DDCC9EC912738ED4005C5745 /* xibs */,
 				8D1107310486CEB800E47090 /* GameBook-Info.plist */,
+				DD2E4E4F1381FFDC00ABA5E9 /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -359,7 +370,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DD427EF51379A89800B12AC1 /* wax.framework */,
+				DDAF204F1380A83D00E19A1E /* wax.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
@@ -389,21 +400,6 @@
 			children = (
 			);
 			name = "Lua stuff";
-			sourceTree = "<group>";
-		};
-		DD2774DC128D1B31003156B3 /* scripts */ = {
-			isa = PBXGroup;
-			children = (
-				DD55F79B12A6BBFE00A578B4 /* parseOption.lua */,
-				DD55F79C12A6BBFE00A578B4 /* printT.lua */,
-				DD55F79212A6B9C500A578B4 /* gameObjectHelper.lua */,
-				DD55F79312A6B9C500A578B4 /* gameObjectList.lua */,
-				DD53BC9D12A2B9FA005093BA /* ParseHelper.lua */,
-				DD2774DD128D1B31003156B3 /* AppDelegate.lua */,
-				DD2B783412D42A6A002DABB0 /* prologueHelper.lua */,
-			);
-			name = scripts;
-			path = data/scripts;
 			sourceTree = "<group>";
 		};
 		DD296F0F134A75F700FE236D /* Old Classes */ = {
@@ -563,6 +559,20 @@
 				DDAC812012E8BB5600E2B011 /* LeavesViewController.m */,
 			);
 			path = Leaves;
+			sourceTree = "<group>";
+		};
+		DDAF20531380A8F700E19A1E /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				DDAF20541380A8F700E19A1E /* gameObjectHelper.lua */,
+				DDAF20551380A8F700E19A1E /* gameObjectList.lua */,
+				DDAF20561380A8F700E19A1E /* init.lua */,
+				DDAF20571380A8F700E19A1E /* ParseHelper.lua */,
+				DDAF20581380A8F700E19A1E /* parseOption.lua */,
+				DDAF20591380A8F700E19A1E /* printT.lua */,
+				DDAF205A1380A8F700E19A1E /* prologueHelper.lua */,
+			);
+			path = scripts;
 			sourceTree = "<group>";
 		};
 		DDCC9EC912738ED4005C5745 /* xibs */ = {
@@ -727,18 +737,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD55F7BE12A6C18000A578B4 /* parseOption.lua in Resources */,
-				DD55F7BF12A6C18000A578B4 /* printT.lua in Resources */,
-				DD55F7C012A6C18000A578B4 /* gameObjectHelper.lua in Resources */,
-				DD55F7C112A6C18000A578B4 /* gameObjectList.lua in Resources */,
-				DD55F7C212A6C18000A578B4 /* ParseHelper.lua in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				DD8A99521259829700C2F04F /* ambushSmall.png in Resources */,
 				DD8A99531259829700C2F04F /* deerSmall.png in Resources */,
+				DD6CD17713845DE100BD2CD9 /* printT.lua in Resources */,
 				DD8A99541259829700C2F04F /* factorySmall.png in Resources */,
 				DD8A99551259829700C2F04F /* motherSmall.png in Resources */,
 				DD8A99561259829700C2F04F /* passageSmall.png in Resources */,
 				DDFBF145126A39A800B21630 /* SectionViewController.xib in Resources */,
+				DD6CD17613845BDF00BD2CD9 /* parseOption.lua in Resources */,
+				DD6CD17413845BD800BD2CD9 /* gameObjectList.lua in Resources */,
+				DD6CD17313845BD500BD2CD9 /* gameObjectHelper.lua in Resources */,
+				DD6CD17513845BDB00BD2CD9 /* init.lua in Resources */,
+				DD6CD17213845BCC00BD2CD9 /* ParseHelper.lua in Resources */,
 				DDFBF175126A482500B21630 /* IndexTEST.txt in Resources */,
 				DD098E21126E300E00BF8B8C /* wells.txt in Resources */,
 				DD098E22126E300E00BF8B8C /* melville.txt in Resources */,
@@ -782,6 +793,7 @@
 				DDAFC9F0137609DA00A54BCE /* SpreadSmall2.jpg in Resources */,
 				DDAFC9F61376193700A54BCE /* InsideMenuSpread.png in Resources */,
 				DD427EF9137A1A7900B12AC1 /* robotSmall.png in Resources */,
+				DD2E4E501381FFDC00ABA5E9 /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -860,6 +872,13 @@
 				DDA54E8213736C450001E600 /* PageFlipView.m in Sources */,
 				DDA54E8D137391910001E600 /* CoverAnimationComponent.m in Sources */,
 				DD427EF41378B5F000B12AC1 /* CALayer+DetailedDescription.m in Sources */,
+				DDAF205B1380A8F700E19A1E /* gameObjectHelper.lua in Sources */,
+				DDAF205C1380A8F700E19A1E /* gameObjectList.lua in Sources */,
+				DDAF205D1380A8F700E19A1E /* init.lua in Sources */,
+				DDAF205E1380A8F700E19A1E /* ParseHelper.lua in Sources */,
+				DDAF205F1380A8F700E19A1E /* parseOption.lua in Sources */,
+				DDAF20601380A8F700E19A1E /* printT.lua in Sources */,
+				DDAF20611380A8F700E19A1E /* prologueHelper.lua in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -890,7 +909,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Goins (ZEK53QB55F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Goins (ZEK53QB55F)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -904,6 +925,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = GameBook;
+				PROVISIONING_PROFILE = "B4FAEB2D-5929-4D02-8645-1E7AFAADAA25";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B4FAEB2D-5929-4D02-8645-1E7AFAADAA25";
 			};
 			name = Debug;
 		};
@@ -911,7 +934,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Goins (ZEK53QB55F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Goins (ZEK53QB55F)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -923,6 +948,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = GameBook;
+				PROVISIONING_PROFILE = "B4FAEB2D-5929-4D02-8645-1E7AFAADAA25";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B4FAEB2D-5929-4D02-8645-1E7AFAADAA25";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -931,6 +958,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -942,6 +970,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				PREBINDING = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -951,7 +980,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Goins (ZEK53QB55F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
@@ -963,7 +992,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "6DAAA159-78DA-4572-9A0F-89C45DC7A03D";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -1026,7 +1056,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Goins (ZEK53QB55F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
@@ -1038,7 +1068,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "6DAAA159-78DA-4572-9A0F-89C45DC7A03D";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -1049,7 +1079,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Goins (ZEK53QB55F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Goins (ZEK53QB55F)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1061,6 +1094,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = GameBook;
+				PROVISIONING_PROFILE = "B4FAEB2D-5929-4D02-8645-1E7AFAADAA25";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B4FAEB2D-5929-4D02-8645-1E7AFAADAA25";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = "Ad-Hoc-Release";

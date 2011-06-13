@@ -14,6 +14,7 @@
 @class GamebookLog;
 @class SectionParser;
 @class InsidePagesTransitionComponent;
+@class TextView;
 
 @interface SectionViewController : GameBookViewWithDelegate {
 	SectionView *sectionView;
@@ -22,6 +23,11 @@
 	SectionParser *gameData;
 	
 	InsidePagesTransitionComponent *transitionDelegate;
+	
+	
+	GameBookViewWithDelegate *objectTextPopupController;
+	UIPopoverController *popoverController;
+	TextView *popupTextView;
 }
 
 @property (nonatomic, retain) SectionView *sectionView;

@@ -105,8 +105,9 @@
 
 
 	NSLog(@"pop type is: %@", popoverController.contentViewController.view.class);
+	objectTextPopupController.contentSizeForViewInPopover = CGSizeMake(300, 400);
 
-	popoverController.popoverContentSize = [popupTextView sizeThatFits: CGSizeMake(250, 100)];
+//	popoverController.popoverContentSize = [popupTextView sizeThatFits: CGSizeMake(250, 100)];
 
 	[popoverController presentPopoverFromRect: [touchable frame] 
 								   inView: [touchable superview] 

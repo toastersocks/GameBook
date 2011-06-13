@@ -74,7 +74,7 @@
 
 - (IBAction)newGame:(id)sender {
 	LogMessage(@"BookController", 0, @"In the newGame method");
-	self.sectionViewController.sectionView = [self.sectionViewController viewForSection: @"IndexTest"];
+	self.sectionViewController.sectionView = [self.sectionViewController viewForSection: @"IndexTEST"];
 //	[self.insideTransitionDelegate beginCutToView: [_bookParts objectForKey: @"StorySections"] sender: self];
 	[self.insideTransitionDelegate beginFlipForwardToView: [_bookParts objectForKey: @"StorySections"] sender: self];
 
@@ -139,7 +139,7 @@
 }
 
 - (IBAction)pageEdgeRightAction: (id)sender {
-	if (self.currentBookSectionIndex < [_bookParts count]) {
+	if (self.currentBookSectionIndex < [_bookParts count] - 1) {
 		[self.insideTransitionDelegate beginTransitionToView: [_bookParts objectAtIndex: self.currentBookSectionIndex + 1] sender: self];
 	}	
 }

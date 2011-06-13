@@ -13,6 +13,10 @@
 #import "SectionParser.h"
 #import "InsidePagesTransitionComponent.h"
 
+#import "Constants.h"
+
+#import "TextView.h"
+
 @implementation SectionViewController
 
 @synthesize sectionView;
@@ -57,9 +61,9 @@
 	return nextSectionView;
 }
 
-- (void) showPopupForCurrentOptionFromTouchable: (id)touchable  {
-
-}
+//- (void) showPopupForCurrentOptionFromTouchable: (id)touchable  {
+//
+//}
 
 - (void)didTransitionToView: (UIView *)newSectionView {
 	[self.gamebookLog logOptions: self.touchedObject];
@@ -80,8 +84,8 @@
 
 	//Code below commented out for now to focus on getting section loading working
 
-/*
-- (void) showPopupForCurrentOptionFromTouchable: (id)touchable  {
+
+- (void) showPopupForCurrentOptionFromTouchable: (GBTouchable *)touchable  {
     NSLog(@"loading the popup...");
 	
 	objectTextPopupController = [[GameBookViewWithDelegate alloc] init];
@@ -98,12 +102,12 @@
 		//[popupController.view addSubview: popup];
 	objectTextPopupController.view = popupTextView;
 	
-	NSLog(@"currentObject at %p retain count before assignment is: %i", self.currentObject, [self.currentObject retainCount] );
+//	NSLog(@"currentObject at %p retain count before assignment is: %i", self.currentObject, [self.currentObject retainCount] );
 	
-	self.currentObject = [[gameData objectNamed: [currentOption valueForKey: @"pop"] ] retain];
-	NSLog(@"currentObject at %p retain count after assignment is: %i", self.currentObject, [self.currentObject retainCount] );
+//	self.currentObject = [[gameData objectNamed: [currentOption valueForKey: @"pop"] ] retain];
+//	NSLog(@"currentObject at %p retain count after assignment is: %i", self.currentObject, [self.currentObject retainCount] );
 	
-	NSLog(@"Popup object in popup method is:\n%@", currentObject);
+//	NSLog(@"Popup object in popup method is:\n%@", currentObject);
 	
 	
 	
@@ -111,7 +115,9 @@
 	objectTextPopupController.view.backgroundColor = self.sectionView.backgroundColor;
 	
 	
-	popupTextView.pageContents = self.currentObject;
+//	popupTextView.pageContents = self.currentObject;
+	popupTextView.pageContents = [[gameData objectNamed: [touchable.option valueForKey: @"pop"] ] retain];
+
 	
 	NSLog(@"textView height is: %f\noptionsContainer height is: %f", popupTextView.mainTextView.bounds.size.height, popupTextView.optionsContainer.bounds.size.height);
 	NSLog(@"height of popup is %f", objectTextPopupController.contentSizeForViewInPopover.height);
@@ -119,7 +125,11 @@
 	
 	NSLog(@"pop type is: %@", popoverController.contentViewController.view.class);
 	
-	popoverController.popoverContentSize = [popupTextView sizeThatFits: CGSizeMake(250, 100)];
+	objectTextPopupController.contentSizeForViewInPopover = CGSizeMake(200, 300);
+
+//	popoverController.popoverContentSize = [popupTextView sizeThatFits: CGSizeMake(250, 100)];
+	popoverController.popoverContentSize = CGSizeMake(200, 300);
+
 	
 	[popoverController presentPopoverFromRect: [touchable frame] 
 									   inView: [touchable superview] 
@@ -133,12 +143,19 @@
 	
 		//[self.currentObject release];
 }
-*/
+
 
 //- (void)logTouchableOptions: (NSDictionary *)options {
 //	[self.gamebookLog logOptions: options];
 //}
 
+
+- (void) initPopup {
+	objectTextPopupController = [[GameBookViewWithDelegate alloc] init];
+	objectTextPopupController.delegate = self;
+	popoverController = [[UIPopoverController alloc] initWithContentViewController: objectTextPopupController];
+	popoverController.delegate = self;
+}
 
 
 
@@ -173,13 +190,14 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	[self initPopup];
 }
-*/
+
 
 - (void)viewDidUnload
 {
