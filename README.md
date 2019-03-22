@@ -9,3 +9,5 @@ Another thing I'm proud of is the DSL I came up with (in Lua!) to allow content 
 I also modified the hell out of a framework called [Leaves](https://github.com/brow/leaves) that reproduced Apple's (then) private page-turn fuctionality in order to have the pages turn interactively and transition between two views. (Much like the swipe-to-go-back gesture in a navigation controller works today but, with a cool page-turn animation!)
 
 The story, concepts, and artwork that Mike came up with are great too.
+
+There are of course things that make me cringe a bit but, all-in-all, very proud of us and what we accomplished with this.
